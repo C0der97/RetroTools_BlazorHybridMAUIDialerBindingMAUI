@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
     <PropertyGroup>
-        <TargetFrameworks>net8.0-android;</TargetFrameworks>
+        <TargetFrameworks>net10.0-android</TargetFrameworks>
         <!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
         <!-- <TargetFrameworks>$(TargetFrameworks);net8.0-tizen</TargetFrameworks> -->
 
@@ -32,11 +32,14 @@
 
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
-        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">31.0</SupportedOSPlatformVersion>
+        <!-- Android SupportedOSPlatformVersion removed to avoid TargetPlatformVersion mismatch (NETSDK1135).
+             If you want to set a specific Android supported OS version, ensure the installed Android SDK and TargetPlatformVersion
+             are updated accordingly and re-add this property with a compatible value. -->
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
         <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
     </PropertyGroup>
+    
 
     <PropertyGroup>
       <AndroidSigningKeyStore>Payremind.keystore</AndroidSigningKeyStore>
@@ -149,11 +152,8 @@
 		
     </ItemGroup>
 
-    <ItemGroup Condition="'$(TargetFramework)' == 'net8.0-android'">
-      <PackageReference Include="Xamarin.AndroidX.Fragment.Ktx">
-        <Version>1.8.2</Version>
-      </PackageReference>
-    </ItemGroup>
+    <!-- Xamarin.AndroidX.Fragment.Ktx PackageReference removed due to compatibility with different android TFM.
+         Re-add a compatible package or change the TargetFramework if required. -->
 
     <ItemGroup>
       <Folder Include="Components\Layout\" />
@@ -164,8 +164,14 @@
       <MauiIcon Include="Resources\AppIcon\icon.png" />
     </ItemGroup>
 
+    <!-- ProjectReference to ShowCaseViewBinding removed because the referenced project file is not present in the workspace.
+         If you have that project elsewhere, restore it and re-add a ProjectReference with the correct relative path. -->
+
+    <!-- Exclude ShowCaseView-dependent files from compilation until the binding library is available -->
     <ItemGroup>
-      <ProjectReference Include="..\ShowCaseViewBinding\ShowCaseViewBinding.csproj" />
+      <Compile Remove="MauiWrapper\ShowCaseViewWrapper.cs" />
+      <Compile Remove="Platforms\Android\Wrappers\ShowCase.cs" />
+      <!-- ShowCaseViewWrapperStub.cs provides stub implementations to allow compilation -->
     </ItemGroup>
 
     <ItemGroup>
