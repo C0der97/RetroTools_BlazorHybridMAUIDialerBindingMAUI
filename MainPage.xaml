@@ -12,18 +12,23 @@
 
     <TabbedPage.Children>
 
-        <ContentPage Title="Dialer" IconImageSource="reloj.png" 
-                         BackgroundColor="{AppThemeBinding Light={StaticResource LightBackgroundColor}, Dark={StaticResource DarkBackgroundColor}}">
+        <mauiPages:DialPage Title="Teclado" IconImageSource="reloj.png" />
 
-            <BlazorWebView x:Name="blazorWebViewHome" HostPage="wwwroot/index.html">
+        <ContentPage Title="Recientes" IconImageSource="lista.png">
+            <BlazorWebView HostPage="wwwroot/index.html">
                 <BlazorWebView.RootComponents>
-                    <RootComponent Selector="#app"  ComponentType="{x:Type pages:Home}" />
+                    <RootComponent Selector="#app" ComponentType="{x:Type pages:CallHistory}" />
                 </BlazorWebView.RootComponents>
             </BlazorWebView>
-
         </ContentPage>
 
-        <mauiPages:DialPage Title="Teclado" IconImageSource="reloj.png" />
+        <ContentPage Title="Contactos" IconImageSource="lista.png">
+            <BlazorWebView HostPage="wwwroot/index.html">
+                <BlazorWebView.RootComponents>
+                    <RootComponent Selector="#app" ComponentType="{x:Type pages:Contacts}" />
+                </BlazorWebView.RootComponents>
+            </BlazorWebView>
+        </ContentPage>
 
     </TabbedPage.Children>
 </TabbedPage>

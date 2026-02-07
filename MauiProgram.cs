@@ -75,8 +75,14 @@ namespace PayRemind
             builder.Services.AddSingleton<PhoneCallReceiver>();
             builder.Services.AddSingleton<ICallHandler, CallHandlingService>();
             builder.Services.AddSingleton<IViewConverterService, ViewConverterService>();
+            builder.Services.AddSingleton<ICallLogService, CallLogService>();
+            builder.Services.AddSingleton<IContactsService, ContactsService>(); // Registered ContactsService
 
             DependencyService.Register<IViewConverterService, ViewConverterService>();
+            DependencyService.Register<ICallLogService, CallLogService>();
+            DependencyService.Register<IContactsService, ContactsService>();
+
+
 
 #endif
 

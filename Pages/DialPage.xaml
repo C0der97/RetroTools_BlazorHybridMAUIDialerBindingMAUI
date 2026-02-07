@@ -2,9 +2,13 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PayRemind.Pages.DialPage"
+             xmlns:pages="clr-namespace:PayRemind.Components.Pages"
              Title="DialPage">
-    <VerticalStackLayout Spacing="25" Padding="30,0" VerticalOptions="Center">
-        <Entry x:Name="numberEntry" Placeholder="Enter phone number" Keyboard="Telephone" />
-        <Button x:Name="dialButton" Text="Dial" Clicked="OnDialButtonClicked" />
-    </VerticalStackLayout>
+    <StackLayout>
+        <BlazorWebView HostPage="wwwroot/index.html">
+            <BlazorWebView.RootComponents>
+                <RootComponent Selector="#app" ComponentType="{x:Type pages:Dialpad}" />
+            </BlazorWebView.RootComponents>
+        </BlazorWebView>
+    </StackLayout>
 </ContentPage>

@@ -3,43 +3,78 @@ using Android.Telecom;
 using Android.Telephony;
 using PayRemind.Contracts;
 using PayRemind.Platforms.Android;
-
+using Application = Android.App.Application;
 
 [assembly: Dependency(typeof(CallHandlingService))]
 namespace PayRemind.Platforms.Android
 {
-    public class CallHandlingService : PhoneStateListener, ICallHandler
+    public class CallHandlingService : ICallHandler
     {
-        private readonly TelecomManager _telecomManager;
-
-        private readonly Context _context;
-
-        public CallHandlingService()
-        {
-            _context = MauiApplication.Current.ApplicationContext;
-        }
-
         public void AnswerCall()
         {
-            var telecomManager = (TelecomManager)_context.GetSystemService(Context.TelecomService);
-            telecomManager.AcceptRingingCall();
+            var call = CallService.Instance?.ActiveCall;
+            if (call != null)
+            {
+                call.Answer(VideoProfileState.AudioOnly);
+            }
+            else
+            {
+                // Legacy method or fallback
+                var telecomManager = (TelecomManager)Application.Context.GetSystemService(Context.TelecomService);
+                if (Application.Context.CheckSelfPermission(global::Android.Manifest.Permission.AnswerPhoneCalls) == global::Android.Content.PM.Permission.Granted)
+                {
+                    telecomManager.AcceptRingingCall();
+                }
+            }
         }
 
         public void RejectCall()
         {
-            var telecomManager = (TelecomManager)_context.GetSystemService(Context.TelecomService);
-            telecomManager.EndCall();
+             var call = CallService.Instance?.ActiveCall;
+            if (call != null)
+            {
+                call.Reject(false, "");
+            }
+            else
+            {
+                var telecomManager = (TelecomManager)Application.Context.GetSystemService(Context.TelecomService);
+                 if (Application.Context.CheckSelfPermission(global::Android.Manifest.Permission.AnswerPhoneCalls) == global::Android.Content.PM.Permission.Granted)
+                {
+                    telecomManager.EndCall();
+                }
+            }
         }
 
-        //public override void OnCallStateChanged([GeneratedEnum]
-        //CallState state, string? phoneNumber)
-        //{
-        //    base.OnCallStateChanged(state, phoneNumber);
+        public void EndCall()
+        {
+            CallService.Instance?.ActiveCall?.Disconnect();
+        }
 
-        //    if (state == CallState.Ringing)
-        //    {
+        public void ToggleMute()
+        {
+            var service = CallService.Instance;
+            if (service != null && service.CallAudioState != null)
+            {
+                bool isMuted = service.CallAudioState.IsMuted;
+                service.SetMuted(!isMuted);
+            }
+        }
 
-        //    }
-        //}
+        public void ToggleSpeaker()
+        {
+            var service = CallService.Instance;
+            if (service != null && service.CallAudioState != null)
+            {
+                CallAudioRoute route = service.CallAudioState.Route;
+                if (route == CallAudioRoute.Speaker)
+                {
+                    service.SetAudioRoute(CallAudioRoute.Earpiece);
+                }
+                else
+                {
+                    service.SetAudioRoute(CallAudioRoute.Speaker);
+                }
+            }
+        }
     }
 }

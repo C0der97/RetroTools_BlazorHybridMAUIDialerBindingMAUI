@@ -1,0 +1,163 @@
+@page "/dialpad"
+@using PayRemind.Contracts
+@using System.Text
+@inject IContactsService ContactsService
+
+<MudContainer MaxWidth="MaxWidth.ExtraSmall" Class="pa-4 d-flex flex-column" Style="height: 100vh;">
+    
+    <!-- Input Display -->
+    <MudText Typo="Typo.h4" Align="Align.Center" Class="mb-4">@phoneNumber</MudText>
+
+    <!-- T9 Search Results -->
+    @if (filteredContacts != null && filteredContacts.Count > 0)
+    {
+        <MudList T="string" Style="max-height: 150px; overflow-y: auto; flex-grow: 1;" Class="mb-2">
+             @foreach (var contact in filteredContacts.Take(3))
+            {
+                <MudListItem OnClick="@(() => SelectContact(contact))">
+                    <div class="d-flex align-center">
+                        <MudAvatar Image="@contact.PhotoUri" Size="Size.Small" Class="mr-2">
+                             @if (string.IsNullOrEmpty(contact.PhotoUri))
+                            {
+                                @(string.IsNullOrEmpty(contact.Name) ? "?" : contact.Name.Substring(0, 1).ToUpper())
+                            }
+                        </MudAvatar>
+                        <MudText Typo="Typo.body2">@contact.Name</MudText>
+                        <MudSpacer />
+                        <MudText Typo="Typo.caption">@contact.PhoneNumber</MudText>
+                    </div>
+                </MudListItem>
+            }
+        </MudList>
+    }
+    else
+    {
+        <MudSpacer />
+    }
+
+    <!-- Keypad -->
+    <MudGrid Spacing="2" Class="mb-4">
+        @foreach (var key in keys)
+        {
+            <MudItem xs="4" Class="d-flex justify-center">
+                <MudButton Variant="Variant.Filled" Color="Color.Surface" Class="rounded-circle pa-2" Style="width: 70px; height: 70px; display: flex; flex-direction: column;" OnClick="@(() => Append(key.Digit))">
+                    <MudText Typo="Typo.h5">@key.Digit</MudText>
+                    <MudText Typo="Typo.caption" Style="font-size: 0.7rem; color: gray;">@key.Letters</MudText>
+                </MudButton>
+            </MudItem>
+        }
+        
+        <MudItem xs="4" Class="d-flex justify-center">
+            <MudButton Variant="Variant.Filled" Color="Color.Surface" Class="rounded-circle" Style="width: 70px; height: 70px;" OnClick="@(() => Append("*"))">
+                <MudText Typo="Typo.h4">*</MudText>
+            </MudButton>
+        </MudItem>
+        <MudItem xs="4" Class="d-flex justify-center">
+            <MudButton Variant="Variant.Filled" Color="Color.Surface" Class="rounded-circle" Style="width: 70px; height: 70px; display: flex; flex-direction: column;" OnClick="@(() => Append("0"))">
+                <MudText Typo="Typo.h5">0</MudText>
+                <MudText Typo="Typo.caption" Style="font-size: 0.7rem; color: gray;">+</MudText>
+            </MudButton>
+        </MudItem>
+        <MudItem xs="4" Class="d-flex justify-center">
+            <MudButton Variant="Variant.Filled" Color="Color.Surface" Class="rounded-circle" Style="width: 70px; height: 70px;" OnClick="@(() => Append("#"))">
+                <MudText Typo="Typo.h5">#</MudText>
+            </MudButton>
+        </MudItem>
+    </MudGrid>
+
+    <!-- Actions -->
+    <MudStack Row="true" Justify="Justify.SpaceAround" Class="mb-5 align-center">
+         <div style="width: 50px;"></div> <!-- Spacer to center the call button -->
+         
+        <MudIconButton Icon="@Icons.Material.Filled.Call" Color="Color.Success" Size="Size.Large" Class="pa-4" Style="background-color: green; color: white;" OnClick="Call" />
+        
+        <MudIconButton Icon="@Icons.Material.Filled.Backspace" Color="Color.Default" Size="Size.Medium" OnClick="Backspace" />
+    </MudStack>
+
+</MudContainer>
+
+@code {
+    private string phoneNumber = "";
+    private List<ContactEntry> allContacts;
+    private List<ContactEntry> filteredContacts;
+    
+    private record Key(string Digit, string Letters);
+    private List<Key> keys = new()
+    {
+        new("1", "ooo"), new("2", "ABC"), new("3", "DEF"),
+        new("4", "GHI"), new("5", "JKL"), new("6", "MNO"),
+        new("7", "PQRS"), new("8", "TUV"), new("9", "WXYZ")
+    };
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+             var status = await Permissions.CheckStatusAsync<Permissions.ContactsRead>();
+             if (status == PermissionStatus.Granted)
+             {
+                 allContacts = await ContactsService.GetContactsAsync();
+             }
+        }
+        catch {}
+    }
+
+    private void Append(string digit)
+    {
+        phoneNumber += digit;
+        FilterContacts();
+    }
+
+    private void Backspace()
+    {
+        if (phoneNumber.Length > 0)
+        {
+            phoneNumber = phoneNumber.Substring(0, phoneNumber.Length - 1);
+            FilterContacts();
+        }
+    }
+
+    private void Clear()
+    {
+        phoneNumber = "";
+        filteredContacts = null;
+    }
+
+    private void SelectContact(ContactEntry contact)
+    {
+        phoneNumber = contact.PhoneNumber;
+        Call();
+    }
+
+    private void Call()
+    {
+        if (string.IsNullOrEmpty(phoneNumber)) return;
+        try
+        {
+            PhoneDialer.Open(phoneNumber);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error dialing: {ex.Message}");
+        }
+    }
+
+    private void FilterContacts()
+    {
+        if (string.IsNullOrEmpty(phoneNumber) || allContacts == null) 
+        {
+            filteredContacts = null;
+            return;
+        }
+
+        filteredContacts = allContacts.Where(c => 
+            c.PhoneNumber != null && 
+            Normalize(c.PhoneNumber).Contains(phoneNumber)
+        ).ToList();
+    }
+
+    private string Normalize(string number)
+    {
+        return new string(number.Where(char.IsDigit).ToArray());
+    }
+}

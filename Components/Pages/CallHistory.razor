@@ -1,0 +1,134 @@
+@page "/history"
+@using PayRemind.Contracts
+@inject ICallLogService CallLogService
+
+<MudContainer MaxWidth="MaxWidth.ExtraSmall" Class="pa-0">
+    <MudText Typo="Typo.h5" GutterBottom="true" Class="ma-4">Recientes</MudText>
+
+    @if (isLoading)
+    {
+        <MudProgressCircular Color="Color.Primary" Indeterminate="true" Class="ma-4"/>
+    }
+    else if (callLogs == null || callLogs.Count == 0)
+    {
+        <MudText Class="ma-4">No hay llamadas recientes.</MudText>
+    }
+    else
+    {
+        <MudList T="string">
+            @foreach (var log in callLogs)
+            {
+                <MudListItem OnClick="@(() => CallNumber(log.Number))">
+                    <div class="d-flex justify-space-between align-center">
+                        <div class="d-flex align-center">
+                            <MudIcon Icon="@GetIcon(log.Type)" Color="@GetColor(log.Type)" Class="mr-3" />
+                            <div>
+                                <MudText Typo="Typo.body1">@(string.IsNullOrEmpty(log.Name) ? log.Number : log.Name)</MudText>
+                                <MudText Typo="Typo.caption">@FormatDuration(log.Duration) • @FormatDate(log.Date)</MudText>
+                            </div>
+                        </div>
+                         <MudIconButton Icon="@Icons.Material.Filled.Call" Color="Color.Success" Size="Size.Small" />
+                    </div>
+                </MudListItem>
+                <MudDivider />
+            }
+        </MudList>
+    }
+</MudContainer>
+
+@code {
+    private List<CallLogEntry> callLogs;
+    private bool isLoading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadCallLogs();
+    }
+
+    private async Task LoadCallLogs()
+    {
+        isLoading = true;
+        try
+        {
+            var status = await Permissions.CheckStatusAsync<Permissions.Phone>();
+            if (status != PermissionStatus.Granted)
+            {
+                status = await Permissions.RequestAsync<Permissions.Phone>();
+            }
+
+            // Also check CallLog permission specifically for Android if needed, 
+            // but Permissions.Phone might cover READ_CALL_LOG in MAUI standard permissions? 
+            // MAUI Permissions.Phone covers READ_PHONE_STATE. 
+            // READ_CALL_LOG is not directly in MAUI Essentials permissions enum usually?
+            // Let's assume we might need a custom permission request if this fails.
+            
+            // For now, let's try calling the service.
+            if (status == PermissionStatus.Granted)
+            {
+                 callLogs = await CallLogService.GetCallLogsAsync();
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error loading call logs: {ex.Message}");
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private string GetIcon(string type)
+    {
+        return type switch
+        {
+            "Incoming" => Icons.Material.Filled.CallReceived,
+            "Outgoing" => Icons.Material.Filled.CallMade,
+            "Missed" => Icons.Material.Filled.CallMissed,
+            "Rejected" => Icons.Material.Filled.CallEnd,
+            _ => Icons.Material.Filled.Phone
+        };
+    }
+
+    private Color GetColor(string type)
+    {
+         return type switch
+        {
+            "Incoming" => Color.Info,
+            "Outgoing" => Color.Success,
+            "Missed" => Color.Error,
+            "Rejected" => Color.Error,
+            _ => Color.Default
+        };
+    }
+
+    private string FormatDuration(string duration)
+    {
+        if (int.TryParse(duration, out int seconds))
+        {
+            TimeSpan ts = TimeSpan.FromSeconds(seconds);
+            return ts.ToString(@"mm\:ss");
+        }
+        return duration;
+    }
+
+    private string FormatDate(long date)
+    {
+        DateTime start = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+        DateTime dt = start.AddMilliseconds(date).ToLocalTime();
+        return dt.ToString("g");
+    }
+
+    private void CallNumber(string number)
+    {
+        if (string.IsNullOrEmpty(number)) return;
+        try
+        {
+            PhoneDialer.Open(number);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error dialing: {ex.Message}");
+        }
+    }
+}

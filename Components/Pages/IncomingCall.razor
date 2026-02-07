@@ -3,96 +3,188 @@
 @inject ICallHandler CallHandler
 @using Microsoft.Maui.Controls
 @using PayRemind.Contracts
+@using System.Timers
 
-
-@* class=" @(_showCall ? "call-container show" : "call-container")" *@
-
-<MudLayout  Style="height: 100vh">
-    <MudContainer MaxWidth="MaxWidth.Small" Style="height: 100%; display: flex; flex-direction: column; justify-content: space-between; padding: 16px;">
-        <MudPaper Elevation="0" Style="background-color: transparent; display: flex; justify-content: center; padding-top: 20%;">
-            <MudAvatar Style="width: 120px; height: 120px; border: 4px solid white;">
+<MudLayout Style="height: 100vh; background-color: #2c3e50;">
+    <MudContainer MaxWidth="MaxWidth.Small" Style="height: 100%; display: flex; flex-direction: column; justify-content: space-between; padding: 32px;" Class="d-flex align-center">
+        
+        <!-- Caller Info -->
+        <MudStack AlignItems="AlignItems.Center" Spacing="4" Class="mt-10">
+             <MudAvatar Style="width: 120px; height: 120px; border: 4px solid white;">
                 <MudImage Src="https://img.freepik.com/free-photo/ultra-detailed-nebula-abstract-wallpaper-4_1562-749.jpg" Alt="Caller" ObjectFit="ObjectFit.Cover" Width="120" Height="120" Class="rounded-circle" />
             </MudAvatar>
-        </MudPaper>
+            <MudText Typo="Typo.h4" Align="Align.Center" Style="color: white;">@_incomingNumber</MudText>
+            <MudText Typo="Typo.h6" Align="Align.Center" Color="Color.Inherit" Style="color: rgba(255,255,255,0.7);">@_callStatus</MudText>
+            
+            @if (_callStatus == "Active")
+            {
+                <MudText Typo="Typo.h5" Align="Align.Center" Style="color: white;">@_duration.ToString(@"mm\:ss")</MudText>
+            }
+        </MudStack>
 
-        <MudText Typo="Typo.h2" Align="Align.Center" Style=" margin-bottom: 16px;">@_incomingNumber</MudText>
+        <!-- Actions -->
+        @if (_callStatus == "Incoming" || _callStatus == "Ringing")
+        {
+            <MudStack Row="true" Justify="Justify.SpaceAround" Style="width: 100%; padding-bottom: 40px;">
+                <MudFab Color="Color.Success" StartIcon="@Icons.Material.Filled.Call" Size="Size.Large" OnClick="AnswerCall" Label="Contestar" />
+                <MudFab Color="Color.Error" StartIcon="@Icons.Material.Filled.CallEnd" Size="Size.Large" OnClick="RejectCall" Label="Rechazar" />
+            </MudStack>
+        }
+        else if (_callStatus == "Active" || _callStatus == "Dialing")
+        {
+             <MudGrid Class="mb-5" Justify="Justify.Center" Spacing="4">
+                <MudItem xs="4" Class="d-flex justify-center">
+                    <MudIconButton Icon="@(_isMuted ? Icons.Material.Filled.MicOff : Icons.Material.Filled.Mic)" 
+                                   Color="@(_isMuted ? Color.Error : Color.Surface)" 
+                                   Variant="Variant.Filled" Size="Size.Large" OnClick="ToggleMute" Class="rounded-circle pa-4" />
+                </MudItem>
+                <MudItem xs="4" Class="d-flex justify-center">
+                    <MudIconButton Icon="@Icons.Material.Filled.Dialpad" Color="Color.Surface" Variant="Variant.Filled" Size="Size.Large" Class="rounded-circle pa-4" />
+                </MudItem>
+                <MudItem xs="4" Class="d-flex justify-center">
+                    <MudIconButton Icon="@(_isSpeaker ? Icons.Material.Filled.VolumeUp : Icons.Material.Filled.VolumeOff)" 
+                                   Color="@(_isSpeaker ? Color.Primary : Color.Surface)" 
+                                   Variant="Variant.Filled" Size="Size.Large" OnClick="ToggleSpeaker" Class="rounded-circle pa-4" />
+                </MudItem>
+                
+                 <MudItem xs="12" Class="d-flex justify-center mt-4">
+                     <MudFab Color="Color.Error" StartIcon="@Icons.Material.Filled.CallEnd" Size="Size.Large" OnClick="EndCall" Label="Colgar" Style="width: 80px; height: 80px;" />
+                 </MudItem>
+            </MudGrid>
+        }
+        else // Ended, etc
+        {
+             <MudStack AlignItems="AlignItems.Center" Spacing="2" Class="mb-10">
+                 <MudText Typo="Typo.h5" Style="color: white;">Llamada Finalizada</MudText>
+                  <MudIconButton Icon="@Icons.Material.Filled.ArrowBack" Style="color: white;" Size="Size.Large" OnClick="GoBack" />
+             </MudStack>
+        }
 
-        <MudPaper Elevation="0" Style="display: flex; justify-content: center; padding-bottom: 10%;z-index:1000">
-            <MudFab Color="Color.Primary" Class="mr-5 answer-btn" StartIcon="@Icons.Material.Filled.Call" Size="Size.Large" OnClick="AnswerCall" />
-            <MudFab Color="Color.Secondary" Class="reject-btn" StartIcon="@Icons.Material.Filled.CallEnd" Size="Size.Large" OnClick="RejectCall" />
-        </MudPaper>
     </MudContainer>
 </MudLayout>
 
-@* <div class="call-container @(_showCall ? "show" : "")">
-    <h2>Llamada entrante</h2>
-    <p>Número: @_incomingNumber</p>
-    <button @onclick="AnswerCall" class="answer-btn">Contestar</button>
-    <button @onclick="RejectCall" class="reject-btn">Rechazar</button>
-</div> *@
-
 @code {
-    private bool _showCall = false;
-    private string _incomingNumber = "Sin número";
+    private string _incomingNumber = "Desconocido";
+    private string _callStatus = "Incoming"; // Incoming, Active, Dialing, Ended
+    private bool _isMuted = false;
+    private bool _isSpeaker = false;
+    private TimeSpan _duration;
+    private System.Timers.Timer _timer;
 
     protected override void OnInitialized()
     {
-        // MessagingCenter.Subscribe<object, string>(this, "IncomingCall", (sender, number) =>
-        // {
-        //     _incomingNumber = number;
-        //     _showCall = true;
-        //     StateHasChanged();
-        // });
-
-        if (InfoStatic.PhoneNumber != string.Empty)
+        if (!string.IsNullOrEmpty(InfoStatic.PhoneNumber))
         {
             _incomingNumber = InfoStatic.PhoneNumber;
         }
 
+        // Subscribe to messages
+        MessagingCenter.Subscribe<object, string>(this, "CallStateChanged", (sender, state) =>
+        {
+            InvokeAsync(() => UpdateState(state));
+        });
+        
+        // Also subscribe to incoming call message if still used
+         MessagingCenter.Subscribe<object, string>(this, "IncomingCall", (sender, number) =>
+        {
+            _incomingNumber = number;
+            _callStatus = "Incoming";
+            StateHasChanged();
+        });
+    }
+
+    private void UpdateState(string state)
+    {
+        Console.WriteLine($"Call State: {state}");
+        
+        if (state == "Active")
+        {
+            _callStatus = "Active";
+            StartTimer();
+        }
+        else if (state == "Disconnected" || state == "Disconnecting")
+        {
+            _callStatus = "Ended";
+            StopTimer();
+            // Auto close after 2 seconds?
+             Task.Delay(2000).ContinueWith(_ => InvokeAsync(GoBack));
+        }
+        else if (state == "Dialing")
+        {
+            _callStatus = "Dialing";
+        }
+        else if (state == "Ringing")
+        {
+            _callStatus = "Ringing";
+            // _callStatus = "Incoming"; // or Ringing
+        }
+        
+        StateHasChanged();
+    }
+
+    private void StartTimer()
+    {
+        if (_timer == null)
+        {
+            _timer = new System.Timers.Timer(1000);
+            _timer.Elapsed += (s, e) =>
+            {
+                _duration = _duration.Add(TimeSpan.FromSeconds(1));
+                InvokeAsync(StateHasChanged);
+            };
+            _timer.Start();
+        }
+    }
+
+    private void StopTimer()
+    {
+        _timer?.Stop();
+        _timer = null;
     }
 
     private void AnswerCall()
     {
-        // Aquí iría la lógica para contestar la llamada
-
-        CallHandler.AnswerCall(); // Para responder
-
-        _showCall = false;
+        CallHandler.AnswerCall();
+        _callStatus = "Active"; // Optimistic update
     }
 
     private void RejectCall()
     {
+        CallHandler.RejectCall();
+        _callStatus = "Ended";
+    }
 
-        CallHandler.RejectCall(); // Para rechazar
-        // Aquí iría la lógica para rechazar la llamada
-        _showCall = false;
+    private void EndCall()
+    {
+        CallHandler.EndCall();
+    }
+
+    private void ToggleMute()
+    {
+        CallHandler.ToggleMute();
+        _isMuted = !_isMuted;
+    }
+
+    private void ToggleSpeaker()
+    {
+        CallHandler.ToggleSpeaker();
+        _isSpeaker = !_isSpeaker;
+    }
+    
+    private void GoBack()
+    {
+        // Navigate back or close wrapper
+        // MainThread.BeginInvokeOnMainThread(async () => {
+        //     await App.Current.MainPage.Navigation.PopModalAsync();
+        // });
+        // Assuming CallPage is a Modal or we just navigate away?
+        // Actually CallPage is usually pushed.
+    }
+    
+    public void Dispose()
+    {
+        MessagingCenter.Unsubscribe<object, string>(this, "CallStateChanged");
+        MessagingCenter.Unsubscribe<object, string>(this, "IncomingCall");
+        StopTimer();
     }
 }
-
-<style>
-    .call-container {
-        display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: white;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-
-        .call-container.show {
-            display: block;
-        }
-
-    .answer-btn {
-        background-color: green;
-        color: white;
-    }
-
-    .reject-btn {
-        background-color: red;
-        color: white;
-    }
-</style>

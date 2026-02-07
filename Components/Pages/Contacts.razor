@@ -1,0 +1,123 @@
+@page "/contacts"
+@using PayRemind.Contracts
+@inject IContactsService ContactsService
+
+<MudContainer MaxWidth="MaxWidth.ExtraSmall" Class="pa-0">
+    <MudStack Row="true" Class="ma-4 align-center">
+        <MudText Typo="Typo.h5">Contactos</MudText>
+        <MudSpacer />
+        <MudTextField @bind-Value="searchString" Placeholder="Buscar" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+    </MudStack>
+
+    @if (isLoading)
+    {
+        <MudProgressCircular Color="Color.Primary" Indeterminate="true" Class="ma-4"/>
+    }
+    else if (filteredContacts == null || filteredContacts.Count == 0)
+    {
+        <MudText Class="ma-4">No se encontraron contactos.</MudText>
+    }
+    else
+    {
+        <MudList T="string">
+            @foreach (var contact in filteredContacts)
+            {
+                <MudListItem OnClick="@(() => CallNumber(contact.PhoneNumber))">
+                    <div class="d-flex align-center">
+                        <MudAvatar Image="@contact.PhotoUri" Color="Color.Primary" Class="mr-3">
+                            @if (string.IsNullOrEmpty(contact.PhotoUri))
+                            {
+                                @(string.IsNullOrEmpty(contact.Name) ? "?" : contact.Name.Substring(0, 1).ToUpper())
+                            }
+                        </MudAvatar>
+                        <div>
+                            <MudText Typo="Typo.body1">@contact.Name</MudText>
+                            <MudText Typo="Typo.caption">@contact.PhoneNumber</MudText>
+                        </div>
+                         <MudSpacer />
+                         <MudIconButton Icon="@Icons.Material.Filled.Call" Color="Color.Success" Size="Size.Small" />
+                    </div>
+                </MudListItem>
+                <MudDivider />
+            }
+        </MudList>
+    }
+</MudContainer>
+
+@code {
+    private List<ContactEntry> contacts;
+    private List<ContactEntry> filteredContacts;
+    private string _searchString;
+    private bool isLoading = true;
+
+    private string searchString
+    {
+        get => _searchString;
+        set
+        {
+            _searchString = value;
+            FilterContacts();
+        }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadContacts();
+    }
+
+    private async Task LoadContacts()
+    {
+        isLoading = true;
+        try
+        {
+            var status = await Permissions.CheckStatusAsync<Permissions.ContactsRead>();
+            if (status != PermissionStatus.Granted)
+            {
+                status = await Permissions.RequestAsync<Permissions.ContactsRead>();
+            }
+
+            if (status == PermissionStatus.Granted)
+            {
+                 contacts = await ContactsService.GetContactsAsync();
+                 FilterContacts();
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error loading contacts: {ex.Message}");
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private void FilterContacts()
+    {
+        if (contacts == null) return;
+        if (string.IsNullOrWhiteSpace(searchString))
+        {
+            filteredContacts = contacts;
+        }
+        else
+        {
+            filteredContacts = contacts.Where(c => 
+                (c.Name?.Contains(searchString, StringComparison.OrdinalIgnoreCase) ?? false) || 
+                (c.PhoneNumber?.Contains(searchString) ?? false)).ToList();
+        }
+        StateHasChanged();
+    }
+
+    private void CallNumber(string number)
+    {
+        if (string.IsNullOrEmpty(number)) return;
+        try
+        {
+            PhoneDialer.Open(number);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error dialing: {ex.Message}");
+        }
+    }
+}

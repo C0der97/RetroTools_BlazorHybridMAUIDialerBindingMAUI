@@ -4,5 +4,8 @@
     {
         void AnswerCall();
         void RejectCall();
+        void EndCall();
+        void ToggleMute();
+        void ToggleSpeaker();
     }
 }

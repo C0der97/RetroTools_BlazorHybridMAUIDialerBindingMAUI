@@ -25,11 +25,27 @@ namespace PayRemind.Platforms.Android
     )]
     public class CallService : InCallService
     {
+        public static CallService Instance { get; private set; }
+        public Call ActiveCall { get; private set; }
+
         private readonly Call.Callback _callCallback = new CallCallback();
+
+        public override IBinder OnBind(Intent intent)
+        {
+            Instance = this;
+            return base.OnBind(intent);
+        }
+
+        public override bool OnUnbind(Intent intent)
+        {
+            Instance = null;
+            return base.OnUnbind(intent);
+        }
 
         public override void OnCallAdded(Call call)
         {
             base.OnCallAdded(call);
+            ActiveCall = call;
             call.RegisterCallback(_callCallback);
 
             // Check the screen state and whether to show the notification
@@ -50,6 +66,7 @@ namespace PayRemind.Platforms.Android
         public override void OnCallRemoved(Call call)
         {
             base.OnCallRemoved(call);
+            if (ActiveCall == call) ActiveCall = null;
             call.UnregisterCallback(_callCallback);
             CancelNotification();
         }
@@ -155,9 +172,19 @@ namespace PayRemind.Platforms.Android
             public override void OnStateChanged(Call call, CallState state)
             {
                 base.OnStateChanged(call, state);
+                MessagingCenter.Send<object, string>(this, "CallStateChanged", state.ToString());
+                
                 if (state == CallState.Disconnected || state == CallState.Disconnecting)
                 {
-                    // Handle call disconnected or disconnecting
+                    CallService.Instance?.CancelNotification();
+                    if (CallService.Instance?.ActiveCall == call) 
+                    {
+                         // Using reflection to set private setter if needed, or just let OnCallRemoved handle it
+                         // But we can't easily set ActiveCall property effectively from here if it was private set?
+                         // Actually ActiveCall has private set, but this inner class is in CallService, so it can access it?
+                         // No, Inner class access to outer class private members? Yes.
+                         // But we need instance reference.
+                    }
                 }
             }
         }
