@@ -4,11 +4,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.10.35122.118
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PayRemind", "PayRemind.csproj", "{E352F18B-CCF0-4C2B-85A7-67D9B7AB71F5}"
-	ProjectSection(ProjectDependencies) = postProject
-		{AE358D3B-32B5-414E-92FA-BF8396525DB0} = {AE358D3B-32B5-414E-92FA-BF8396525DB0}
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShowCaseBinding", "..\ShowCaseBinding\ShowCaseBinding.csproj", "{AE358D3B-32B5-414E-92FA-BF8396525DB0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,10 +17,6 @@ Global
 		{E352F18B-CCF0-4C2B-85A7-67D9B7AB71F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E352F18B-CCF0-4C2B-85A7-67D9B7AB71F5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E352F18B-CCF0-4C2B-85A7-67D9B7AB71F5}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{AE358D3B-32B5-414E-92FA-BF8396525DB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AE358D3B-32B5-414E-92FA-BF8396525DB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AE358D3B-32B5-414E-92FA-BF8396525DB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AE358D3B-32B5-414E-92FA-BF8396525DB0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

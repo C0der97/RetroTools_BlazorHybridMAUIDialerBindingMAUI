@@ -148,17 +148,10 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\ShowCaseBinding\ShowCaseBinding.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
       <MauiXaml Update="Pages\CustomTooltip.xaml">
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
       <MauiXaml Update="Pages\DialPage.xaml">
-        <Generator>MSBuild:Compile</Generator>
-      </MauiXaml>
-      <MauiXaml Update="Pages\Guided.xaml">
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
     </ItemGroup>

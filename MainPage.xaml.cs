@@ -86,18 +86,8 @@ namespace PayRemind
             });
 
 
-            WeakReferenceMessenger.Default.Register<HideFloatButton>(this, (s, message) =>
-            {
-                if (message._HideFloatButton)
-                {
-                    FabButton.IsVisible = false;
-                }
-                else
-                {
-                    FabButton.IsVisible = true;
-                }
 
-            });
+
 
 
             //MainThread.BeginInvokeOnMainThread(() =>
@@ -196,10 +186,7 @@ namespace PayRemind
         }
 
 
-        private void FabButton_Clicked(object sender, EventArgs e)
-        {
-            WeakReferenceMessenger.Default.Send(new OpenDialog(true));
-        }
+
 
         private void RequestBatteryOptimizationExemption()
         {

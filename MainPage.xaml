@@ -12,61 +12,18 @@
 
     <TabbedPage.Children>
 
+        <ContentPage Title="Dialer" IconImageSource="reloj.png" 
+                         BackgroundColor="{AppThemeBinding Light={StaticResource LightBackgroundColor}, Dark={StaticResource DarkBackgroundColor}}">
 
-        <ContentPage Title="Recordatorios" IconImageSource="reloj.png" 
-                     
-                         BackgroundColor="{AppThemeBinding Light={StaticResource LightBackgroundColor}, Dark={StaticResource DarkBackgroundColor}}"
-                     >
-
-
-            <AbsoluteLayout>
-
-
-                    <BlazorWebView x:Name="blazorWebViewHome" HostPage="wwwroot/index.html" 
-                                   AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
-                        AbsoluteLayout.LayoutFlags="All">
-                        <BlazorWebView.RootComponents>
-                            <RootComponent Selector="#app"  ComponentType="{x:Type pages:Home}" />
-                        </BlazorWebView.RootComponents>
-                    </BlazorWebView>
-
-                    <Button
-            x:Name="FabButton"
-            Text="+"
-            FontSize="24"
-            BackgroundColor="LightGreen"
-            TextColor="White"
-            CornerRadius="30"
-            WidthRequest="60"
-            HeightRequest="60"
-            AbsoluteLayout.LayoutBounds="1, 1, AutoSize, AutoSize"
-            AbsoluteLayout.LayoutFlags="PositionProportional"
-                        Clicked="FabButton_Clicked"
-            />
-                
-            </AbsoluteLayout>
-
-        </ContentPage>
-
-        <ContentPage Title="Historico" IconImageSource="lista.png">
-            <BlazorWebView x:Name="blazorWebViewPayments" HostPage="wwwroot/index.html" StartPath="/notifications">
+            <BlazorWebView x:Name="blazorWebViewHome" HostPage="wwwroot/index.html">
                 <BlazorWebView.RootComponents>
-                    <RootComponent Selector="#app"  ComponentType="{x:Type pages:Notifications}" />
+                    <RootComponent Selector="#app"  ComponentType="{x:Type pages:Home}" />
                 </BlazorWebView.RootComponents>
             </BlazorWebView>
+
         </ContentPage>
 
-
-
-        <!--<ContentPage Title="Llamadas" IconImageSource="ringphone.png"  >
-        
-        </ContentPage>-->
-
-        <!--<mauiPages:DialPage></mauiPages:DialPage>
-        <mauiPages:Guided></mauiPages:Guided>
-        <local:Alarms></local:Alarms>-->
-
-        <mauiPages:IncomingCall></mauiPages:IncomingCall>
+        <mauiPages:DialPage Title="Teclado" IconImageSource="reloj.png" />
 
     </TabbedPage.Children>
 </TabbedPage>

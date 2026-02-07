@@ -11,7 +11,6 @@ using PayRemind.Messages;
 using PayRemind.Pages;
 using PayRemind.Platforms.Android;
 using PayRemind.Platforms.Android.Wrappers;
-using PayRemind.Wrappers;
 
 namespace PayRemind
 {
