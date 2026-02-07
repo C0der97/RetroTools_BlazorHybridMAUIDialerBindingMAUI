@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
     <title>PayRemind</title>
     <base href="/" />
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
     <link href="_content/MudBlazor/MudBlazor.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/app.css" />
+    <link rel="stylesheet" href="css/glassmorphism.css" />
     <link rel="stylesheet" href="PayRemind.styles.css" />
     <link rel="icon" type="image/png" href="favicon.png" />
     <style type="text/css">
         .custom-success-button {
             background-color: #3e9108;
-            color: #c6ffaa !important; /* Color del texto */
+            color: #c6ffaa !important;
+            /* Color del texto */
             border: none;
             padding: 0.5rem 1rem;
             font-size: 1rem;
@@ -22,34 +26,47 @@
             transition: background-color 0.3s, transform 0.3s;
         }
 
-            /* Estilo del botón cuando se pasa el mouse por encima */
-            .custom-success-button:hover {
-                background-color: darkgreen; /* Cambia el color al pasar el mouse */
-                transform: scale(1.05); /* Aumenta ligeramente el tamaño */
-            }
+        /* Estilo del botón cuando se pasa el mouse por encima */
+        .custom-success-button:hover {
+            background-color: darkgreen;
+            /* Cambia el color al pasar el mouse */
+            transform: scale(1.05);
+            /* Aumenta ligeramente el tamaño */
+        }
 
-            /* Estilo del botón cuando se hace clic (active) */
-            .custom-success-button:active {
-                background-color: green; /* Color cuando está activo */
-                transform: scale(0.95); /* Disminuye ligeramente el tamaño */
-            }
+        /* Estilo del botón cuando se hace clic (active) */
+        .custom-success-button:active {
+            background-color: green;
+            /* Color cuando está activo */
+            transform: scale(0.95);
+            /* Disminuye ligeramente el tamaño */
+        }
 
-            /* Estilo del botón cuando está deshabilitado */
-            .custom-success-button:disabled {
-                background-color: gray; /* Color del botón deshabilitado */
-                cursor: not-allowed;
-                opacity: 0.6;
-            }
+        /* Estilo del botón cuando está deshabilitado */
+        .custom-success-button:disabled {
+            background-color: gray;
+            /* Color del botón deshabilitado */
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
 
         :root {
-            --rz-primary: #3dc4a4; /* Color primario */
-            --rz-secondary: #6c757d; /* Color secundario */
-            --rz-success: #28a745; /* Color de éxito */
-            --rz-danger: #dc3545; /* Color de peligro */
-            --rz-warning: #ffc107; /* Color de advertencia */
-            --rz-info: #17a2b8; /* Color de información */
-            --rz-light: #f8f9fa; /* Color claro */
-            --rz-dark: #343a40; /* Color oscuro */
+            --rz-primary: #3dc4a4;
+            /* Color primario */
+            --rz-secondary: #6c757d;
+            /* Color secundario */
+            --rz-success: #28a745;
+            /* Color de éxito */
+            --rz-danger: #dc3545;
+            /* Color de peligro */
+            --rz-warning: #ffc107;
+            /* Color de advertencia */
+            --rz-info: #17a2b8;
+            /* Color de información */
+            --rz-light: #f8f9fa;
+            /* Color claro */
+            --rz-dark: #343a40;
+            /* Color oscuro */
             /* Puedes añadir más variables si lo necesitas */
         }
     </style>
@@ -82,8 +99,8 @@
             }
 
             if (theme && theme.includes("dark")) {
-                document.body.style.backgroundColor = "black";
-                document.body.style.color = "white";
+                // document.body.style.backgroundColor = "black"; // Disabled to allow glassmorphism gradient
+                // document.body.style.color = "white";
             }
         };
 

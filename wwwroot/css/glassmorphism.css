@@ -1,0 +1,98 @@
+:root {
+    /* Light Mode Default Variables */
+    --glass-bg: rgba(255, 255, 255, 0.65);
+    /* Increased opacity */
+    --glass-border: rgba(255, 255, 255, 0.5);
+    --glass-shadow: rgba(0, 0, 0, 0.15);
+    --glass-text: #1a1a1a;
+    --glass-text-secondary: #555555;
+    --glass-highlight: rgba(255, 255, 255, 0.8);
+    --glass-button-bg: rgba(255, 255, 255, 0.5);
+    --glass-button-hover: rgba(255, 255, 255, 0.8);
+    --app-bg-gradient: linear-gradient(135deg, #8bc6ec 0%, #9599e2 100%);
+    /* Stronger blue-purple gradient */
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* Dark Mode Variables */
+        --glass-bg: rgba(30, 30, 30, 0.6);
+        --glass-border: rgba(255, 255, 255, 0.2);
+        --glass-shadow: rgba(0, 0, 0, 0.6);
+        --glass-text: #ffffff;
+        --glass-text-secondary: #cccccc;
+        --glass-highlight: rgba(255, 255, 255, 0.15);
+        --glass-button-bg: rgba(255, 255, 255, 0.15);
+        --glass-button-hover: rgba(255, 255, 255, 0.25);
+        --app-bg-gradient: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+    }
+}
+
+/* Glassmorphism Utilities */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 4px 30px var(--glass-shadow);
+    border-radius: 16px;
+    color: var(--glass-text);
+}
+
+.glass-button {
+    background: var(--glass-button-bg);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--glass-border);
+    color: var(--glass-text);
+    transition: all 0.3s ease;
+    border-radius: 50%;
+    /* Default circular for dialpad */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.glass-button:hover {
+    background: var(--glass-button-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px var(--glass-border);
+}
+
+.glass-button:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+.glass-text {
+    color: var(--glass-text);
+}
+
+.glass-text-secondary {
+    color: var(--glass-text-secondary);
+}
+
+/* Global App Background for Glassmorphism Context */
+/* This class should be applied to the main container or body to see the effect */
+.glass-app-background {
+    background: var(--app-bg-gradient);
+    min-height: 100vh;
+    width: 100vw;
+    background-size: 200% 200%;
+    animation: gradientAnimation 15s ease infinite;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
