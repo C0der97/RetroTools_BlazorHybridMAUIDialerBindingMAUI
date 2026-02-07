@@ -152,8 +152,8 @@
                 InfoStatic.ContactPhoto = "";
             }
             
-            // First initiate the call
-            PhoneDialer.Open(phoneNumber);
+            // First initiate the call using our custom handler
+            CallHandler.PlaceCall(phoneNumber);
             
             // Small delay to allow call to start
             await Task.Delay(100);

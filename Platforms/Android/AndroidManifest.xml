@@ -6,7 +6,7 @@
 	
 	
 	
-	       <!-- <service
+	        <service
             android:name=".CallService"
             android:enabled="true"
             android:exported="true"
@@ -19,7 +19,6 @@
                 <action android:name="android.telecom.InCallService" />
             </intent-filter>
         </service>
- -->
 
 		
         <!-- <service
