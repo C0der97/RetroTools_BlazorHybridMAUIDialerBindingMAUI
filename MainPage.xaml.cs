@@ -8,7 +8,7 @@ using Plugin.LocalNotification;
 
 namespace PayRemind
 {
-    public partial class MainPage : TabbedPage
+    public partial class MainPage : ContentPage
     {
         private readonly AppTheme currentTheme = Application.Current == null ? AppTheme.Dark : Application.Current.RequestedTheme;
 

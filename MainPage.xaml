@@ -1,34 +1,15 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<TabbedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:PayRemind"
-             xmlns:pages="clr-namespace:PayRemind.Components.Pages"
-             x:Class="PayRemind.MainPage"
-            xmlns:mauiPages="clr-namespace:PayRemind.Pages"
-             xmlns:android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls"
-             android:TabbedPage.ToolbarPlacement="Bottom"
-             android:TabbedPage.IsSwipePagingEnabled="False"
-             >
+             xmlns:pages="clr-namespace:PayRemind.Components"
+             x:Class="PayRemind.MainPage">
 
-    <TabbedPage.Children>
+    <Grid>
+        <BlazorWebView HostPage="wwwroot/index.html">
+            <BlazorWebView.RootComponents>
+                <RootComponent Selector="#app" ComponentType="{x:Type pages:Routes}" />
+            </BlazorWebView.RootComponents>
+        </BlazorWebView>
+    </Grid>
 
-        <mauiPages:DialPage Title="Teclado" IconImageSource="reloj.png" />
-
-        <ContentPage Title="Recientes" IconImageSource="lista.png">
-            <BlazorWebView HostPage="wwwroot/index.html">
-                <BlazorWebView.RootComponents>
-                    <RootComponent Selector="#app" ComponentType="{x:Type pages:CallHistory}" />
-                </BlazorWebView.RootComponents>
-            </BlazorWebView>
-        </ContentPage>
-
-        <ContentPage Title="Contactos" IconImageSource="lista.png">
-            <BlazorWebView HostPage="wwwroot/index.html">
-                <BlazorWebView.RootComponents>
-                    <RootComponent Selector="#app" ComponentType="{x:Type pages:Contacts}" />
-                </BlazorWebView.RootComponents>
-            </BlazorWebView>
-        </ContentPage>
-
-    </TabbedPage.Children>
-</TabbedPage>
+</ContentPage>

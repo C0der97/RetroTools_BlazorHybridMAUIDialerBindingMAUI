@@ -1,0 +1,89 @@
+@inherits LayoutComponentBase
+@using MudBlazor
+
+<MudThemeProvider @ref="@_mudThemeProvider" @bind-IsDarkMode="@_isDarkMode" />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<MudLayout Style="height: 100vh; overflow: hidden;">
+    <MudMainContent Style="height: calc(100vh - 86px); overflow-y: auto; overflow-x: hidden; padding-bottom: 0;">
+        @Body
+    </MudMainContent>
+    
+    <MudPaper Height="86px" Class="glass-panel d-flex justify-center align-center fixed-bottom" Elevation="0" Square="true" Style="width: 100%; border-top: 1px solid var(--glass-border); z-index: 1000;">
+        <MudTabs Elevation="0" Rounded="true" ApplyEffectsToContainer="true" PanelClass="d-none" Color="Color.Transparent" Centered="true" ActivePanelIndexChanged="OnTabChanged">
+            <MudTabPanel Icon="@Icons.Material.Filled.AccessTime" Text="Recientes" Tag='"/recents"' />
+            <MudTabPanel Icon="@Icons.Material.Filled.Dialpad" Text="Teclado" Tag='"/dialpad"' />
+            <MudTabPanel Icon="@Icons.Material.Filled.Contacts" Text="Contactos" Tag='"/contacts"' />
+        </MudTabs>
+    </MudPaper>
+</MudLayout>
+
+<style>
+    .mud-tabs-toolbar {
+        background-color: transparent !important;
+    }
+    
+    .mud-tab {
+        color: var(--glass-text-secondary) !important;
+        min-width: 80px;
+    }
+    
+    .mud-tab-active {
+        color: var(--glass-text) !important;
+        font-weight: bold;
+    }
+    
+    .mud-tab-slider {
+        background-color: var(--glass-highlight) !important;
+        height: 3px;
+    }
+</style>
+
+@code {
+    [Inject] private NavigationManager NavigationManager { get; set; }
+
+    private bool _isDarkMode;
+    private MudThemeProvider _mudThemeProvider;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _isDarkMode = await _mudThemeProvider.GetSystemPreference();
+            await _mudThemeProvider.WatchSystemPreference(OnSystemPreferenceChanged);
+            StateHasChanged();
+        }
+    }
+
+    private async Task OnSystemPreferenceChanged(bool newValue)
+    {
+        _isDarkMode = newValue;
+        StateHasChanged();
+    }
+
+    private void OnTabChanged(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                NavigationManager.NavigateTo("/recents");
+                break;
+            case 1:
+                NavigationManager.NavigateTo("/dialpad");
+                break;
+            case 2:
+                NavigationManager.NavigateTo("/contacts");
+                break;
+        }
+    }
+    
+    protected override void OnInitialized()
+    {
+        // Default to dialpad if at root
+        if (NavigationManager.Uri.EndsWith("/"))
+        {
+            NavigationManager.NavigateTo("/dialpad");
+        }
+    }
+}
