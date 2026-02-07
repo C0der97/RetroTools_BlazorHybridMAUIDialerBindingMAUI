@@ -1,9 +1,12 @@
 @page "/dialpad"
 @using PayRemind.Contracts
+@using PayRemind.Data
 @using System.Text
 @inject IContactsService ContactsService
+@inject ICallHandler CallHandler
+@inject NavigationManager NavigationManager
 
-<MudContainer MaxWidth="MaxWidth.ExtraSmall" Class="pa-4 d-flex flex-column" Style="height: 100vh;">
+<MudContainer MaxWidth="MaxWidth.ExtraSmall" Class="d-flex flex-column" Style="min-height: 100vh; height: 100vh; padding: 8px; justify-content: space-between;">
     
     <!-- Input Display -->
     <MudText Typo="Typo.h4" Align="Align.Center" Class="mb-4">@phoneNumber</MudText>
@@ -36,41 +39,39 @@
     }
 
     <!-- Keypad -->
-    <MudGrid Spacing="2" Class="mb-4">
+    <MudGrid Spacing="1" Class="mb-2">
         @foreach (var key in keys)
         {
             <MudItem xs="4" Class="d-flex justify-center">
-                <MudButton Variant="Variant.Filled" Color="Color.Surface" Class="rounded-circle pa-2" Style="width: 70px; height: 70px; display: flex; flex-direction: column;" OnClick="@(() => Append(key.Digit))">
-                    <MudText Typo="Typo.h5">@key.Digit</MudText>
-                    <MudText Typo="Typo.caption" Style="font-size: 0.7rem; color: gray;">@key.Letters</MudText>
+                <MudButton Variant="Variant.Filled" Color="Color.Surface" Class="rounded-circle pa-1" Style="width: 60px; height: 60px; min-width: 60px; display: flex; flex-direction: column;" OnClick="@(() => Append(key.Digit))">
+                    <MudText Typo="Typo.h6">@key.Digit</MudText>
+                    <MudText Typo="Typo.caption" Style="font-size: 0.6rem; color: gray;">@key.Letters</MudText>
                 </MudButton>
             </MudItem>
         }
         
         <MudItem xs="4" Class="d-flex justify-center">
-            <MudButton Variant="Variant.Filled" Color="Color.Surface" Class="rounded-circle" Style="width: 70px; height: 70px;" OnClick="@(() => Append("*"))">
-                <MudText Typo="Typo.h4">*</MudText>
+            <MudButton Variant="Variant.Filled" Color="Color.Surface" Class="rounded-circle" Style="width: 60px; height: 60px; min-width: 60px;" OnClick="@(() => Append("*"))">
+                <MudText Typo="Typo.h5">*</MudText>
             </MudButton>
         </MudItem>
         <MudItem xs="4" Class="d-flex justify-center">
-            <MudButton Variant="Variant.Filled" Color="Color.Surface" Class="rounded-circle" Style="width: 70px; height: 70px; display: flex; flex-direction: column;" OnClick="@(() => Append("0"))">
-                <MudText Typo="Typo.h5">0</MudText>
-                <MudText Typo="Typo.caption" Style="font-size: 0.7rem; color: gray;">+</MudText>
+            <MudButton Variant="Variant.Filled" Color="Color.Surface" Class="rounded-circle" Style="width: 60px; height: 60px; min-width: 60px; display: flex; flex-direction: column;" OnClick="@(() => Append("0"))">
+                <MudText Typo="Typo.h6">0</MudText>
+                <MudText Typo="Typo.caption" Style="font-size: 0.6rem; color: gray;">+</MudText>
             </MudButton>
         </MudItem>
         <MudItem xs="4" Class="d-flex justify-center">
-            <MudButton Variant="Variant.Filled" Color="Color.Surface" Class="rounded-circle" Style="width: 70px; height: 70px;" OnClick="@(() => Append("#"))">
-                <MudText Typo="Typo.h5">#</MudText>
+            <MudButton Variant="Variant.Filled" Color="Color.Surface" Class="rounded-circle" Style="width: 60px; height: 60px; min-width: 60px;" OnClick="@(() => Append("#"))">
+                <MudText Typo="Typo.h6">#</MudText>
             </MudButton>
         </MudItem>
     </MudGrid>
 
     <!-- Actions -->
-    <MudStack Row="true" Justify="Justify.SpaceAround" Class="mb-5 align-center">
-         <div style="width: 50px;"></div> <!-- Spacer to center the call button -->
-         
-        <MudIconButton Icon="@Icons.Material.Filled.Call" Color="Color.Success" Size="Size.Large" Class="pa-4" Style="background-color: green; color: white;" OnClick="Call" />
-        
+    <MudStack Row="true" Justify="Justify.SpaceAround" Class="mb-2 align-center">
+         <div style="width: 50px;"></div>
+        <MudIconButton Icon="@Icons.Material.Filled.Call" Color="Color.Success" Size="Size.Large" Class="pa-3" Style="background-color: green; color: white; border-radius: 50%;" OnClick="Call" />
         <MudIconButton Icon="@Icons.Material.Filled.Backspace" Color="Color.Default" Size="Size.Medium" OnClick="Backspace" />
     </MudStack>
 
@@ -129,12 +130,36 @@
         Call();
     }
 
-    private void Call()
+    private async void Call()
     {
         if (string.IsNullOrEmpty(phoneNumber)) return;
         try
         {
+            // Set call info for the call screen
+            InfoStatic.PhoneNumber = phoneNumber;
+            InfoStatic.CallDirection = "Outgoing";
+            
+            // Get contact name if available
+            var contact = allContacts?.FirstOrDefault(c => Normalize(c.PhoneNumber ?? "") == Normalize(phoneNumber));
+            if (contact != null)
+            {
+                InfoStatic.ContactName = contact.Name ?? "";
+                InfoStatic.ContactPhoto = contact.PhotoUri ?? "";
+            }
+            else
+            {
+                InfoStatic.ContactName = "";
+                InfoStatic.ContactPhoto = "";
+            }
+            
+            // First initiate the call
             PhoneDialer.Open(phoneNumber);
+            
+            // Small delay to allow call to start
+            await Task.Delay(100);
+            
+            // Then navigate to call screen
+            NavigationManager.NavigateTo("/calls");
         }
         catch (Exception ex)
         {

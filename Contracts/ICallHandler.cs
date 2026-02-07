@@ -7,5 +7,6 @@
         void EndCall();
         void ToggleMute();
         void ToggleSpeaker();
+        void PlaceCall(string phoneNumber);
     }
 }

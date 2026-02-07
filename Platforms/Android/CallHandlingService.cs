@@ -1,6 +1,7 @@
 ﻿using Android.Content;
 using Android.Telecom;
 using Android.Telephony;
+using Android.OS;
 using PayRemind.Contracts;
 using PayRemind.Platforms.Android;
 using Application = Android.App.Application;
@@ -47,7 +48,20 @@ namespace PayRemind.Platforms.Android
 
         public void EndCall()
         {
-            CallService.Instance?.ActiveCall?.Disconnect();
+            var call = CallService.Instance?.ActiveCall;
+            if (call != null)
+            {
+                call.Disconnect();
+            }
+            else
+            {
+                // Fallback using TelecomManager
+                var telecomManager = (TelecomManager)Application.Context.GetSystemService(Context.TelecomService);
+                if (telecomManager != null)
+                {
+                    telecomManager.EndCall();
+                }
+            }
         }
 
         public void ToggleMute()
@@ -74,6 +88,24 @@ namespace PayRemind.Platforms.Android
                 {
                     service.SetAudioRoute(CallAudioRoute.Speaker);
                 }
+            }
+        }
+        
+        public void PlaceCall(string phoneNumber)
+        {
+            try
+            {
+                var telecomManager = (TelecomManager)Application.Context.GetSystemService(Context.TelecomService);
+                if (telecomManager != null)
+                {
+                    var uri = global::Android.Net.Uri.Parse($"tel:{phoneNumber}");
+                    var extras = new Bundle();
+                    telecomManager.PlaceCall(uri, extras);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error placing call: {ex.Message}");
             }
         }
     }

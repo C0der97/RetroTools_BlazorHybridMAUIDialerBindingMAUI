@@ -48,18 +48,44 @@ namespace PayRemind.Platforms.Android
             ActiveCall = call;
             call.RegisterCallback(_callCallback);
 
-            // Check the screen state and whether to show the notification
+            // Check if this is an incoming or outgoing call
+            var details = call.GetDetails();
+            bool isIncoming = details?.CallDirection == global::Android.Telecom.CallDirection.Incoming;
+
+            // Check the screen state
             bool isScreenLocked = ((KeyguardManager)GetSystemService(Context.KeyguardService)).IsKeyguardLocked;
             bool isDeviceInteractive = ((PowerManager)GetSystemService(Context.PowerService)).IsInteractive;
 
-            if (!isDeviceInteractive || isScreenLocked)
+            if (isIncoming)
             {
-                ShowNotification(call);
-                StartActivity(new Intent(this, typeof(MainActivity)));
+                // For incoming calls, show notification and open app
+                ShowNotification(call, true);
+                
+                // Send message to update UI for incoming call
+                string phoneNumber = "Desconocido";
+                try
+                {
+                    var handleUri = details?.Handle;
+                    if (handleUri != null)
+                    {
+                        phoneNumber = handleUri.ToString()?.Replace("tel:", "") ?? "Desconocido";
+                    }
+                }
+                catch { }
+                MessagingCenter.Send<object, string>(this, "IncomingCall", phoneNumber);
+                
+                if (!isDeviceInteractive || isScreenLocked)
+                {
+                    StartActivity(new Intent(this, typeof(MainActivity)));
+                }
             }
             else
             {
-                ShowNotification(call);
+                // For outgoing calls, just show a minimal ongoing notification
+                ShowNotification(call, false);
+                
+                // Send message to update UI for outgoing call state
+                MessagingCenter.Send<object, string>(this, "CallStateChanged", "Dialing");
             }
         }
 
@@ -71,7 +97,7 @@ namespace PayRemind.Platforms.Android
             CancelNotification();
         }
 
-        private void ShowNotification(Call call)
+        private void ShowNotification(Call call, bool isIncoming)
         {
             var notificationManager = (NotificationManager)GetSystemService(Context.NotificationService);
 
@@ -90,75 +116,86 @@ namespace PayRemind.Platforms.Android
             var notificationIntent = new Intent(this, typeof(MainActivity));
             var pendingIntent = PendingIntent.GetActivity(this, 0, notificationIntent, PendingIntentFlags.Immutable);
 
-            var intentAnswer = new Intent(this, typeof(PhoneCallReceiver));
-            intentAnswer.SetAction("ANSWER");
-            var pendingIntentAnswer = PendingIntent.GetBroadcast(this, 0, intentAnswer, PendingIntentFlags.UpdateCurrent | PendingIntentFlags.Immutable);
-
-            var intentHangup = new Intent(this, typeof(PhoneCallReceiver));
-            intentHangup.SetAction("HANGUP");
-            var pendingIntentHangup = PendingIntent.GetBroadcast(this, 1, intentHangup, PendingIntentFlags.UpdateCurrent | PendingIntentFlags.Immutable);
-
-
+            var callDetails = call.GetDetails();
+            var callHandle = callDetails?.Handle;
+            string phoneNumber = "Desconocido";
+            try
+            {
+                if (callHandle != null)
+                {
+                    phoneNumber = callHandle.ToString()?.Replace("tel:", "") ?? "Desconocido";
+                }
+            }
+            catch { }
+            
             global::Android.Graphics.Drawables.Drawable? persIcon = ContextCompat.GetDrawable(
                                             this, Resource.Drawable.ic_call_answer_low);
+            global::Android.Graphics.Bitmap? bitmap = null;
+            if (persIcon != null)
+            {
+                global::Android.Graphics.Drawables.BitmapDrawable bitmapDrawable = (BitmapDrawable)persIcon;
+                bitmap = bitmapDrawable.Bitmap;
+            }
 
+            IconCompat iconNotif = IconCompat.CreateWithResource(this, Resource.Drawable.ic_call_answer);
 
-            IconCompat iconNotif = IconCompat.CreateWithResource(this, Resource.Drawable.ic_call_answer_low);
+            if (isIncoming)
+            {
+                // Incoming call notification with answer/decline buttons
+                var intentAnswer = new Intent(this, typeof(PhoneCallReceiver));
+                intentAnswer.SetAction("ANSWER");
+                var pendingIntentAnswer = PendingIntent.GetBroadcast(this, 0, intentAnswer, PendingIntentFlags.UpdateCurrent | PendingIntentFlags.Immutable);
 
-            Icon personI =  Icon.CreateWithResource(this, Resource.Drawable.ic_call_answer_low);
+                var intentHangup = new Intent(this, typeof(PhoneCallReceiver));
+                intentHangup.SetAction("HANGUP");
+                var pendingIntentHangup = PendingIntent.GetBroadcast(this, 1, intentHangup, PendingIntentFlags.UpdateCurrent | PendingIntentFlags.Immutable);
 
-            
-            Person person = new Person.Builder()
-                .SetName("Pepe Guama")
-                .SetImportant(true)
-                .SetIcon(personI)
-                .Build();
+                RemoteViews remoteViews = new RemoteViews(Platform.CurrentActivity?.PackageName, Resource.Layout.notification_custom);
+                remoteViews.SetOnClickPendingIntent(Resource.Id.button_accept_call, pendingIntentAnswer);
+                remoteViews.SetOnClickPendingIntent(Resource.Id.button_decline_call, pendingIntentHangup);
+                remoteViews.SetTextViewText(Resource.Id.notification_caller_name, phoneNumber);
+                remoteViews.SetTextViewText(Resource.Id.button_accept_call, "Contestar");
+                remoteViews.SetTextViewText(Resource.Id.button_decline_call, "Colgar");
 
-            //LayoutInflater? layoutInflater = GetSystemService(LayoutInflaterService) as LayoutInflater;
+                RemoteViews remoteViewsSmall = new RemoteViews(Platform.CurrentActivity?.PackageName, Resource.Layout.notification_custom_small);
+                remoteViewsSmall.SetOnClickPendingIntent(Resource.Id.button_accept_call, pendingIntentAnswer);
+                remoteViewsSmall.SetOnClickPendingIntent(Resource.Id.button_decline_call, pendingIntentHangup);
+                remoteViewsSmall.SetTextViewText(Resource.Id.button_accept_call, "Contestar");
+                remoteViewsSmall.SetTextViewText(Resource.Id.button_decline_call, "Colgar");
 
-            //global::Android.Views.View? view = layoutInflater?.Inflate(Resource.Layout.notification_custom, null);
+                var notificationBuilder = new NotificationCompat.Builder(this, channelId)
+                    .SetContentTitle("Llamada entrante")
+                    .SetContentText($"Llamada de {phoneNumber}")
+                    .SetSmallIcon(iconNotif)
+                    .SetPriority(NotificationCompat.PriorityHigh)
+                    .SetCustomBigContentView(remoteViews)
+                    .SetStyle(new NotificationCompat.DecoratedCustomViewStyle())
+                    .SetCustomContentView(remoteViewsSmall)
+                    .SetOngoing(true)
+                    .SetAutoCancel(true);
 
+                Notification notification = notificationBuilder.Build();
+                notificationManager.Notify(10203, notification);
+            }
+            else
+            {
+                // Outgoing call notification - simple ongoing notification
+                var intentHangup = new Intent(this, typeof(PhoneCallReceiver));
+                intentHangup.SetAction("HANGUP");
+                var pendingIntentHangup = PendingIntent.GetBroadcast(this, 1, intentHangup, PendingIntentFlags.UpdateCurrent | PendingIntentFlags.Immutable);
 
-            RemoteViews remoteViews = new RemoteViews(Platform.CurrentActivity?.PackageName, Resource.Layout.notification_custom);
+                var notificationBuilder = new NotificationCompat.Builder(this, channelId)
+                    .SetContentTitle("Llamando...")
+                    .SetContentText(phoneNumber)
+                    .SetSmallIcon(iconNotif)
+                    .SetPriority(NotificationCompat.PriorityDefault)
+                    .AddAction(Resource.Drawable.ic_call_decline, "Colgar", pendingIntentHangup)
+                    .SetOngoing(true)
+                    .SetAutoCancel(false);
 
-            remoteViews.SetOnClickPendingIntent(Resource.Id.button_accept_call, pendingIntentAnswer);
-            remoteViews.SetOnClickPendingIntent(Resource.Id.button_decline_call, pendingIntentHangup);
-            remoteViews.SetTextViewText(Resource.Id.notification_caller_name, "Pepe Guama");
-            remoteViews.SetTextViewText(Resource.Id.button_accept_call, "Contestar");
-            remoteViews.SetTextViewText(Resource.Id.button_decline_call, "Colgar");
-
-
-            RemoteViews remoteViewsSmall = new RemoteViews(Platform.CurrentActivity?.PackageName, Resource.Layout.notification_custom_small);
-
-
-            remoteViewsSmall.SetOnClickPendingIntent(Resource.Id.button_accept_call, pendingIntentAnswer);
-            remoteViewsSmall.SetOnClickPendingIntent(Resource.Id.button_decline_call, pendingIntentHangup);
-            remoteViewsSmall.SetTextViewText(Resource.Id.button_accept_call, "Contestar");
-            remoteViewsSmall.SetTextViewText(Resource.Id.button_decline_call, "Colgar");
-
-            //var notificationStyle = Notification.CallStyle.ForIncomingCall(
-            //    person,
-            //    declineIntent,
-            //    answerIntent)
-
-            var notificationBuilder = new NotificationCompat.Builder(this, channelId)
-                .SetContentTitle("Llamada entrante")
-                .SetContentText("Tiene una llamada entrante.")
-                .SetSmallIcon(iconNotif) // Ensure you have this drawable
-                //.AddAction(Resource.Drawable.ic_call_answer, "Contestar", pendingIntentAnswer)
-                //.AddAction(Resource.Drawable.ic_call_decline, "Colgar", pendingIntentHangup)
-                .SetPriority(NotificationCompat.PriorityHigh)
-                .SetCustomBigContentView(remoteViews)
-                .SetStyle(new NotificationCompat.DecoratedCustomViewStyle())
-                .SetCustomContentView(remoteViewsSmall)
-                .SetOngoing(true)
-                .SetAutoCancel(true);
-
-            Notification notification = notificationBuilder.Build();
-
-            notificationManager.Notify(10203, notification);
-
-            //StartForeground(1, notification, ForegroundService.TypePhoneCall);
+                Notification notification = notificationBuilder.Build();
+                notificationManager.Notify(10203, notification);
+            }
         }
 
         private void CancelNotification()
