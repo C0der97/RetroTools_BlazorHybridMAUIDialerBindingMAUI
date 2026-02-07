@@ -153,10 +153,6 @@ namespace PayRemind
 
 
 
-            var serviceIntent = new Intent(this, typeof(NotificationForegroundServiceOwn));
-            StartForegroundService(serviceIntent);
-
-
             if (Intent != null &&  Intent.GetBooleanExtra("OpenCallPage", false))
             {
                 string? incomingNumber = Intent.GetStringExtra("IncomingNumber");

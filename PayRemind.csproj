@@ -152,9 +152,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <MauiXaml Update="Alarms.xaml">
-        <Generator>MSBuild:Compile</Generator>
-      </MauiXaml>
       <MauiXaml Update="Pages\CustomTooltip.xaml">
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
