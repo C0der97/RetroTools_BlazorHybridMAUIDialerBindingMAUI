@@ -4,11 +4,11 @@
              x:Class="PayRemind.Pages.DialPage"
              xmlns:pages="clr-namespace:PayRemind.Components.Pages"
              Title="DialPage">
-    <StackLayout>
+    <Grid>
         <BlazorWebView HostPage="wwwroot/index.html">
             <BlazorWebView.RootComponents>
                 <RootComponent Selector="#app" ComponentType="{x:Type pages:Dialpad}" />
             </BlazorWebView.RootComponents>
         </BlazorWebView>
-    </StackLayout>
+    </Grid>
 </ContentPage>
