@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Maui.LifecycleEvents;
 using MudBlazor.Services;
 using PayRemind.Contracts;
+using PayRemind.Data;
 
 
 #if ANDROID
@@ -87,6 +88,7 @@ namespace PayRemind
 
 #endif
 
+            builder.Services.AddSingleton<BlockedNumberRepository>(s => ActivatorUtilities.CreateInstance<BlockedNumberRepository>(s, dbPath));
             builder.Services.AddSingleton<SharedStateService>();
             return builder.Build();
         }

@@ -72,7 +72,7 @@
 
     <!-- Actions -->
     <MudStack Row="true" Justify="Justify.SpaceAround" Class="mb-2 align-center">
-         <div style="width: 50px;"></div>
+         <MudIconButton Icon="@Icons.Material.Filled.Block" Color="Color.Error" Size="Size.Medium" OnClick="@(() => NavigationManager.NavigateTo("/blocked-numbers"))" />
         <MudIconButton Icon="@Icons.Material.Filled.Call" Color="Color.Success" Size="Size.Large" Class="pa-3" Style="background-color: green; color: white; border-radius: 50%;" OnClick="Call" />
         <MudIconButton Icon="@Icons.Material.Filled.Backspace" Color="Color.Default" Size="Size.Medium" OnClick="Backspace" />
     </MudStack>
@@ -82,7 +82,7 @@
 @code {
     private string phoneNumber = "";
     private List<ContactEntry> allContacts = new();
-    private List<ContactEntry> filteredContacts = new();
+    private List<ContactEntry>? filteredContacts = new();
     
     private record Key(string Digit, string Letters);
     private List<Key> keys = new()

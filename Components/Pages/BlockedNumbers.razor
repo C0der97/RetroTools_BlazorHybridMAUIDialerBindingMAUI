@@ -1,0 +1,102 @@
+@page "/blocked-numbers"
+@using PayRemind.Data
+@inject BlockedNumberRepository BlockedRepository
+@inject ISnackbar Snackbar
+@inject IDialogService DialogService
+@inject NavigationManager NavigationManager
+
+<MudContainer MaxWidth="MaxWidth.ExtraSmall" Class="pa-0 relative-container" Style="height: 100%; position: relative;">
+    <MudStack Row="true" Class="ma-4 align-center">
+        <MudIconButton Icon="@Icons.Material.Filled.ArrowBack" Color="Color.Inherit" OnClick="@(() => NavigationManager.NavigateTo("/dialpad"))" />
+        <MudText Typo="Typo.h5" Class="glass-text">Bloqueados</MudText>
+    </MudStack>
+
+    @if (isLoading)
+    {
+        <MudProgressCircular Color="Color.Primary" Indeterminate="true" Class="ma-4"/>
+    }
+    else if (blockedNumbers == null || blockedNumbers.Count == 0)
+    {
+         <MudStack AlignItems="AlignItems.Center" Class="ma-4">
+             <MudText Class="glass-text">No hay números bloqueados.</MudText>
+         </MudStack>
+    }
+    else
+    {
+        <MudList T="string" Class="glass-panel mt-4" Style="background: transparent; height: calc(100vh - 180px); overflow-y: auto;">
+            @foreach (var item in blockedNumbers)
+            {
+                <MudListItem Class="glass-list-item">
+                    <div class="d-flex align-center">
+                        <MudIcon Icon="@Icons.Material.Filled.Block" Color="Color.Error" Class="mr-3"/>
+                        <div style="flex-grow: 1;">
+                            <MudText Typo="Typo.body1" Class="glass-text">@item.PhoneNumber</MudText>
+                            <MudText Typo="Typo.caption" Class="glass-text-secondary">@item.CreatedAt.ToLocalTime().ToString("g")</MudText>
+                        </div>
+                        <MudIconButton Icon="@Icons.Material.Filled.Delete" Color="Color.Error" OnClick="@(() => UnblockNumber(item))" />
+                    </div>
+                </MudListItem>
+                <MudDivider Class="glass-divider"/>
+            }
+        </MudList>
+    }
+
+    <MudFab Color="Color.Error" StartIcon="@Icons.Material.Filled.Add" Class="fab-bottom-right" OnClick="OpenBlockDialog" Style="position: absolute; bottom: 16px; right: 16px;" />
+
+</MudContainer>
+
+@code {
+    private List<BlockedNumber> blockedNumbers = new();
+    private bool isLoading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadBlockedNumbers();
+    }
+
+    private async Task LoadBlockedNumbers()
+    {
+        isLoading = true;
+        blockedNumbers = await BlockedRepository.GetBlockedNumbersAsync();
+        isLoading = false;
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private async Task UnblockNumber(BlockedNumber item)
+    {
+        bool? result = await DialogService.ShowMessageBox(
+            "Desbloquear", 
+            $"¿Deseas desbloquear el número {item.PhoneNumber}?", 
+            yesText: "Sí", cancelText: "Cancelar");
+
+        if (result == true)
+        {
+            await BlockedRepository.DeleteBlockedNumberAsync(item);
+            Snackbar.Add("Número desbloqueado", Severity.Success);
+            await LoadBlockedNumbers();
+        }
+    }
+
+    private async Task OpenBlockDialog()
+    {
+        var parameters = new DialogParameters();
+        
+        var dialog = await DialogService.ShowAsync<AddBlockedNumberDialog>("Bloquear Número");
+        var result = await dialog.Result;
+
+        if (!result.Canceled && result.Data is string phoneNumber)
+        {
+             // Check if already blocked
+             if (await BlockedRepository.IsBlockedAsync(phoneNumber))
+             {
+                 Snackbar.Add("El número ya está bloqueado", Severity.Warning);
+                 return;
+             }
+
+             var newBlock = new BlockedNumber { PhoneNumber = phoneNumber };
+             await BlockedRepository.SaveBlockedNumberAsync(newBlock);
+             Snackbar.Add("Número bloqueado", Severity.Success);
+             await LoadBlockedNumbers();
+        }
+    }
+}

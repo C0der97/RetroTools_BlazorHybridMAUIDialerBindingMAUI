@@ -5,6 +5,8 @@
 @inject ISnackbar Snackbar
 @inject IDialogService DialogService
 @inject ICallHandler CallHandler
+@inject PayRemind.Data.BlockedNumberRepository BlockedRepository
+
 
 <MudContainer MaxWidth="MaxWidth.ExtraSmall" Class="pa-0 relative-container" Style="height: 100%; position: relative;">
     <MudStack Row="true" Class="ma-4 align-center">
@@ -43,6 +45,7 @@
                         </div>
                         <MudMenu Icon="@Icons.Material.Filled.MoreVert" Color="Color.Default">
                             <MudMenuItem OnClick="@(() => EditContact(contact.Id))">Editar</MudMenuItem>
+                            <MudMenuItem OnClick="@(() => BlockContact(contact))">Bloquear</MudMenuItem>
                             <MudMenuItem OnClick="@(() => DeleteContact(contact))">Eliminar</MudMenuItem>
                         </MudMenu>
                          <MudIconButton Icon="@Icons.Material.Filled.Call" Color="Color.Success" Size="Size.Small" OnClick="@(() => CallNumber(contact.PhoneNumber))" />
@@ -58,7 +61,7 @@
 
 @code {
     private List<ContactEntry> contacts = new();
-    private List<ContactEntry> filteredContacts = new();
+    private List<ContactEntry>? filteredContacts = new();
     private string _searchString = "";
     private bool isLoading = true;
 
@@ -224,6 +227,34 @@
             {
                 Snackbar.Add($"Error al eliminar contacto: {result.error}", Severity.Error);
             }
+        }
+    }
+    private async Task BlockContact(ContactEntry contact)
+    {
+        if (string.IsNullOrEmpty(contact.PhoneNumber))
+        {
+            Snackbar.Add("Este contacto no tiene número para bloquear", Severity.Warning);
+            return;
+        }
+
+        bool? result = await DialogService.ShowMessageBox(
+            "Bloquear Contacto",
+            $"¿Quieres bloquear a {contact.Name} ({contact.PhoneNumber})? Las llamadas serán rechazadas automáticamente.",
+            yesText: "Bloquear", cancelText: "Cancelar");
+
+        if (result == true)
+        {
+            if (await BlockedRepository.IsBlockedAsync(contact.PhoneNumber))
+            {
+                Snackbar.Add("El número ya está bloqueado", Severity.Info);
+                return;
+            }
+
+            await BlockedRepository.SaveBlockedNumberAsync(new PayRemind.Data.BlockedNumber 
+            { 
+                PhoneNumber = contact.PhoneNumber 
+            });
+            Snackbar.Add("Contacto bloqueado", Severity.Success);
         }
     }
 }

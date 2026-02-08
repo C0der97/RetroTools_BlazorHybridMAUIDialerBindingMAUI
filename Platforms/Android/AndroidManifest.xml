@@ -21,7 +21,7 @@
         </service>
 
 		
-        <!-- <service
+        <service
             android:name=".IncomingCallService"
             android:exported="true"
             android:permission="android.permission.BIND_SCREENING_SERVICE">
@@ -29,7 +29,6 @@
                 <action android:name="android.telecom.CallScreeningService" />
             </intent-filter>
         </service>
-	 -->
 
 	        <receiver
             android:name=".PhoneCallReceiver"
