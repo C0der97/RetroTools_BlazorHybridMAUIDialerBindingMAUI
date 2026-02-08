@@ -1,0 +1,92 @@
+@page "/contact/edit"
+@page "/contact/edit/{Id}"
+@using PayRemind.Contracts
+@inject IContactsService ContactsService
+@inject NavigationManager NavigationManager
+@inject ISnackbar Snackbar
+
+<MudContainer MaxWidth="MaxWidth.ExtraSmall" Class="pa-4">
+    <MudText Typo="Typo.h5" GutterBottom="true" Class="glass-text mb-4">@(string.IsNullOrEmpty(Id) ? "Nuevo Contacto" : "Editar Contacto")</MudText>
+
+    <MudPaper Class="glass-panel pa-4">
+        <MudForm @ref="form" @bind-IsValid="@success">
+            <MudTextField T="string" Label="Nombre" @bind-Value="contact.Name" Required="true" RequiredError="El nombre es obligatorio" Class="glass-text" />
+            <MudTextField T="string" Label="Teléfono" @bind-Value="contact.PhoneNumber" Required="true" RequiredError="El teléfono es obligatorio" Class="glass-text" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Phone" />
+        </MudForm>
+    </MudPaper>
+
+    <MudStack Row="true" Class="mt-4" Justify="Justify.SpaceBetween">
+        <MudButton Variant="Variant.Text" Color="Color.Error" OnClick="Cancel">Cancelar</MudButton>
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="Save" Disabled="@(!success)">Guardar</MudButton>
+    </MudStack>
+</MudContainer>
+
+@code {
+    [Parameter] public string Id { get; set; }
+
+    private ContactEntry contact = new();
+    private MudForm form;
+    private bool success;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (!string.IsNullOrEmpty(Id))
+        {
+            var contacts = await ContactsService.GetContactsAsync();
+            var existing = contacts.FirstOrDefault(c => c.Id == Id);
+            if (existing != null)
+            {
+                contact = new ContactEntry
+                {
+                    Id = existing.Id,
+                    Name = existing.Name,
+                    PhoneNumber = existing.PhoneNumber,
+                    PhotoUri = existing.PhotoUri
+                };
+            }
+        }
+    }
+
+    private async Task Save()
+    {
+        await form.Validate();
+        if (!success) return;
+
+        var status = await Permissions.CheckStatusAsync<Permissions.ContactsWrite>();
+        if (status != PermissionStatus.Granted)
+        {
+            status = await Permissions.RequestAsync<Permissions.ContactsWrite>();
+        }
+
+        if (status != PermissionStatus.Granted)
+        {
+            Snackbar.Add("Permiso de escritura en contactos denegado.", Severity.Error);
+            return;
+        }
+
+        (bool success, string error) result;
+        if (string.IsNullOrEmpty(Id))
+        {
+            result = await ContactsService.AddContactAsync(contact);
+        }
+        else
+        {
+            result = await ContactsService.UpdateContactAsync(contact);
+        }
+
+        if (result.success)
+        {
+            Snackbar.Add("Contacto guardado", Severity.Success);
+            NavigationManager.NavigateTo("/contacts");
+        }
+        else
+        {
+            Snackbar.Add($"Error: {result.error}", Severity.Error, config => { config.RequireInteraction = true; });
+        }
+    }
+
+    private void Cancel()
+    {
+        NavigationManager.NavigateTo("/contacts");
+    }
+}

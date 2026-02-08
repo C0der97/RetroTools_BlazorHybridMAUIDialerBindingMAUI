@@ -14,5 +14,8 @@ namespace PayRemind.Contracts
     public interface IContactsService
     {
         Task<List<ContactEntry>> GetContactsAsync();
+        Task<(bool Success, string ErrorMessage)> AddContactAsync(ContactEntry contact);
+        Task<(bool Success, string ErrorMessage)> UpdateContactAsync(ContactEntry contact);
+        Task<(bool Success, string ErrorMessage)> DeleteContactAsync(string id);
     }
 }

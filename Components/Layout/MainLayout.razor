@@ -1,7 +1,8 @@
 @inherits LayoutComponentBase
 @using MudBlazor
 
-<MudThemeProvider @ref="@_mudThemeProvider" @bind-IsDarkMode="@_isDarkMode" Theme="@_customTheme" />
+<MudThemeProvider @ref="@_mudThemeProvider" Theme="@_customTheme" @bind-IsDarkMode="@_isDarkMode" />
+<MudPopoverProvider />
 <MudDialogProvider />
 <MudSnackbarProvider />
 

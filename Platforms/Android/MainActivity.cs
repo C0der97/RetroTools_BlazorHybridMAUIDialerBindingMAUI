@@ -245,5 +245,11 @@ namespace PayRemind
 #pragma warning restore CS8602 // Desreferencia de una referencia posiblemente NULL.
         }
 
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
+        {
+            Microsoft.Maui.ApplicationModel.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
     }
 }

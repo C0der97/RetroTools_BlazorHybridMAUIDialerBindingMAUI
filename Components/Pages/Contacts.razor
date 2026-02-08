@@ -1,8 +1,11 @@
 @page "/contacts"
 @using PayRemind.Contracts
 @inject IContactsService ContactsService
+@inject NavigationManager NavigationManager
+@inject ISnackbar Snackbar
+@inject IDialogService DialogService
 
-<MudContainer MaxWidth="MaxWidth.ExtraSmall" Class="pa-0">
+<MudContainer MaxWidth="MaxWidth.ExtraSmall" Class="pa-0 relative-container" Style="height: 100%; position: relative;">
     <MudStack Row="true" Class="ma-4 align-center">
         <MudText Typo="Typo.h5" Class="glass-text">Contactos</MudText>
         <MudSpacer />
@@ -15,14 +18,17 @@
     }
     else if (filteredContacts == null || filteredContacts.Count == 0)
     {
-        <MudText Class="ma-4">No se encontraron contactos.</MudText>
+        <MudStack AlignItems="AlignItems.Center" Class="ma-4">
+             <MudText>No se encontraron contactos.</MudText>
+             <MudButton Variant="Variant.Outlined" Color="Color.Primary" OnClick="LoadContacts">Reintentar</MudButton>
+        </MudStack>
     }
     else
     {
-        <MudList T="string" Class="glass-panel mt-4" Style="background: transparent;">
+        <MudList T="string" Class="glass-panel mt-4" Style="background: transparent; height: calc(100vh - 180px); overflow-y: auto;">
             @foreach (var contact in filteredContacts)
             {
-                <MudListItem OnClick="@(() => CallNumber(contact.PhoneNumber))" Class="glass-list-item">
+                <MudListItem Class="glass-list-item">
                     <div class="d-flex align-center">
                         <MudAvatar Image="@contact.PhotoUri" Color="Color.Primary" Class="mr-3">
                             @if (string.IsNullOrEmpty(contact.PhotoUri))
@@ -30,18 +36,23 @@
                                 @(string.IsNullOrEmpty(contact.Name) ? "?" : contact.Name.Substring(0, 1).ToUpper())
                             }
                         </MudAvatar>
-                        <div>
+                        <div @onclick="@(() => CallNumber(contact.PhoneNumber))" style="flex-grow: 1;">
                             <MudText Typo="Typo.body1" Class="glass-text">@contact.Name</MudText>
                             <MudText Typo="Typo.caption" Class="glass-text-secondary">@contact.PhoneNumber</MudText>
                         </div>
-                         <MudSpacer />
-                         <MudIconButton Icon="@Icons.Material.Filled.Call" Color="Color.Success" Size="Size.Small" />
+                        <MudMenu Icon="@Icons.Material.Filled.MoreVert" Color="Color.Default">
+                            <MudMenuItem OnClick="@(() => EditContact(contact.Id))">Editar</MudMenuItem>
+                            <MudMenuItem OnClick="@(() => DeleteContact(contact))">Eliminar</MudMenuItem>
+                        </MudMenu>
+                         <MudIconButton Icon="@Icons.Material.Filled.Call" Color="Color.Success" Size="Size.Small" OnClick="@(() => CallNumber(contact.PhoneNumber))" />
                     </div>
                 </MudListItem>
                 <MudDivider Class="glass-divider"/>
             }
         </MudList>
     }
+
+    <MudFab Color="Color.Primary" StartIcon="@Icons.Material.Filled.Add" Class="fab-bottom-right" OnClick="AddContact" Style="position: absolute; bottom: 16px; right: 16px;" />
 </MudContainer>
 
 @code {
@@ -68,8 +79,13 @@
     private async Task LoadContacts()
     {
         isLoading = true;
+        await InvokeAsync(StateHasChanged);
+        
         try
         {
+            // Timeout after 5 seconds to prevent infinite loader
+            var cts = new CancellationTokenSource(TimeSpan.FromSeconds(5));
+            
             var status = await Permissions.CheckStatusAsync<Permissions.ContactsRead>();
             
             if (status != PermissionStatus.Granted)
@@ -79,24 +95,30 @@
 
             if (status == PermissionStatus.Granted)
             {
-                 // Offload to background thread to avoid UI freeze
-                 contacts = await Task.Run(async () => await ContactsService.GetContactsAsync());
+                 // ContactsService.GetContactsAsync is already running on a background thread via Task.Run locally
+                 // We await it directly.
+                 contacts = await ContactsService.GetContactsAsync();
                  FilterContacts();
+            }
+            else
+            {
+                Snackbar.Add("Permiso de contactos requerido", Severity.Warning);
             }
         }
         catch (Exception ex)
         {
             Console.WriteLine($"Error loading contacts: {ex.Message}");
+            Snackbar.Add($"Error cargando contactos: {ex.Message}", Severity.Error);
         }
         finally
         {
             isLoading = false;
+            await InvokeAsync(StateHasChanged);
         }
     }
 
     private void FilterContacts()
     {
-        if (contacts == null) return;
         if (string.IsNullOrWhiteSpace(searchString))
         {
             filteredContacts = contacts;
@@ -105,9 +127,9 @@
         {
             filteredContacts = contacts.Where(c => 
                 (c.Name?.Contains(searchString, StringComparison.OrdinalIgnoreCase) ?? false) || 
-                (c.PhoneNumber?.Contains(searchString) ?? false)).ToList();
+                (c.PhoneNumber?.Contains(searchString) ?? false)
+            ).ToList();
         }
-        StateHasChanged();
     }
 
     private void CallNumber(string number)
@@ -120,6 +142,50 @@
         catch (Exception ex)
         {
             Console.WriteLine($"Error dialing: {ex.Message}");
+        }
+    }
+
+    private void AddContact()
+    {
+        NavigationManager.NavigateTo("/contact/edit");
+    }
+
+    private void EditContact(string id)
+    {
+        NavigationManager.NavigateTo($"/contact/edit/{id}");
+    }
+
+    private async Task DeleteContact(ContactEntry contact)
+    {
+        var status = await Permissions.CheckStatusAsync<Permissions.ContactsWrite>();
+        if (status != PermissionStatus.Granted)
+        {
+            status = await Permissions.RequestAsync<Permissions.ContactsWrite>();
+        }
+
+        if (status != PermissionStatus.Granted)
+        {
+            Snackbar.Add("Permiso de escritura requerido para eliminar contactos.", Severity.Warning);
+            return;
+        }
+
+        bool? resultConf = await DialogService.ShowMessageBox(
+            "Eliminar contacto", 
+            $"¿Estás seguro de eliminar a {contact.Name}?", 
+            yesText: "Eliminar", cancelText: "Cancelar");
+
+        if (resultConf == true)
+        {
+            (bool success, string error) result = await ContactsService.DeleteContactAsync(contact.Id);
+            if (result.success)
+            {
+                Snackbar.Add("Contacto eliminado", Severity.Success);
+                await LoadContacts();
+            }
+            else
+            {
+                Snackbar.Add($"Error al eliminar contacto: {result.error}", Severity.Error);
+            }
         }
     }
 }
