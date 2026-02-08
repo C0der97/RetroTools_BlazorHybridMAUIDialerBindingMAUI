@@ -2,6 +2,7 @@
 
 <MudDialog>
     <DialogContent>
+        <MudTextField @bind-Value="Name" Label="Nombre (Opcional)" />
         <MudTextField @bind-Value="PhoneNumber" Label="Número de Teléfono" InputType="InputType.Telephone" Required="true" />
     </DialogContent>
     <DialogActions>
@@ -13,7 +14,8 @@
 @code {
     [CascadingParameter] MudDialogInstance MudDialog { get; set; }
 
-    public string PhoneNumber { get; set; }
+    [Parameter] public string PhoneNumber { get; set; }
+    [Parameter] public string Name { get; set; }
 
     void Submit()
     {
@@ -21,7 +23,7 @@
         {
             return;
         }
-        MudDialog.Close(DialogResult.Ok(PhoneNumber));
+        MudDialog.Close(DialogResult.Ok(new PayRemind.Data.BlockedNumber { PhoneNumber = PhoneNumber, Name = Name }));
     }
 
     void Cancel() => MudDialog.Cancel();

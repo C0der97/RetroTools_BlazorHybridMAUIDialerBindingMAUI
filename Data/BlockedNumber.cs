@@ -11,6 +11,8 @@ namespace PayRemind.Data
         [Indexed]
         public string PhoneNumber { get; set; }
 
+        public string Name { get; set; }
+
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     }
 }

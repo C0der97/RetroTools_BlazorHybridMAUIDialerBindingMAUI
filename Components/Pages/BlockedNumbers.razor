@@ -30,8 +30,12 @@
                     <div class="d-flex align-center">
                         <MudIcon Icon="@Icons.Material.Filled.Block" Color="Color.Error" Class="mr-3"/>
                         <div style="flex-grow: 1;">
-                            <MudText Typo="Typo.body1" Class="glass-text">@item.PhoneNumber</MudText>
-                            <MudText Typo="Typo.caption" Class="glass-text-secondary">@item.CreatedAt.ToLocalTime().ToString("g")</MudText>
+                            <MudText Typo="Typo.body1" Class="glass-text">
+                                @(string.IsNullOrEmpty(item.Name) ? item.PhoneNumber : item.Name)
+                            </MudText>
+                            <MudText Typo="Typo.caption" Class="glass-text-secondary">
+                                @(string.IsNullOrEmpty(item.Name) ? "" : $"{item.PhoneNumber} • ") @item.CreatedAt.ToLocalTime().ToString("g")
+                            </MudText>
                         </div>
                         <MudIconButton Icon="@Icons.Material.Filled.Delete" Color="Color.Error" OnClick="@(() => UnblockNumber(item))" />
                     </div>
@@ -84,16 +88,15 @@
         var dialog = await DialogService.ShowAsync<AddBlockedNumberDialog>("Bloquear Número");
         var result = await dialog.Result;
 
-        if (!result.Canceled && result.Data is string phoneNumber)
+        if (!result.Canceled && result.Data is BlockedNumber newBlock)
         {
              // Check if already blocked
-             if (await BlockedRepository.IsBlockedAsync(phoneNumber))
+             if (await BlockedRepository.IsBlockedAsync(newBlock.PhoneNumber))
              {
                  Snackbar.Add("El número ya está bloqueado", Severity.Warning);
                  return;
              }
 
-             var newBlock = new BlockedNumber { PhoneNumber = phoneNumber };
              await BlockedRepository.SaveBlockedNumberAsync(newBlock);
              Snackbar.Add("Número bloqueado", Severity.Success);
              await LoadBlockedNumbers();

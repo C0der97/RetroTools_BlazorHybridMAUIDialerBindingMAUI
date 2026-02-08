@@ -1,6 +1,9 @@
 @page "/recents"
 @using PayRemind.Contracts
 @inject ICallLogService CallLogService
+@inject PayRemind.Data.BlockedNumberRepository BlockedRepository
+@inject IDialogService DialogService
+@inject ISnackbar Snackbar
 
 <MudContainer MaxWidth="MaxWidth.ExtraSmall" Class="pa-0">
     <MudText Typo="Typo.h5" GutterBottom="true" Class="ma-4 glass-text">Recientes</MudText>
@@ -27,7 +30,11 @@
                                 <MudText Typo="Typo.caption" Class="glass-text-secondary">@FormatDuration(log.Duration) • @FormatDate(log.Date)</MudText>
                             </div>
                         </div>
-                         <MudIconButton Icon="@Icons.Material.Filled.Call" Color="Color.Success" Size="Size.Small" />
+
+                         <MudMenu Icon="@Icons.Material.Filled.MoreVert" Color="Color.Default">
+                            <MudMenuItem OnClick="@(() => CallNumber(log.Number))">Llamar</MudMenuItem>
+                            <MudMenuItem OnClick="@(() => BlockNumber(log))">Bloquear</MudMenuItem>
+                        </MudMenu>
                     </div>
                 </MudListItem>
                 <MudDivider Class="glass-divider"/>
@@ -129,6 +136,33 @@
         catch (Exception ex)
         {
             Console.WriteLine($"Error dialing: {ex.Message}");
+        }
+    }
+    private async Task BlockNumber(CallLogEntry log)
+    {
+        if (await BlockedRepository.IsBlockedAsync(log.Number))
+        {
+            Snackbar.Add("El número ya está bloqueado", Severity.Info);
+            return;
+        }
+
+        var parameters = new DialogParameters();
+        parameters.Add("PhoneNumber", log.Number);
+        parameters.Add("Name", log.Name);
+
+        var dialog = await DialogService.ShowAsync<AddBlockedNumberDialog>("Bloquear Número", parameters);
+        var result = await dialog.Result;
+
+        if (!result.Canceled && result.Data is PayRemind.Data.BlockedNumber newBlock)
+        {
+             if (await BlockedRepository.IsBlockedAsync(newBlock.PhoneNumber))
+             {
+                 Snackbar.Add("El número ya está bloqueado", Severity.Warning);
+                 return;
+             }
+
+             await BlockedRepository.SaveBlockedNumberAsync(newBlock);
+             Snackbar.Add("Número bloqueado", Severity.Success);
         }
     }
 }
