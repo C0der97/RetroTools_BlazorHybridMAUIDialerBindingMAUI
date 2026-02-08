@@ -4,9 +4,9 @@
 
 <MudContainer MaxWidth="MaxWidth.ExtraSmall" Class="pa-0">
     <MudStack Row="true" Class="ma-4 align-center">
-        <MudText Typo="Typo.h5">Contactos</MudText>
+        <MudText Typo="Typo.h5" Class="glass-text">Contactos</MudText>
         <MudSpacer />
-        <MudTextField @bind-Value="searchString" Placeholder="Buscar" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+        <MudTextField @bind-Value="searchString" Placeholder="Buscar" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0 glass-text"></MudTextField>
     </MudStack>
 
     @if (isLoading)
@@ -19,10 +19,10 @@
     }
     else
     {
-        <MudList T="string">
+        <MudList T="string" Class="glass-panel mt-4" Style="background: transparent;">
             @foreach (var contact in filteredContacts)
             {
-                <MudListItem OnClick="@(() => CallNumber(contact.PhoneNumber))">
+                <MudListItem OnClick="@(() => CallNumber(contact.PhoneNumber))" Class="glass-list-item">
                     <div class="d-flex align-center">
                         <MudAvatar Image="@contact.PhotoUri" Color="Color.Primary" Class="mr-3">
                             @if (string.IsNullOrEmpty(contact.PhotoUri))
@@ -31,23 +31,23 @@
                             }
                         </MudAvatar>
                         <div>
-                            <MudText Typo="Typo.body1">@contact.Name</MudText>
-                            <MudText Typo="Typo.caption">@contact.PhoneNumber</MudText>
+                            <MudText Typo="Typo.body1" Class="glass-text">@contact.Name</MudText>
+                            <MudText Typo="Typo.caption" Class="glass-text-secondary">@contact.PhoneNumber</MudText>
                         </div>
                          <MudSpacer />
                          <MudIconButton Icon="@Icons.Material.Filled.Call" Color="Color.Success" Size="Size.Small" />
                     </div>
                 </MudListItem>
-                <MudDivider />
+                <MudDivider Class="glass-divider"/>
             }
         </MudList>
     }
 </MudContainer>
 
 @code {
-    private List<ContactEntry> contacts;
-    private List<ContactEntry> filteredContacts;
-    private string _searchString;
+    private List<ContactEntry> contacts = new();
+    private List<ContactEntry> filteredContacts = new();
+    private string _searchString = "";
     private bool isLoading = true;
 
     private string searchString
@@ -71,6 +71,7 @@
         try
         {
             var status = await Permissions.CheckStatusAsync<Permissions.ContactsRead>();
+            
             if (status != PermissionStatus.Granted)
             {
                 status = await Permissions.RequestAsync<Permissions.ContactsRead>();
@@ -78,7 +79,8 @@
 
             if (status == PermissionStatus.Granted)
             {
-                 contacts = await ContactsService.GetContactsAsync();
+                 // Offload to background thread to avoid UI freeze
+                 contacts = await Task.Run(async () => await ContactsService.GetContactsAsync());
                  FilterContacts();
             }
         }

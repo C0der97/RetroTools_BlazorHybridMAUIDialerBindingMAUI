@@ -28,6 +28,19 @@
     }
 }
 
+/* Explicit Dark Theme Class applied by Blazor */
+.dark-theme {
+    --glass-bg: rgba(30, 30, 30, 0.6) !important;
+    --glass-border: rgba(255, 255, 255, 0.2) !important;
+    --glass-shadow: rgba(0, 0, 0, 0.6) !important;
+    --glass-text: #ffffff !important;
+    --glass-text-secondary: #cccccc !important;
+    --glass-highlight: rgba(255, 255, 255, 0.15) !important;
+    --glass-button-bg: rgba(255, 255, 255, 0.15) !important;
+    --glass-button-hover: rgba(255, 255, 255, 0.25) !important;
+    --app-bg-gradient: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%) !important;
+}
+
 /* Glassmorphism Utilities */
 .glass-panel {
     background: var(--glass-bg) !important;
@@ -95,4 +108,17 @@
     100% {
         background-position: 0% 50%;
     }
+}
+
+/* Additional Glassmorphism styles for lists */
+.glass-list-item {
+    transition: background-color 0.3s ease;
+}
+
+.glass-list-item:hover {
+    background-color: var(--glass-highlight) !important;
+}
+
+.glass-divider {
+    border-color: var(--glass-border) !important;
 }

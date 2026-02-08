@@ -1,0 +1,649 @@
+--------- beginning of system
+02-08 10:26:23.976   670   873 D BackgroundInstallControlService: Package event received: 0
+02-08 10:26:23.979   670   873 D BackgroundInstallControlService: Package event received: 0
+02-08 10:26:23.980   670   873 D BackgroundInstallControlService: Package event received: 0
+--------- beginning of main
+02-08 10:26:23.981  5690  5700 I FontLog : (REDACTED) Received query %s, URI %s
+02-08 10:26:23.981  5690  5700 I FontLog : (REDACTED) Query [%s] resolved to %s
+02-08 10:26:23.982  5690  5700 I FontLog : (REDACTED) Font PFD returned from cache for %s
+02-08 10:26:23.982  5690  5700 I FontLog : (REDACTED) Fetch %s end status %s
+02-08 10:26:23.996  5690  5700 I FontLog : (REDACTED) Pulling font file for id = %d, cache size = %d
+02-08 10:26:23.996 30179 30204 I DOTNET  :   Error: Android: Request failed, API returned 403
+02-08 10:26:23.996 30179 30204 D app_process64:   Error: Android: Request failed, API returned 403
+02-08 10:26:24.003 30179 30204 I DOTNET  :   Error: Android: {"detail":"event submission rejected with_reason: ProjectId"}
+02-08 10:26:24.017 30179 30204 D app_process64:   Error: Android: {"detail":"event submission rejected with_reason: ProjectId"}
+02-08 10:26:24.017 30179 30204 I DOTNET  :   Error: Android: The transport failed to send the envelope with response code 403
+02-08 10:26:24.017 30179 30204 D app_process64:   Error: Android: The transport failed to send the envelope with response code 403
+02-08 10:26:24.018 30179 30204 I DOTNET  :   Error: Android: Envelope submission failed
+02-08 10:26:24.018 30179 30204 I DOTNET  : Java.Lang.IllegalStateException: The transport failed to send the envelope with response code 403
+02-08 10:26:24.018 30179 30204 I DOTNET  : 
+02-08 10:26:24.018 30179 30204 I DOTNET  :   --- End of managed Java.Lang.IllegalStateException stack trace ---
+02-08 10:26:24.018 30179 30204 I DOTNET  : java.lang.IllegalStateException: The transport failed to send the envelope with response code 403
+02-08 10:26:24.018 30179 30204 I DOTNET  : 	at io.sentry.transport.AsyncHttpTransport$EnvelopeSender.flush(AsyncHttpTransport.java:320)
+02-08 10:26:24.018 30179 30204 I DOTNET  : 	at io.sentry.transport.AsyncHttpTransport$EnvelopeSender.run(AsyncHttpTransport.java:243)
+02-08 10:26:24.018 30179 30204 I DOTNET  : 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:520)
+02-08 10:26:24.018 30179 30204 I DOTNET  : 	at java.util.concurrent.FutureTask.run(FutureTask.java:317)
+02-08 10:26:24.018 30179 30204 I DOTNET  : 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1154)
+02-08 10:26:24.018 30179 30204 I DOTNET  : 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:652)
+02-08 10:26:24.018 30179 30204 I DOTNET  : 	at java.lang.Thread.run(Thread.java:1563)
+02-08 10:26:24.019 30179 30204 D app_process64:   Error: Android: Envelope submission failed
+02-08 10:26:24.019 30179 30204 D app_process64: Java.Lang.IllegalStateException: The transport failed to send the envelope with response code 403
+02-08 10:26:24.019 30179 30204 D app_process64: 
+02-08 10:26:24.019 30179 30204 D app_process64:   --- End of managed Java.Lang.IllegalStateException stack trace ---
+02-08 10:26:24.019 30179 30204 D app_process64: java.lang.IllegalStateException: The transport failed to send the envelope with response code 403
+02-08 10:26:24.019 30179 30204 D app_process64: 	at io.sentry.transport.AsyncHttpTransport$EnvelopeSender.flush(AsyncHttpTransport.java:320)
+02-08 10:26:24.019 30179 30204 D app_process64: 	at io.sentry.transport.AsyncHttpTransport$EnvelopeSender.run(AsyncHttpTransport.java:243)
+02-08 10:26:24.019 30179 30204 D app_process64: 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:520)
+02-08 10:26:24.019 30179 30204 D app_process64: 	at java.util.concurrent.FutureTask.run(FutureTask.java:317)
+02-08 10:26:24.019 30179 30204 D app_process64: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1154)
+02-08 10:26:24.019 30179 30204 D app_process64: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:652)
+02-08 10:26:24.019 30179 30204 D app_process64: 	at java.lang.Thread.run(Thread.java:1563)
+02-08 10:26:24.019 30179 30204 D app_process64: 
+02-08 10:26:24.021 30179 30204 I DOTNET  :   Debug: Android: Marking envelope submission result: false
+02-08 10:26:24.021 30179 30204 D app_process64:   Debug: Android: Marking envelope submission result: false
+02-08 10:26:24.021 30179 30201 I DOTNET  :   Debug: Android: Deleted file /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970/72f873fe-da5f-45a2-94a1-ba37cd3e5d9d.envelope.
+02-08 10:26:24.021 30179 30201 D app_process64:   Debug: Android: Deleted file /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970/72f873fe-da5f-45a2-94a1-ba37cd3e5d9d.envelope.
+02-08 10:26:24.032 30224 30246 E ashmem  : readlink(/proc/self/fd/109) failed: Operation not permitted
+02-08 10:26:24.032 30224 30246 E ashmem  : readlink(/proc/self/fd/115) failed: Operation not permitted
+02-08 10:26:24.032 30224 30246 E ashmem  : readlink(/proc/self/fd/117) failed: Operation not permitted
+02-08 10:26:24.033 30224 30260 E ashmem  : readlink(/proc/self/fd/116) failed: Operation not permitted
+02-08 10:26:24.033 30224 30260 E ashmem  : readlink(/proc/self/fd/118) failed: Operation not permitted
+02-08 10:26:24.033 30224 30260 E ashmem  : readlink(/proc/self/fd/120) failed: Operation not permitted
+02-08 10:26:24.042 30179 30179 D Cosa    : Obteniendo respuesta 
+02-08 10:26:24.042 30179 30179 D Cosa    : aceptado como default
+02-08 10:26:24.042 30179 30179 W monodroid-assembly: open_from_bundles: failed to load bundled assembly System.Runtime.CompilerServices.Unsafe.dll
+02-08 10:26:24.042 30179 30179 W monodroid-assembly: open_from_bundles: the assembly might have been uploaded to the device with FastDev instead
+02-08 10:26:24.065   670   873 D BackgroundInstallControlService: Package event received: 0
+02-08 10:26:24.065   670   873 D BackgroundInstallControlService: Package event received: 0
+02-08 10:26:24.066  1523  1523 D BoundBrokerSvc: onBind: Intent { act=com.google.android.gms.safetynet.service.START xflg=0x4 pkg=com.google.android.gms }
+02-08 10:26:24.066  1523  1523 D BoundBrokerSvc: Loading bound service for intent: Intent { act=com.google.android.gms.safetynet.service.START xflg=0x4 pkg=com.google.android.gms }
+02-08 10:26:24.067   670   787 I ImeTracker: com.retrocode.payremind:7785e5ed: onRequestHide at ORIGIN_SERVER reason HIDE_UNSPECIFIED_WINDOW fromUser false
+02-08 10:26:24.068 30179 30179 D InsetsController: hide(ime())
+02-08 10:26:24.068 30179 30179 I ImeTracker: com.retrocode.payremind:7785e5ed: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+02-08 10:26:24.068  1487  1487 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():2057 
+02-08 10:26:24.069   670  2101 I ImeTracker: system_server:6d16310e: onRequestHide at ORIGIN_SERVER reason IME_REQUESTED_CHANGED_LISTENER fromUser false
+02-08 10:26:24.069  1487  1487 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():100 repeatCheckTimes = 0, locked = false
+02-08 10:26:24.069  1487  1487 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1318 onStartInput(EditorInfo{EditorInfo{packageName=com.retrocode.payremind, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+02-08 10:26:24.069  1487  1487 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():100 repeatCheckTimes = 1, locked = false
+02-08 10:26:24.069   670  2101 W PackageConfigPersister: App-specific configuration not found for packageName: com.retrocode.payremind and userId: 0
+02-08 10:26:24.070   670   701 I ImeTracker: system_server:6d16310e: onCancelled at PHASE_SERVER_SHOULD_HIDE
+02-08 10:26:24.071  1038  1038 D b/417220811: invalidateLoadedTasks - previous requestLoadId: -1
+02-08 10:26:24.099  1523  1523 D BoundBrokerSvc: onBind: Intent { act=com.google.android.gms.safebrowsing.SafeBrowsingService.START dat=chimera-action:/... xflg=0x4 cmp=com.google.android.gms/.chimera.GmsBoundBrokerService }
+02-08 10:26:24.099  1523  1523 D BoundBrokerSvc: Loading bound service for intent: Intent { act=com.google.android.gms.safebrowsing.SafeBrowsingService.START dat=chimera-action:/... xflg=0x4 cmp=com.google.android.gms/.chimera.GmsBoundBrokerService }
+02-08 10:26:24.105  1038  1038 D BaseActivity: Launcher flags updated: [] -[state_started]
+02-08 10:26:24.105  1038  1038 D BaseDepthController: setSurface:
+02-08 10:26:24.105  1038  1038 D BaseDepthController: 	mWaitingOnSurfaceValidity: false
+02-08 10:26:24.105  1038  1038 D BaseDepthController: 	mBaseSurface: null
+02-08 10:26:24.106  1038  1038 D BaseDepthController: mSurface is null and mCurrentBlur is: 0
+02-08 10:26:24.106  1038  1038 D LauncherStateManager: StateManager.goToState: fromState: Normal, toState: Normal, partial trace:
+02-08 10:26:24.106  1038  1038 D LauncherStateManager: 	at com.android.launcher3.statemanager.StateManager.moveToRestState(go/retraceme f3a19d912c87c27267cfbc05ba0bc7b202ab72a6648bd76225f5f7e128d94583:6)
+02-08 10:26:24.106  1038  1038 D LauncherStateManager: 	at com.android.launcher3.statemanager.StateManager.moveToRestState(go/retraceme f3a19d912c87c27267cfbc05ba0bc7b202ab72a6648bd76225f5f7e128d94583:2)
+02-08 10:26:24.106  1038  1038 D LauncherStateManager: 	at com.android.launcher3.statemanager.StatefulActivity.onStop(go/retraceme f3a19d912c87c27267cfbc05ba0bc7b202ab72a6648bd76225f5f7e128d94583:32)
+02-08 10:26:24.106  1038  1038 D LauncherStateManager: StateManager.onRepeatStateSetAborted: state: Normal
+02-08 10:26:24.106  1038  1038 D ActivityContext: hideKeyboard
+02-08 10:26:24.106  1038  1038 D ActivityContext: isImeShown: false
+02-08 10:26:24.106  1038  1038 D StatsLog: LAUNCHER_ONSTOP
+02-08 10:26:24.106  1038  1038 D StatsLog: LAUNCHER_GOOGLE_SEARCH_RESTORE_LIST_SIZE_AFTER_ACTIVITY_RESTART
+02-08 10:26:24.108   670   873 D BackgroundInstallControlService: Package event received: 0
+02-08 10:26:24.113   670   873 D BackgroundInstallControlService: Package event received: 0
+02-08 10:26:24.133 30179 30201 I DOTNET  :   Debug: Android: Processing file: /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970/de214e8e-93f9-4cda-8bbb-64a48cf24222.envelope
+02-08 10:26:24.133 30179 30201 D app_process64:   Debug: Android: Processing file: /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970/de214e8e-93f9-4cda-8bbb-64a48cf24222.envelope
+02-08 10:26:24.133 30179 30201 I DOTNET  :   Debug: Android: Captured Envelope is already cached
+02-08 10:26:24.138 30179 30201 D app_process64:   Debug: Android: Captured Envelope is already cached
+02-08 10:26:24.138 30179 30201 I DOTNET  :   Debug: Android: Envelope enqueued
+02-08 10:26:24.138 30179 30201 D app_process64:   Debug: Android: Envelope enqueued
+02-08 10:26:24.138 30179 30179 W monodroid-assembly: open_from_bundles: failed to load bundled assembly System.Collections.Immutable.dll
+02-08 10:26:24.138 30179 30179 W monodroid-assembly: open_from_bundles: the assembly might have been uploaded to the device with FastDev instead
+02-08 10:26:24.184  1038  1051 W System  : A resource failed to call release. 
+02-08 10:26:24.184  1038  1051 W System  : A resource failed to call release. 
+02-08 10:26:24.184  1038  1051 W System  : A resource failed to call release. 
+02-08 10:26:24.184  1038  1051 W System  : A resource failed to call release. 
+02-08 10:26:24.186 30179 30179 W ocode.payremind: userfaultfd: MOVE ioctl seems unsupported: Success
+02-08 10:26:24.189 30179 30179 I ocode.payremind: Explicit concurrent mark compact GC freed 7506KB AllocSpace bytes, 29(1328KB) LOS objects, 49% free, 4570KB/9140KB, paused 1.926ms,486us total 30.381ms
+02-08 10:26:24.255 30179 30179 W monodroid-assembly: open_from_bundles: failed to load bundled assembly System.Linq.Expressions.dll
+02-08 10:26:24.256   670   873 D BackgroundInstallControlService: Package event received: 0
+02-08 10:26:24.260 30179 30179 W monodroid-assembly: open_from_bundles: the assembly might have been uploaded to the device with FastDev instead
+02-08 10:26:24.352 30179 30204 I DOTNET  :   Error: Android: Request failed, API returned 403
+02-08 10:26:24.357  5690  5700 I FontLog : (REDACTED) Received query %s, URI %s
+02-08 10:26:24.357  5690  5700 I FontLog : (REDACTED) Query [%s] resolved to %s
+02-08 10:26:24.357  5690  5700 I FontLog : (REDACTED) Fetch %s end status %s
+02-08 10:26:24.364  5690  5700 I FontLog : (REDACTED) Pulling font file for id = %d, cache size = %d
+02-08 10:26:24.365 30179 30204 D app_process64:   Error: Android: Request failed, API returned 403
+02-08 10:26:24.365 30179 30282 I HWUI    : Using FreeType backend (prop=Auto)
+02-08 10:26:24.365 30179 30179 I chromium: [INFO:CONSOLE:1] "Not a valid color. (Parameter 'value')
+02-08 10:26:24.365 30179 30179 I chromium:    at MudBlazor.Utilities.MudColor..ctor(String value)
+02-08 10:26:24.365 30179 30179 I chromium:    at MudBlazor.Utilities.MudColor.op_Implicit(String input)
+02-08 10:26:24.365 30179 30179 I chromium:    at PayRemind.Components.Layout.MainLayout..ctor()
+02-08 10:26:24.365 30179 30179 I chromium:    at System.Reflection.ConstructorInvoker.InterpretedInvoke(Object obj, IntPtr* args)
+02-08 10:26:24.365 30179 30179 I chromium:    at System.Reflection.ConstructorInvoker.InvokeDirectByRefWithFewArgs(Span`1 copyOfArgs)
+02-08 10:26:24.365 30179 30179 I chromium:    at System.Reflection.ConstructorInvoker.InvokeDirectByRef(Object arg1, Object arg2, Object arg3, Object arg4)
+02-08 10:26:24.365 30179 30179 I chromium:    at System.Reflection.ConstructorInvoker.InvokeImpl(Object arg1, Object arg2, Object arg3, Object arg4)
+02-08 10:26:24.365 30179 30179 I chromium:    at System.Reflection.ConstructorInvoker.Invoke()
+02-08 10:26:24.365 30179 30179 I chromium:    at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.<>c__DisplayClass16_0.<CreateFactoryReflection>b__0(IServiceProvider serviceProvider, Object[] arguments)
+02-08 10:26:24.365 30179 30179 I chromium:    at Microsoft.AspNetCore.Components.DefaultComponentActivator.CreateInstance(Type componentType)
+02-08 10:26:24.365 30179 30179 I chromium:    at Microsoft.AspNetCore.Components.ComponentFactory.InstantiateComponent(IServiceProvider serviceProvider, Type componentType, IComponentRenderMode callerSpecifiedRenderMode, Nullable`1 parentComponentId)
+02-08 10:26:24.365 30179 30179 I chromium:    at Microsoft.AspNetCore.Components.RenderTree.Renderer.InstantiateChildComponentOnFrame(RenderTreeFrame[] frames, Int32 frameIndex, Int32 parentComponentId)
+02-08 10:26:24.365 30179 30179 I chromium:    at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.InitializeNewComponentFrame(DiffContext& diffContext, Int32 frameIndex)
+02-08 10:26:24.365 30179 30179 I chromium:    at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.InitializeNewSubtree(DiffContext& diffContext, Int32 frameIndex)
+02-08 10:26:24.365 30179 30179 I chromium:    at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.InsertNewFrame(DiffContext& diffContext, Int32 newFrameIndex)
+02-08 10:26:24.365 30179 30179 I chromium:    at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.AppendDiffEntriesForRange(DiffContext& diffContext, Int32 oldStartIndex, Int32 oldEndIndexExcl, Int32 newStartIndex, Int32 newEndIndexExcl)
+02-08 10:26:24.365 30179 30179 I chromium:    at Microsoft.AspNetCore.Components.RenderTree.RenderTreeDiffBuilder.ComputeDiff(Renderer renderer, RenderBatchBuilder batchBuilder, Int32 componentId, ArrayRange`1 oldTree, ArrayRange`1 newTree)
+02-08 10:26:24.365 30179 30179 I chromium:    at Microsoft.AspNetCore.Components.Rendering.ComponentState.RenderIntoBatch(RenderBatchBuilder batchBuilder, RenderFragment renderFragment, Exception& renderFragmentException)
+02-08 10:26:24.365 30179 30179 I chromium:    at Microsoft.AspNetCore.Components.RenderTree.Renderer.RenderInExistingBatch(RenderQueueEntry renderQueueEntry)
+02-08 10:26:24.365 30179 30179 I chromium:    at Microsoft.AspNetCore.Components.RenderTree.Renderer.ProcessRenderQueue()", source: https://0.0.0.1/_framework/blazor.webview.js (1)
+02-08 10:26:24.366  5690  5700 I FontLog : (REDACTED) Pulling font file for id = %d, cache size = %d
+02-08 10:26:24.372 30179 30204 I DOTNET  :   Error: Android: {"detail":"event submission rejected with_reason: ProjectId"}
+02-08 10:26:24.376 30179 30204 D app_process64:   Error: Android: {"detail":"event submission rejected with_reason: ProjectId"}
+02-08 10:26:24.379 30224 30257 E ashmem  : readlink(/proc/self/fd/119) failed: Operation not permitted
+02-08 10:26:24.379 30224 30257 E ashmem  : readlink(/proc/self/fd/122) failed: Operation not permitted
+02-08 10:26:24.384 30179 30204 I DOTNET  :   Error: Android: The transport failed to send the envelope with response code 403
+02-08 10:26:24.387 30179 30204 D app_process64:   Error: Android: The transport failed to send the envelope with response code 403
+02-08 10:26:24.388 30179 30204 I DOTNET  :   Error: Android: Envelope submission failed
+02-08 10:26:24.388 30179 30204 I DOTNET  : Java.Lang.IllegalStateException: The transport failed to send the envelope with response code 403
+02-08 10:26:24.388 30179 30204 I DOTNET  : 
+02-08 10:26:24.388 30179 30204 I DOTNET  :   --- End of managed Java.Lang.IllegalStateException stack trace ---
+02-08 10:26:24.392 30179 30204 I DOTNET  : java.lang.IllegalStateException: The transport failed to send the envelope with response code 403
+02-08 10:26:24.392 30179 30204 I DOTNET  : 	at io.sentry.transport.AsyncHttpTransport$EnvelopeSender.flush(AsyncHttpTransport.java:320)
+02-08 10:26:24.392 30179 30204 I DOTNET  : 	at io.sentry.transport.AsyncHttpTransport$EnvelopeSender.run(AsyncHttpTransport.java:243)
+02-08 10:26:24.392 30179 30204 I DOTNET  : 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:520)
+02-08 10:26:24.392 30179 30204 I DOTNET  : 	at java.util.concurrent.FutureTask.run(FutureTask.java:317)
+02-08 10:26:24.392 30179 30204 I DOTNET  : 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1154)
+02-08 10:26:24.392 30179 30204 I DOTNET  : 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:652)
+02-08 10:26:24.392 30179 30204 I DOTNET  : 	at java.lang.Thread.run(Thread.java:1563)
+02-08 10:26:24.392 30179 30204 D app_process64:   Error: Android: Envelope submission failed
+02-08 10:26:24.392 30179 30204 D app_process64: Java.Lang.IllegalStateException: The transport failed to send the envelope with response code 403
+02-08 10:26:24.392 30179 30204 D app_process64: 
+02-08 10:26:24.392 30179 30204 D app_process64:   --- End of managed Java.Lang.IllegalStateException stack trace ---
+02-08 10:26:24.392 30179 30204 D app_process64: java.lang.IllegalStateException: The transport failed to send the envelope with response code 403
+02-08 10:26:24.392 30179 30204 D app_process64: 	at io.sentry.transport.AsyncHttpTransport$EnvelopeSender.flush(AsyncHttpTransport.java:320)
+02-08 10:26:24.392 30179 30204 D app_process64: 	at io.sentry.transport.AsyncHttpTransport$EnvelopeSender.run(AsyncHttpTransport.java:243)
+02-08 10:26:24.392 30179 30204 D app_process64: 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:520)
+02-08 10:26:24.392 30179 30204 D app_process64: 	at java.util.concurrent.FutureTask.run(FutureTask.java:317)
+02-08 10:26:24.392 30179 30204 D app_process64: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1154)
+02-08 10:26:24.392 30179 30204 D app_process64: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:652)
+02-08 10:26:24.392 30179 30204 D app_process64: 	at java.lang.Thread.run(Thread.java:1563)
+02-08 10:26:24.392 30179 30204 D app_process64: 
+02-08 10:26:24.392 30179 30204 I DOTNET  :   Debug: Android: Marking envelope submission result: false
+02-08 10:26:24.392 30179 30204 D app_process64:   Debug: Android: Marking envelope submission result: false
+02-08 10:26:24.393 30179 30201 I DOTNET  :   Debug: Android: Deleted file /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970/de214e8e-93f9-4cda-8bbb-64a48cf24222.envelope.
+02-08 10:26:24.393 30179 30201 D app_process64:   Debug: Android: Deleted file /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970/de214e8e-93f9-4cda-8bbb-64a48cf24222.envelope.
+02-08 10:26:24.423   571  5445 W libbinder.IPCThreadState: Sending oneway calls to frozen process.
+02-08 10:26:24.493 30179 30201 I DOTNET  :   Debug: Android: Finished processing cached files from /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970
+02-08 10:26:24.495 30179 30201 D app_process64:   Debug: Android: Finished processing cached files from /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970
+02-08 10:26:24.496 30179 30201 I DOTNET  :   Debug: Android: EnvelopeFileObserverIntegration installed.
+02-08 10:26:24.502 30179 30201 D app_process64:   Debug: Android: EnvelopeFileObserverIntegration installed.
+02-08 10:26:24.505   670  1001 D ConnectivityService: requestNetwork for uid/pid:10237/30179 activeRequest: null callbackRequest: 925 [NetworkRequest [ REQUEST id=926, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10237 RequestorUid: 10237 RequestorPkg: com.retrocode.payremind UnderlyingNetworks: Null] ]] callback flags: 0 order: 2147483647 isUidTracked: false declaredMethods: AVAIL|LOSING|LOST|UNAVAIL
+02-08 10:26:24.505   670   827 D ConnectivityService: NetReassign [926 : null → 101] [c 0] [a 0] [i 0]
+02-08 10:26:24.505   670   821 D WifiNetworkFactory: got request NetworkRequest [ REQUEST id=926, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10237 RequestorUid: 10237 RequestorPkg: com.retrocode.payremind UnderlyingNetworks: Null] ]
+02-08 10:26:24.505   670   821 D UntrustedWifiNetworkFactory: got request NetworkRequest [ REQUEST id=926, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10237 RequestorUid: 10237 RequestorPkg: com.retrocode.payremind UnderlyingNetworks: Null] ]
+02-08 10:26:24.505   670   821 D OemPaidWifiNetworkFactory: got request NetworkRequest [ REQUEST id=926, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10237 RequestorUid: 10237 RequestorPkg: com.retrocode.payremind UnderlyingNetworks: Null] ]
+02-08 10:26:24.505   670   821 D MultiInternetWifiNetworkFactory: got request NetworkRequest [ REQUEST id=926, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10237 RequestorUid: 10237 RequestorPkg: com.retrocode.payremind UnderlyingNetworks: Null] ]
+02-08 10:26:24.506 30179 30201 I DOTNET  :   Debug: Android: Started processing cached files from /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970/outbox
+02-08 10:26:24.512 30179 30201 D app_process64:   Debug: Android: Started processing cached files from /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970/outbox
+02-08 10:26:24.512 30179 30203 I DOTNET  :   Debug: Android: SendCachedEnvelopeIntegration installed.
+02-08 10:26:24.512 30179 30203 D app_process64:   Debug: Android: SendCachedEnvelopeIntegration installed.
+02-08 10:26:24.512 30179 30201 I DOTNET  :   Debug: Android: Processing dir. /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970/outbox
+02-08 10:26:24.517 30179 30201 D app_process64:   Debug: Android: Processing dir. /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970/outbox
+02-08 10:26:24.517 30179 30201 I DOTNET  :   Debug: Android: Processing 0 items from cache dir /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970/outbox
+02-08 10:26:24.523 30179 30201 D app_process64:   Debug: Android: Processing 0 items from cache dir /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970/outbox
+02-08 10:26:24.524 30179 30201 I DOTNET  :   Debug: Android: Finished processing cached files from /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970/outbox
+02-08 10:26:24.524 30179 30201 D app_process64:   Debug: Android: Finished processing cached files from /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970/outbox
+02-08 10:26:24.524 30179 30201 I DOTNET  :   Debug: Android: Last ANR marker does not exist. /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970/last_anr_report.
+02-08 10:26:24.533 30179 30201 D app_process64:   Debug: Android: Last ANR marker does not exist. /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970/last_anr_report.
+02-08 10:26:24.533 30179 30201 I DOTNET  :   Debug: Android: No ANRs have been found in the historical exit reasons list.
+02-08 10:26:24.533 30179 30201 D app_process64:   Debug: Android: No ANRs have been found in the historical exit reasons list.
+02-08 10:26:24.542 30179 30201 I DOTNET  :   Debug: Android: SystemEventsBreadcrumbsIntegration installed.
+02-08 10:26:24.542 30179 30201 D app_process64:   Debug: Android: SystemEventsBreadcrumbsIntegration installed.
+02-08 10:26:24.555 30179 30201 I DOTNET  :   Debug: Android: TempSensorBreadcrumbsIntegration installed.
+02-08 10:26:24.555 30179 30201 D app_process64:   Debug: Android: TempSensorBreadcrumbsIntegration installed.
+02-08 10:26:24.556 30179 30201 I DOTNET  :    Info: Android: TelephonyManager is not available or ready to use.
+02-08 10:26:24.556 30179 30201 I DOTNET  : Java.Lang.NullPointerException: Attempt to read from field 'android.os.MessageQueue android.os.Looper.mQueue' on a null object reference in method 'void android.os.Handler.<init>(android.os.Looper, android.os.Handler$Callback, boolean, boolean)'
+02-08 10:26:24.556 30179 30201 I DOTNET  : 
+02-08 10:26:24.556 30179 30201 I DOTNET  :   --- End of managed Java.Lang.NullPointerException stack trace ---
+02-08 10:26:24.556 30179 30201 I DOTNET  : java.lang.NullPointerException: Attempt to read from field 'android.os.MessageQueue android.os.Looper.mQueue' on a null object reference in method 'void android.os.Handler.<init>(android.os.Looper, android.os.Handler$Callback, boolean, boolean)'
+02-08 10:26:24.556 30179 30201 I DOTNET  : 	at android.os.Handler.<init>(Handler.java:290)
+02-08 10:26:24.556 30179 30201 I DOTNET  : 	at android.os.Handler.<init>(Handler.java:283)
+02-08 10:26:24.556 30179 30201 I DOTNET  : 	at android.os.Handler.<init>(Handler.java:188)
+02-08 10:26:24.556 30179 30201 I DOTNET  : 	at android.telephony.PhoneStateListener.<init>(PhoneStateListener.java:572)
+02-08 10:26:24.556 30179 30201 I DOTNET  : 	at android.telephony.PhoneStateListener.<init>(PhoneStateListener.java:537)
+02-08 10:26:24.556 30179 30201 I DOTNET  : 	at io.sentry.android.core.PhoneStateBreadcrumbsIntegration$PhoneStateChangeListener.<init>(PhoneStateBreadcrumbsIntegration.java:115)
+02-08 10:26:24.556 30179 30201 I DOTNET  : 	at io.sentry.android.core.PhoneStateBreadcrumbsIntegration.startTelephonyListener(PhoneStateBreadcrumbsIntegration.java:79)
+02-08 10:26:24.556 30179 30201 I DOTNET  : 	at io.sentry.android.core.PhoneStateBreadcrumbsIntegration.lambda$register$0$io-sentry-android-core-PhoneStateBreadcrumbsIntegration(PhoneStateBreadcrumbsIntegration.java:58)
+02-08 10:26:24.556 30179 30201 I DOTNET  : 	at io.sentry.android.core.PhoneStateBreadcrumbsIntegration$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)
+02-08 10:26:24.556 30179 30201 I DOTNET  : 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:520)
+02-08 10:26:24.556 30179 30201 I DOTNET  : 	at java.util.concurrent.FutureTask.run(FutureTask.java:317)
+02-08 10:26:24.556 30179 30201 I DOTNET  : 	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:348)
+02-08 10:26:24.556 30179 30201 I DOTNET  : 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1154)
+02-08 10:26:24.556 30179 30201 I DOTNET  : 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:652)
+02-08 10:26:24.556 30179 30201 I DOTNET  : 	at java.lang.Thread.run(Thread.java:1563)
+02-08 10:26:24.556 30179 30201 D app_process64:    Info: Android: TelephonyManager is not available or ready to use.
+02-08 10:26:24.556 30179 30201 D app_process64: Java.Lang.NullPointerException: Attempt to read from field 'android.os.MessageQueue android.os.Looper.mQueue' on a null object reference in method 'void android.os.Handler.<init>(android.os.Looper, android.os.Handler$Callback, boolean, boolean)'
+02-08 10:26:24.556 30179 30201 D app_process64: 
+02-08 10:26:24.556 30179 30201 D app_process64:   --- End of managed Java.Lang.NullPointerException stack trace ---
+02-08 10:26:24.556 30179 30201 D app_process64: java.lang.NullPointerException: Attempt to read from field 'android.os.MessageQueue android.os.Looper.mQueue' on a null object reference in method 'void android.os.Handler.<init>(android.os.Looper, android.os.Handler$Callback, boolean, boolean)'
+02-08 10:26:24.556 30179 30201 D app_process64: 	at android.os.Handler.<init>(Handler.java:290)
+02-08 10:26:24.556 30179 30201 D app_process64: 	at android.os.Handler.<init>(Handler.java:283)
+02-08 10:26:24.556 30179 30201 D app_process64: 	at android.os.Handler.<init>(Handler.java:188)
+02-08 10:26:24.556 30179 30201 D app_process64: 	at android.telephony.PhoneStateListener.<init>(PhoneStateListener.java:572)
+02-08 10:26:24.556 30179 30201 D app_process64: 	at android.telephony.PhoneStateListener.<init>(PhoneStateListener.java:537)
+02-08 10:26:24.556 30179 30201 D app_process64: 	at io.sentry.android.core.PhoneStateBreadcrumbsIntegration$PhoneStateChangeListener.<init>(Pho
+02-08 10:26:24.556 30179 30201 I DOTNET  :   Debug: Android: Overwriting release.json in scope cache
+02-08 10:26:24.556 30179 30201 D app_process64:   Debug: Android: Overwriting release.json in scope cache
+02-08 10:26:24.562 30179 30201 I DOTNET  :   Debug: Android: Serializing object: "com.retrocode.payremind@1.3+1"
+02-08 10:26:24.565 30179 30201 D app_process64:   Debug: Android: Serializing object: "com.retrocode.payremind@1.3+1"
+02-08 10:26:24.566 30179 30201 I DOTNET  :   Debug: Android: Overwriting sdk-version.json in scope cache
+02-08 10:26:24.566 30179 30201 D app_process64:   Debug: Android: Overwriting sdk-version.json in scope cache
+02-08 10:26:24.567 30179 30201 I DOTNET  :   Debug: Android: Serializing object: { 	"name": "sentry.java.android.dotnet", 	"version": "7.11.0", 	"packages": [ 		{ 			"name": "maven:io.sentry:sentry", 			"version": "7.11.0" 		}, 		{ 			"name": "maven:io.sentry:sentry-android-core", 			"version": "7.11.0" 		}, 		{ 			"name": "maven:io.sentry:sentry-android-ndk", 			"version": "7.11.0" 		} 	], 	"integrations": [ 		"UncaughtExceptionHandler", 		"ShutdownHook", 		"Ndk", 		"AppLifecycle", 		"AnrV2", 		"ActivityLifecycle", 		"ActivityBreadcrumbs", 		"UserInteraction", 		"AppComponentsBreadcrumbs", 		"NetworkBreadcrumbs", 		"SystemEventsBreadcrumbs", 		"TempSensorBreadcrumbs" 	] }
+02-08 10:26:24.567 30179 30201 D app_process64:   Debug: Android: Serializing object: { 	"name": "sentry.java.android.dotnet", 	"version": "7.11.0", 	"packages": [ 		{ 			"name": "maven:io.sentry:sentry", 			"version": "7.11.0" 		}, 		{ 			"name": "maven:io.sentry:sentry-android-core", 			"version": "7.11.0" 		}, 		{ 			"name": "maven:io.sentry:sentry-android-ndk", 			"version": "7.11.0" 		} 	], 	"integrations": [ 		"UncaughtExceptionHandler", 		"ShutdownHook", 		"Ndk", 		"AppLifecycle", 		"AnrV2", 		"ActivityLifecycle", 		"ActivityBreadcrumbs", 		"UserInteraction", 		"AppComponentsBreadcrumbs", 		"NetworkBreadcrumbs", 		"SystemEventsBreadcrumbs", 		"TempSensorBreadcrumbs" 	] }
+02-08 10:26:24.567 30179 30201 I DOTNET  :   Debug: Android: Overwriting dist.json in scope cache
+02-08 10:26:24.567 30179 30201 D app_process64:   Debug: Android: Overwriting dist.json in scope cache
+02-08 10:26:24.568 30179 30201 I DOTNET  :   Debug: Android: Serializing object: "1"
+02-08 10:26:24.568 30179 30201 D app_process64:   Debug: Android: Serializing object: "1"
+02-08 10:26:24.568 30179 30201 I DOTNET  :   Debug: Android: Overwriting environment.json in scope cache
+02-08 10:26:24.568 30179 30201 D app_process64:   Debug: Android: Overwriting environment.json in scope cache
+02-08 10:26:24.568 30179 30201 I DOTNET  :   Debug: Android: Serializing object: "production"
+02-08 10:26:24.568 30179 30201 D app_process64:   Debug: Android: Serializing object: "production"
+02-08 10:26:24.568 30179 30201 I DOTNET  :   Debug: Android: Overwriting tags.json in scope cache
+02-08 10:26:24.568 30179 30201 D app_process64:   Debug: Android: Overwriting tags.json in scope cache
+02-08 10:26:24.569 30179 30201 I DOTNET  :   Debug: Android: Serializing object: {}
+02-08 10:26:24.569 30179 30201 D app_process64:   Debug: Android: Serializing object: {}
+02-08 10:26:24.569 30179 30201 I DOTNET  : Warning: Android: Current session is not ended, we'd need to end it.
+02-08 10:26:24.569 30179 30201 D app_process64: Warning: Android: Current session is not ended, we'd need to end it.
+02-08 10:26:24.570 30179 30201 I DOTNET  :   Debug: Android: Overwriting breadcrumbs.json in scope cache
+02-08 10:26:24.570 30179 30201 D app_process64:   Debug: Android: Overwriting breadcrumbs.json in scope cache
+02-08 10:26:24.570 30179 30204 I DOTNET  :   Debug: Android: Adding Envelope to offline storage: /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970/8e7474ad-809c-4dee-a71a-be91d2087dfd.envelope
+02-08 10:26:24.571 30179 30201 I DOTNET  :   Debug: Android: Serializing object: [ 	{ 		"timestamp": "2026-02-08T15:26:23.369Z", 		"type": "session", 		"data": { 			"state": "session.start" 		}, 		"category": "app.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"action": "NETWORK_AVAILABLE" 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"upload_bandwidth": 12000, 			"action": "NETWORK_CAPABILITIES_CHANGED", 			"vpn_active": false, 			"signal_strength": -50, 			"network_type": "wifi", 			"download_bandwidth": 30000 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.613Z", 		"type": "navigation", 		"data": { 			"screen": "MainActivity", 			"state": "created" 		}, 		"category": "ui.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.622Z", 		"message": "MainPage.Appearing", 		"type": "system", 		"data": {}, 		"category": "ui.lifecy
+02-08 10:26:24.571 30179 30204 D app_process64:   Debug: Android: Adding Envelope to offline storage: /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970/8e7474ad-809c-4dee-a71a-be91d2087dfd.envelope
+02-08 10:26:24.572 30179 30204 I DOTNET  :   Debug: Android: Serializing object: { 	"sid": "6d79e105-8b51-4e9f-9c47-37cd5c96ae3b", 	"did": "4508fc4d-d6a4-4814-babd-cbaa05202983", 	"started": "2026-02-08T15:26:00.077Z", 	"status": "exited", 	"seq": 1770564384569, 	"errors": 0, 	"duration": 24.492, 	"timestamp": "2026-02-08T15:26:24.569Z", 	"attrs": { 		"release": "com.retrocode.payremind@1.3+1", 		"environment": "production" 	} }
+02-08 10:26:24.572 30179 30204 D app_process64:   Debug: Android: Serializing object: { 	"sid": "6d79e105-8b51-4e9f-9c47-37cd5c96ae3b", 	"did": "4508fc4d-d6a4-4814-babd-cbaa05202983", 	"started": "2026-02-08T15:26:00.077Z", 	"status": "exited", 	"seq": 1770564384569, 	"errors": 0, 	"duration": 24.492, 	"timestamp": "2026-02-08T15:26:24.569Z", 	"attrs": { 		"release": "com.retrocode.payremind@1.3+1", 		"environment": "production" 	} }
+02-08 10:26:24.573 30179 30201 D app_process64:   Debug: Android: Serializing object: [ 	{ 		"timestamp": "2026-02-08T15:26:23.369Z", 		"type": "session", 		"data": { 			"state": "session.start" 		}, 		"category": "app.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"action": "NETWORK_AVAILABLE" 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"upload_bandwidth": 12000, 			"action": "NETWORK_CAPABILITIES_CHANGED", 			"vpn_active": false, 			"signal_strength": -50, 			"network_type": "wifi", 			"download_bandwidth": 30000 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.613Z", 		"type": "navigation", 		"data": { 			"screen": "MainActivity", 			"state": "created" 		}, 		"category": "ui.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.622Z", 		"message": "MainPage.Appearing", 		"type": "system", 		"data": {}, 		"category": "ui.lifecy
+02-08 10:26:24.575 30179 30201 I DOTNET  :   Debug: Android: Started processing cached files from /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970
+02-08 10:26:24.575 30179 30201 D app_process64:   Debug: Android: Started processing cached files from /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970
+02-08 10:26:24.575 30179 30201 I DOTNET  :   Debug: Android: Processing dir. /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970
+02-08 10:26:24.575 30179 30201 D app_process64:   Debug: Android: Processing dir. /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970
+02-08 10:26:24.575 30179 30201 I DOTNET  :   Debug: Android: Processing 2 items from cache dir /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970
+02-08 10:26:24.575 30179 30201 D app_process64:   Debug: Android: Processing 2 items from cache dir /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970
+02-08 10:26:24.575 30179 30201 I DOTNET  :   Debug: Android: File /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970/outbox is not a File.
+02-08 10:26:24.575 30179 30201 D app_process64:   Debug: Android: File /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970/outbox is not a File.
+02-08 10:26:24.576 30179 30201 I DOTNET  :   Debug: Android: File /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970/.sentry-native is not a File.
+02-08 10:26:24.576 30179 30201 D app_process64:   Debug: Android: File /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970/.sentry-native is not a File.
+02-08 10:26:24.576 30179 30201 I DOTNET  :   Debug: Android: Processing file: /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970/session.json
+02-08 10:26:24.576 30179 30201 D app_process64:   Debug: Android: Processing file: /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970/session.json
+02-08 10:26:24.582 30179 30201 I DOTNET  :   Debug: Android: File '/data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970/session.json' doesn't match extension expected.
+02-08 10:26:24.582 30179 30201 D app_process64:   Debug: Android: File '/data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970/session.json' doesn't match extension expected.
+02-08 10:26:24.683 30179 30201 I DOTNET  :   Debug: Android: File /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970/.options-cache is not a File.
+02-08 10:26:24.683 30179 30201 D app_process64:   Debug: Android: File /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970/.options-cache is not a File.
+02-08 10:26:24.683 30179 30201 I DOTNET  :   Debug: Android: File /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970/.scope-cache is not a File.
+02-08 10:26:24.683 30179 30201 D app_process64:   Debug: Android: File /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970/.scope-cache is not a File.
+02-08 10:26:24.683 30179 30201 I DOTNET  :   Debug: Android: Processing file: /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970/8e7474ad-809c-4dee-a71a-be91d2087dfd.envelope
+02-08 10:26:24.683 30179 30201 D app_process64:   Debug: Android: Processing file: /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970/8e7474ad-809c-4dee-a71a-be91d2087dfd.envelope
+02-08 10:26:24.683 30179 30201 I DOTNET  :   Debug: Android: Captured Envelope is already cached
+02-08 10:26:24.683 30179 30201 D app_process64:   Debug: Android: Captured Envelope is already cached
+02-08 10:26:24.683 30179 30201 I DOTNET  :   Debug: Android: Envelope enqueued
+02-08 10:26:24.683 30179 30201 D app_process64:   Debug: Android: Envelope enqueued
+02-08 10:26:24.720 30179 30204 I DOTNET  :   Error: Android: Request failed, API returned 403
+02-08 10:26:24.721 30179 30204 D app_process64:   Error: Android: Request failed, API returned 403
+02-08 10:26:24.722 30179 30204 I DOTNET  :   Error: Android: {"detail":"event submission rejected with_reason: ProjectId"}
+02-08 10:26:24.722 30179 30204 D app_process64:   Error: Android: {"detail":"event submission rejected with_reason: ProjectId"}
+02-08 10:26:24.722 30179 30204 I DOTNET  :   Error: Android: The transport failed to send the envelope with response code 403
+02-08 10:26:24.722 30179 30204 D app_process64:   Error: Android: The transport failed to send the envelope with response code 403
+02-08 10:26:24.722 30179 30204 I DOTNET  :   Error: Android: Envelope submission failed
+02-08 10:26:24.722 30179 30204 I DOTNET  : Java.Lang.IllegalStateException: The transport failed to send the envelope with response code 403
+02-08 10:26:24.722 30179 30204 I DOTNET  : 
+02-08 10:26:24.722 30179 30204 I DOTNET  :   --- End of managed Java.Lang.IllegalStateException stack trace ---
+02-08 10:26:24.722 30179 30204 I DOTNET  : java.lang.IllegalStateException: The transport failed to send the envelope with response code 403
+02-08 10:26:24.722 30179 30204 I DOTNET  : 	at io.sentry.transport.AsyncHttpTransport$EnvelopeSender.flush(AsyncHttpTransport.java:320)
+02-08 10:26:24.722 30179 30204 I DOTNET  : 	at io.sentry.transport.AsyncHttpTransport$EnvelopeSender.run(AsyncHttpTransport.java:243)
+02-08 10:26:24.722 30179 30204 I DOTNET  : 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:520)
+02-08 10:26:24.722 30179 30204 I DOTNET  : 	at java.util.concurrent.FutureTask.run(FutureTask.java:317)
+02-08 10:26:24.722 30179 30204 I DOTNET  : 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1154)
+02-08 10:26:24.722 30179 30204 I DOTNET  : 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:652)
+02-08 10:26:24.722 30179 30204 I DOTNET  : 	at java.lang.Thread.run(Thread.java:1563)
+02-08 10:26:24.722 30179 30204 D app_process64:   Error: Android: Envelope submission failed
+02-08 10:26:24.722 30179 30204 D app_process64: Java.Lang.IllegalStateException: The transport failed to send the envelope with response code 403
+02-08 10:26:24.722 30179 30204 D app_process64: 
+02-08 10:26:24.722 30179 30204 D app_process64:   --- End of managed Java.Lang.IllegalStateException stack trace ---
+02-08 10:26:24.722 30179 30204 D app_process64: java.lang.IllegalStateException: The transport failed to send the envelope with response code 403
+02-08 10:26:24.722 30179 30204 D app_process64: 	at io.sentry.transport.AsyncHttpTransport$EnvelopeSender.flush(AsyncHttpTransport.java:320)
+02-08 10:26:24.722 30179 30204 D app_process64: 	at io.sentry.transport.AsyncHttpTransport$EnvelopeSender.run(AsyncHttpTransport.java:243)
+02-08 10:26:24.722 30179 30204 D app_process64: 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:520)
+02-08 10:26:24.722 30179 30204 D app_process64: 	at java.util.concurrent.FutureTask.run(FutureTask.java:317)
+02-08 10:26:24.722 30179 30204 D app_process64: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1154)
+02-08 10:26:24.722 30179 30204 D app_process64: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:652)
+02-08 10:26:24.722 30179 30204 D app_process64: 	at java.lang.Thread.run(Thread.java:1563)
+02-08 10:26:24.722 30179 30204 D app_process64: 
+02-08 10:26:24.723 30179 30204 I DOTNET  :   Debug: Android: Attaching client report to envelope.
+02-08 10:26:24.723 30179 30204 D app_process64:   Debug: Android: Attaching client report to envelope.
+02-08 10:26:24.798 30179 30204 I DOTNET  :   Debug: Android: Serializing object: { 	"timestamp": "2026-02-08T15:26:24.722Z", 	"discarded_events": [ 		{ 			"reason": "network_error", 			"category": "session", 			"quantity": 1 		} 	] }
+02-08 10:26:24.798 30179 30204 D app_process64:   Debug: Android: Serializing object: { 	"timestamp": "2026-02-08T15:26:24.722Z", 	"discarded_events": [ 		{ 			"reason": "network_error", 			"category": "session", 			"quantity": 1 		} 	] }
+02-08 10:26:24.819  1033  1192 D SatelliteController: iisInCarrierRoamingNbIotNtn: satellite is disabled
+02-08 10:26:24.819  1033  1192 D SatelliteController: getCarrierRoamingNtnConnectType: Falling back to global carrier config connect type: 0
+02-08 10:26:24.864 30179 30204 I DOTNET  :   Error: Android: Request failed, API returned 403
+02-08 10:26:24.864 30179 30204 D app_process64:   Error: Android: Request failed, API returned 403
+02-08 10:26:24.865 30179 30204 I DOTNET  :   Error: Android: {"detail":"event submission rejected with_reason: ProjectId"}
+02-08 10:26:24.865 30179 30204 D app_process64:   Error: Android: {"detail":"event submission rejected with_reason: ProjectId"}
+02-08 10:26:24.865 30179 30204 I DOTNET  :   Error: Android: The transport failed to send the envelope with response code 403
+02-08 10:26:24.865 30179 30204 D app_process64:   Error: Android: The transport failed to send the envelope with response code 403
+02-08 10:26:24.865 30179 30204 I DOTNET  :   Error: Android: Envelope submission failed
+02-08 10:26:24.865 30179 30204 I DOTNET  : Java.Lang.IllegalStateException: The transport failed to send the envelope with response code 403
+02-08 10:26:24.865 30179 30204 I DOTNET  : 
+02-08 10:26:24.865 30179 30204 I DOTNET  :   --- End of managed Java.Lang.IllegalStateException stack trace ---
+02-08 10:26:24.865 30179 30204 I DOTNET  : java.lang.IllegalStateException: The transport failed to send the envelope with response code 403
+02-08 10:26:24.865 30179 30204 I DOTNET  : 	at io.sentry.transport.AsyncHttpTransport$EnvelopeSender.flush(AsyncHttpTransport.java:320)
+02-08 10:26:24.865 30179 30204 I DOTNET  : 	at io.sentry.transport.AsyncHttpTransport$EnvelopeSender.run(AsyncHttpTransport.java:243)
+02-08 10:26:24.865 30179 30204 I DOTNET  : 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:520)
+02-08 10:26:24.865 30179 30204 I DOTNET  : 	at java.util.concurrent.FutureTask.run(FutureTask.java:317)
+02-08 10:26:24.865 30179 30204 I DOTNET  : 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1154)
+02-08 10:26:24.865 30179 30204 I DOTNET  : 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:652)
+02-08 10:26:24.865 30179 30204 I DOTNET  : 	at java.lang.Thread.run(Thread.java:1563)
+02-08 10:26:24.865 30179 30204 D app_process64:   Error: Android: Envelope submission failed
+02-08 10:26:24.865 30179 30204 D app_process64: Java.Lang.IllegalStateException: The transport failed to send the envelope with response code 403
+02-08 10:26:24.865 30179 30204 D app_process64: 
+02-08 10:26:24.865 30179 30204 D app_process64:   --- End of managed Java.Lang.IllegalStateException stack trace ---
+02-08 10:26:24.865 30179 30204 D app_process64: java.lang.IllegalStateException: The transport failed to send the envelope with response code 403
+02-08 10:26:24.865 30179 30204 D app_process64: 	at io.sentry.transport.AsyncHttpTransport$EnvelopeSender.flush(AsyncHttpTransport.java:320)
+02-08 10:26:24.865 30179 30204 D app_process64: 	at io.sentry.transport.AsyncHttpTransport$EnvelopeSender.run(AsyncHttpTransport.java:243)
+02-08 10:26:24.865 30179 30204 D app_process64: 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:520)
+02-08 10:26:24.865 30179 30204 D app_process64: 	at java.util.concurrent.FutureTask.run(FutureTask.java:317)
+02-08 10:26:24.865 30179 30204 D app_process64: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1154)
+02-08 10:26:24.865 30179 30204 D app_process64: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:652)
+02-08 10:26:24.865 30179 30204 D app_process64: 	at java.lang.Thread.run(Thread.java:1563)
+02-08 10:26:24.865 30179 30204 D app_process64: 
+02-08 10:26:24.865 30179 30204 I DOTNET  :   Debug: Android: Marking envelope submission result: false
+02-08 10:26:24.865 30179 30204 D app_process64:   Debug: Android: Marking envelope submission result: false
+02-08 10:26:24.865 30179 30201 I DOTNET  :   Debug: Android: Deleted file /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970/8e7474ad-809c-4dee-a71a-be91d2087dfd.envelope.
+02-08 10:26:24.865 30179 30201 D app_process64:   Debug: Android: Deleted file /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970/8e7474ad-809c-4dee-a71a-be91d2087dfd.envelope.
+02-08 10:26:24.966 30179 30201 I DOTNET  :   Debug: Android: Processing file: /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970/f973e918-e63b-4d2d-be3d-4055f674bcf0.envelope
+02-08 10:26:24.966 30179 30201 D app_process64:   Debug: Android: Processing file: /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970/f973e918-e63b-4d2d-be3d-4055f674bcf0.envelope
+02-08 10:26:24.966 30179 30201 I DOTNET  :   Debug: Android: Captured Envelope is already cached
+02-08 10:26:24.966 30179 30201 D app_process64:   Debug: Android: Captured Envelope is already cached
+02-08 10:26:24.967   670   821 I HalDevMgr: bestIfaceCreationProposal is null, requestIface=STA, existingIface=[name=wlan0 type=STA]
+02-08 10:26:24.967 30179 30201 I DOTNET  :   Debug: Android: Envelope enqueued
+02-08 10:26:24.967 30179 30201 D app_process64:   Debug: Android: Envelope enqueued
+02-08 10:26:24.987 30179 30183 I ocode.payremind: Compiler allocated 5145KB to compile void android.view.ViewRootImpl.performTraversals()
+02-08 10:26:25.004   670  1597 E TaskPersister: File error accessing recents directory (directory doesn't exist?).
+02-08 10:26:25.096 30179 30204 I DOTNET  :   Error: Android: Request failed, API returned 403
+02-08 10:26:25.097 30179 30204 D app_process64:   Error: Android: Request failed, API returned 403
+02-08 10:26:25.097 30179 30204 I DOTNET  :   Error: Android: {"detail":"event submission rejected with_reason: ProjectId"}
+02-08 10:26:25.097 30179 30204 D app_process64:   Error: Android: {"detail":"event submission rejected with_reason: ProjectId"}
+02-08 10:26:25.097 30179 30204 I DOTNET  :   Error: Android: The transport failed to send the envelope with response code 403
+02-08 10:26:25.097 30179 30204 D app_process64:   Error: Android: The transport failed to send the envelope with response code 403
+02-08 10:26:25.098 30179 30204 I DOTNET  :   Error: Android: Envelope submission failed
+02-08 10:26:25.098 30179 30204 I DOTNET  : Java.Lang.IllegalStateException: The transport failed to send the envelope with response code 403
+02-08 10:26:25.098 30179 30204 I DOTNET  : 
+02-08 10:26:25.098 30179 30204 I DOTNET  :   --- End of managed Java.Lang.IllegalStateException stack trace ---
+02-08 10:26:25.098 30179 30204 I DOTNET  : java.lang.IllegalStateException: The transport failed to send the envelope with response code 403
+02-08 10:26:25.098 30179 30204 I DOTNET  : 	at io.sentry.transport.AsyncHttpTransport$EnvelopeSender.flush(AsyncHttpTransport.java:320)
+02-08 10:26:25.098 30179 30204 I DOTNET  : 	at io.sentry.transport.AsyncHttpTransport$EnvelopeSender.run(AsyncHttpTransport.java:243)
+02-08 10:26:25.098 30179 30204 I DOTNET  : 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:520)
+02-08 10:26:25.098 30179 30204 I DOTNET  : 	at java.util.concurrent.FutureTask.run(FutureTask.java:317)
+02-08 10:26:25.098 30179 30204 I DOTNET  : 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1154)
+02-08 10:26:25.098 30179 30204 I DOTNET  : 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:652)
+02-08 10:26:25.098 30179 30204 I DOTNET  : 	at java.lang.Thread.run(Thread.java:1563)
+02-08 10:26:25.098 30179 30204 D app_process64:   Error: Android: Envelope submission failed
+02-08 10:26:25.098 30179 30204 D app_process64: Java.Lang.IllegalStateException: The transport failed to send the envelope with response code 403
+02-08 10:26:25.098 30179 30204 D app_process64: 
+02-08 10:26:25.098 30179 30204 D app_process64:   --- End of managed Java.Lang.IllegalStateException stack trace ---
+02-08 10:26:25.098 30179 30204 D app_process64: java.lang.IllegalStateException: The transport failed to send the envelope with response code 403
+02-08 10:26:25.098 30179 30204 D app_process64: 	at io.sentry.transport.AsyncHttpTransport$EnvelopeSender.flush(AsyncHttpTransport.java:320)
+02-08 10:26:25.098 30179 30204 D app_process64: 	at io.sentry.transport.AsyncHttpTransport$EnvelopeSender.run(AsyncHttpTransport.java:243)
+02-08 10:26:25.098 30179 30204 D app_process64: 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:520)
+02-08 10:26:25.098 30179 30204 D app_process64: 	at java.util.concurrent.FutureTask.run(FutureTask.java:317)
+02-08 10:26:25.098 30179 30204 D app_process64: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1154)
+02-08 10:26:25.098 30179 30204 D app_process64: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:652)
+02-08 10:26:25.098 30179 30204 D app_process64: 	at java.lang.Thread.run(Thread.java:1563)
+02-08 10:26:25.098 30179 30204 D app_process64: 
+02-08 10:26:25.098 30179 30204 I DOTNET  :   Debug: Android: Marking envelope submission result: false
+02-08 10:26:25.098 30179 30204 D app_process64:   Debug: Android: Marking envelope submission result: false
+02-08 10:26:25.098 30179 30201 I DOTNET  :   Debug: Android: Deleted file /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970/f973e918-e63b-4d2d-be3d-4055f674bcf0.envelope.
+02-08 10:26:25.098 30179 30201 D app_process64:   Debug: Android: Deleted file /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970/f973e918-e63b-4d2d-be3d-4055f674bcf0.envelope.
+02-08 10:26:25.199 30179 30201 I DOTNET  :   Debug: Android: Finished processing cached files from /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970
+02-08 10:26:25.200 30179 30201 D app_process64:   Debug: Android: Finished processing cached files from /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970
+02-08 10:26:25.200 30179 30201 I DOTNET  :   Debug: Android: Overwriting breadcrumbs.json in scope cache
+02-08 10:26:25.200 30179 30201 D app_process64:   Debug: Android: Overwriting breadcrumbs.json in scope cache
+02-08 10:26:25.201 30179 30201 I DOTNET  :   Debug: Android: Serializing object: [ 	{ 		"timestamp": "2026-02-08T15:26:23.369Z", 		"type": "session", 		"data": { 			"state": "session.start" 		}, 		"category": "app.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"action": "NETWORK_AVAILABLE" 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"upload_bandwidth": 12000, 			"action": "NETWORK_CAPABILITIES_CHANGED", 			"vpn_active": false, 			"signal_strength": -50, 			"network_type": "wifi", 			"download_bandwidth": 30000 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.613Z", 		"type": "navigation", 		"data": { 			"screen": "MainActivity", 			"state": "created" 		}, 		"category": "ui.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.622Z", 		"message": "MainPage.Appearing", 		"type": "system", 		"data": {}, 		"category": "ui.lifecy
+02-08 10:26:25.201 30179 30201 D app_process64:   Debug: Android: Serializing object: [ 	{ 		"timestamp": "2026-02-08T15:26:23.369Z", 		"type": "session", 		"data": { 			"state": "session.start" 		}, 		"category": "app.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"action": "NETWORK_AVAILABLE" 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"upload_bandwidth": 12000, 			"action": "NETWORK_CAPABILITIES_CHANGED", 			"vpn_active": false, 			"signal_strength": -50, 			"network_type": "wifi", 			"download_bandwidth": 30000 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.613Z", 		"type": "navigation", 		"data": { 			"screen": "MainActivity", 			"state": "created" 		}, 		"category": "ui.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.622Z", 		"message": "MainPage.Appearing", 		"type": "system", 		"data": {}, 		"category": "ui.lifecy
+02-08 10:26:25.202 30179 30201 I DOTNET  :   Debug: Android: Overwriting breadcrumbs.json in scope cache
+02-08 10:26:25.202 30179 30201 D app_process64:   Debug: Android: Overwriting breadcrumbs.json in scope cache
+02-08 10:26:25.202 30179 30201 I DOTNET  :   Debug: Android: Serializing object: [ 	{ 		"timestamp": "2026-02-08T15:26:23.369Z", 		"type": "session", 		"data": { 			"state": "session.start" 		}, 		"category": "app.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"action": "NETWORK_AVAILABLE" 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"upload_bandwidth": 12000, 			"action": "NETWORK_CAPABILITIES_CHANGED", 			"vpn_active": false, 			"signal_strength": -50, 			"network_type": "wifi", 			"download_bandwidth": 30000 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.613Z", 		"type": "navigation", 		"data": { 			"screen": "MainActivity", 			"state": "created" 		}, 		"category": "ui.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.622Z", 		"message": "MainPage.Appearing", 		"type": "system", 		"data": {}, 		"category": "ui.lifecy
+02-08 10:26:25.203 30179 30201 D app_process64:   Debug: Android: Serializing object: [ 	{ 		"timestamp": "2026-02-08T15:26:23.369Z", 		"type": "session", 		"data": { 			"state": "session.start" 		}, 		"category": "app.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"action": "NETWORK_AVAILABLE" 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"upload_bandwidth": 12000, 			"action": "NETWORK_CAPABILITIES_CHANGED", 			"vpn_active": false, 			"signal_strength": -50, 			"network_type": "wifi", 			"download_bandwidth": 30000 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.613Z", 		"type": "navigation", 		"data": { 			"screen": "MainActivity", 			"state": "created" 		}, 		"category": "ui.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.622Z", 		"message": "MainPage.Appearing", 		"type": "system", 		"data": {}, 		"category": "ui.lifecy
+02-08 10:26:25.203 30179 30201 I DOTNET  :   Debug: Android: Overwriting contexts.json in scope cache
+02-08 10:26:25.203 30179 30201 D app_process64:   Debug: Android: Overwriting contexts.json in scope cache
+02-08 10:26:25.204 30179 30201 I DOTNET  :   Debug: Android: Serializing object: { 	"app": { 		"view_names": [ 			"crc641dd52ed50b988cc1.MainActivity" 		] 	} }
+02-08 10:26:25.204 30179 30201 D app_process64:   Debug: Android: Serializing object: { 	"app": { 		"view_names": [ 			"crc641dd52ed50b988cc1.MainActivity" 		] 	} }
+02-08 10:26:25.204 30179 30201 I DOTNET  :   Debug: Android: Overwriting breadcrumbs.json in scope cache
+02-08 10:26:25.204 30179 30201 D app_process64:   Debug: Android: Overwriting breadcrumbs.json in scope cache
+02-08 10:26:25.205 30179 30201 I DOTNET  :   Debug: Android: Serializing object: [ 	{ 		"timestamp": "2026-02-08T15:26:23.369Z", 		"type": "session", 		"data": { 			"state": "session.start" 		}, 		"category": "app.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"action": "NETWORK_AVAILABLE" 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"upload_bandwidth": 12000, 			"action": "NETWORK_CAPABILITIES_CHANGED", 			"vpn_active": false, 			"signal_strength": -50, 			"network_type": "wifi", 			"download_bandwidth": 30000 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.613Z", 		"type": "navigation", 		"data": { 			"screen": "MainActivity", 			"state": "created" 		}, 		"category": "ui.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.622Z", 		"message": "MainPage.Appearing", 		"type": "system", 		"data": {}, 		"category": "ui.lifecy
+02-08 10:26:25.205 30179 30201 D app_process64:   Debug: Android: Serializing object: [ 	{ 		"timestamp": "2026-02-08T15:26:23.369Z", 		"type": "session", 		"data": { 			"state": "session.start" 		}, 		"category": "app.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"action": "NETWORK_AVAILABLE" 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"upload_bandwidth": 12000, 			"action": "NETWORK_CAPABILITIES_CHANGED", 			"vpn_active": false, 			"signal_strength": -50, 			"network_type": "wifi", 			"download_bandwidth": 30000 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.613Z", 		"type": "navigation", 		"data": { 			"screen": "MainActivity", 			"state": "created" 		}, 		"category": "ui.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.622Z", 		"message": "MainPage.Appearing", 		"type": "system", 		"data": {}, 		"category": "ui.lifecy
+02-08 10:26:25.206 30179 30201 I DOTNET  :   Debug: Android: Overwriting breadcrumbs.json in scope cache
+02-08 10:26:25.206 30179 30201 D app_process64:   Debug: Android: Overwriting breadcrumbs.json in scope cache
+02-08 10:26:25.207 30179 30201 I DOTNET  :   Debug: Android: Serializing object: [ 	{ 		"timestamp": "2026-02-08T15:26:23.369Z", 		"type": "session", 		"data": { 			"state": "session.start" 		}, 		"category": "app.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"action": "NETWORK_AVAILABLE" 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"upload_bandwidth": 12000, 			"action": "NETWORK_CAPABILITIES_CHANGED", 			"vpn_active": false, 			"signal_strength": -50, 			"network_type": "wifi", 			"download_bandwidth": 30000 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.613Z", 		"type": "navigation", 		"data": { 			"screen": "MainActivity", 			"state": "created" 		}, 		"category": "ui.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.622Z", 		"message": "MainPage.Appearing", 		"type": "system", 		"data": {}, 		"category": "ui.lifecy
+02-08 10:26:25.207 30179 30201 D app_process64:   Debug: Android: Serializing object: [ 	{ 		"timestamp": "2026-02-08T15:26:23.369Z", 		"type": "session", 		"data": { 			"state": "session.start" 		}, 		"category": "app.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"action": "NETWORK_AVAILABLE" 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"upload_bandwidth": 12000, 			"action": "NETWORK_CAPABILITIES_CHANGED", 			"vpn_active": false, 			"signal_strength": -50, 			"network_type": "wifi", 			"download_bandwidth": 30000 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.613Z", 		"type": "navigation", 		"data": { 			"screen": "MainActivity", 			"state": "created" 		}, 		"category": "ui.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.622Z", 		"message": "MainPage.Appearing", 		"type": "system", 		"data": {}, 		"category": "ui.lifecy
+02-08 10:26:25.207 30179 30201 I DOTNET  :   Debug: Android: Overwriting breadcrumbs.json in scope cache
+02-08 10:26:25.207 30179 30201 D app_process64:   Debug: Android: Overwriting breadcrumbs.json in scope cache
+02-08 10:26:25.208 30179 30201 I DOTNET  :   Debug: Android: Serializing object: [ 	{ 		"timestamp": "2026-02-08T15:26:23.369Z", 		"type": "session", 		"data": { 			"state": "session.start" 		}, 		"category": "app.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"action": "NETWORK_AVAILABLE" 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"upload_bandwidth": 12000, 			"action": "NETWORK_CAPABILITIES_CHANGED", 			"vpn_active": false, 			"signal_strength": -50, 			"network_type": "wifi", 			"download_bandwidth": 30000 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.613Z", 		"type": "navigation", 		"data": { 			"screen": "MainActivity", 			"state": "created" 		}, 		"category": "ui.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.622Z", 		"message": "MainPage.Appearing", 		"type": "system", 		"data": {}, 		"category": "ui.lifecy
+02-08 10:26:25.208 30179 30201 D app_process64:   Debug: Android: Serializing object: [ 	{ 		"timestamp": "2026-02-08T15:26:23.369Z", 		"type": "session", 		"data": { 			"state": "session.start" 		}, 		"category": "app.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"action": "NETWORK_AVAILABLE" 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"upload_bandwidth": 12000, 			"action": "NETWORK_CAPABILITIES_CHANGED", 			"vpn_active": false, 			"signal_strength": -50, 			"network_type": "wifi", 			"download_bandwidth": 30000 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.613Z", 		"type": "navigation", 		"data": { 			"screen": "MainActivity", 			"state": "created" 		}, 		"category": "ui.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.622Z", 		"message": "MainPage.Appearing", 		"type": "system", 		"data": {}, 		"category": "ui.lifecy
+02-08 10:26:25.208 30179 30201 I DOTNET  :   Debug: Android: Overwriting breadcrumbs.json in scope cache
+02-08 10:26:25.208 30179 30201 D app_process64:   Debug: Android: Overwriting breadcrumbs.json in scope cache
+02-08 10:26:25.209 30179 30201 I DOTNET  :   Debug: Android: Serializing object: [ 	{ 		"timestamp": "2026-02-08T15:26:23.369Z", 		"type": "session", 		"data": { 			"state": "session.start" 		}, 		"category": "app.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"action": "NETWORK_AVAILABLE" 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"upload_bandwidth": 12000, 			"action": "NETWORK_CAPABILITIES_CHANGED", 			"vpn_active": false, 			"signal_strength": -50, 			"network_type": "wifi", 			"download_bandwidth": 30000 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.613Z", 		"type": "navigation", 		"data": { 			"screen": "MainActivity", 			"state": "created" 		}, 		"category": "ui.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.622Z", 		"message": "MainPage.Appearing", 		"type": "system", 		"data": {}, 		"category": "ui.lifecy
+02-08 10:26:25.209 30179 30201 D app_process64:   Debug: Android: Serializing object: [ 	{ 		"timestamp": "2026-02-08T15:26:23.369Z", 		"type": "session", 		"data": { 			"state": "session.start" 		}, 		"category": "app.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"action": "NETWORK_AVAILABLE" 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"upload_bandwidth": 12000, 			"action": "NETWORK_CAPABILITIES_CHANGED", 			"vpn_active": false, 			"signal_strength": -50, 			"network_type": "wifi", 			"download_bandwidth": 30000 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.613Z", 		"type": "navigation", 		"data": { 			"screen": "MainActivity", 			"state": "created" 		}, 		"category": "ui.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.622Z", 		"message": "MainPage.Appearing", 		"type": "system", 		"data": {}, 		"category": "ui.lifecy
+02-08 10:26:25.209 30179 30201 I DOTNET  :   Debug: Android: Overwriting breadcrumbs.json in scope cache
+02-08 10:26:25.209 30179 30201 D app_process64:   Debug: Android: Overwriting breadcrumbs.json in scope cache
+02-08 10:26:25.212 30179 30201 I DOTNET  :   Debug: Android: Serializing object: [ 	{ 		"timestamp": "2026-02-08T15:26:23.369Z", 		"type": "session", 		"data": { 			"state": "session.start" 		}, 		"category": "app.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"action": "NETWORK_AVAILABLE" 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"upload_bandwidth": 12000, 			"action": "NETWORK_CAPABILITIES_CHANGED", 			"vpn_active": false, 			"signal_strength": -50, 			"network_type": "wifi", 			"download_bandwidth": 30000 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.613Z", 		"type": "navigation", 		"data": { 			"screen": "MainActivity", 			"state": "created" 		}, 		"category": "ui.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.622Z", 		"message": "MainPage.Appearing", 		"type": "system", 		"data": {}, 		"category": "ui.lifecy
+02-08 10:26:25.213 30179 30201 D app_process64:   Debug: Android: Serializing object: [ 	{ 		"timestamp": "2026-02-08T15:26:23.369Z", 		"type": "session", 		"data": { 			"state": "session.start" 		}, 		"category": "app.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"action": "NETWORK_AVAILABLE" 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"upload_bandwidth": 12000, 			"action": "NETWORK_CAPABILITIES_CHANGED", 			"vpn_active": false, 			"signal_strength": -50, 			"network_type": "wifi", 			"download_bandwidth": 30000 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.613Z", 		"type": "navigation", 		"data": { 			"screen": "MainActivity", 			"state": "created" 		}, 		"category": "ui.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.622Z", 		"message": "MainPage.Appearing", 		"type": "system", 		"data": {}, 		"category": "ui.lifecy
+02-08 10:26:25.214 30179 30201 I DOTNET  :   Debug: Android: Overwriting breadcrumbs.json in scope cache
+02-08 10:26:25.214 30179 30201 D app_process64:   Debug: Android: Overwriting breadcrumbs.json in scope cache
+02-08 10:26:25.215 30179 30201 I DOTNET  :   Debug: Android: Serializing object: [ 	{ 		"timestamp": "2026-02-08T15:26:23.369Z", 		"type": "session", 		"data": { 			"state": "session.start" 		}, 		"category": "app.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"action": "NETWORK_AVAILABLE" 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"upload_bandwidth": 12000, 			"action": "NETWORK_CAPABILITIES_CHANGED", 			"vpn_active": false, 			"signal_strength": -50, 			"network_type": "wifi", 			"download_bandwidth": 30000 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.613Z", 		"type": "navigation", 		"data": { 			"screen": "MainActivity", 			"state": "created" 		}, 		"category": "ui.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.622Z", 		"message": "MainPage.Appearing", 		"type": "system", 		"data": {}, 		"category": "ui.lifecy
+02-08 10:26:25.215 30179 30201 D app_process64:   Debug: Android: Serializing object: [ 	{ 		"timestamp": "2026-02-08T15:26:23.369Z", 		"type": "session", 		"data": { 			"state": "session.start" 		}, 		"category": "app.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"action": "NETWORK_AVAILABLE" 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"upload_bandwidth": 12000, 			"action": "NETWORK_CAPABILITIES_CHANGED", 			"vpn_active": false, 			"signal_strength": -50, 			"network_type": "wifi", 			"download_bandwidth": 30000 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.613Z", 		"type": "navigation", 		"data": { 			"screen": "MainActivity", 			"state": "created" 		}, 		"category": "ui.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.622Z", 		"message": "MainPage.Appearing", 		"type": "system", 		"data": {}, 		"category": "ui.lifecy
+02-08 10:26:25.215 30179 30201 I DOTNET  :   Debug: Android: Overwriting breadcrumbs.json in scope cache
+02-08 10:26:25.215 30179 30201 D app_process64:   Debug: Android: Overwriting breadcrumbs.json in scope cache
+02-08 10:26:25.216 30179 30201 I DOTNET  :   Debug: Android: Serializing object: [ 	{ 		"timestamp": "2026-02-08T15:26:23.369Z", 		"type": "session", 		"data": { 			"state": "session.start" 		}, 		"category": "app.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"action": "NETWORK_AVAILABLE" 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"upload_bandwidth": 12000, 			"action": "NETWORK_CAPABILITIES_CHANGED", 			"vpn_active": false, 			"signal_strength": -50, 			"network_type": "wifi", 			"download_bandwidth": 30000 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.613Z", 		"type": "navigation", 		"data": { 			"screen": "MainActivity", 			"state": "created" 		}, 		"category": "ui.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.622Z", 		"message": "MainPage.Appearing", 		"type": "system", 		"data": {}, 		"category": "ui.lifecy
+02-08 10:26:25.216 30179 30201 D app_process64:   Debug: Android: Serializing object: [ 	{ 		"timestamp": "2026-02-08T15:26:23.369Z", 		"type": "session", 		"data": { 			"state": "session.start" 		}, 		"category": "app.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"action": "NETWORK_AVAILABLE" 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"upload_bandwidth": 12000, 			"action": "NETWORK_CAPABILITIES_CHANGED", 			"vpn_active": false, 			"signal_strength": -50, 			"network_type": "wifi", 			"download_bandwidth": 30000 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.613Z", 		"type": "navigation", 		"data": { 			"screen": "MainActivity", 			"state": "created" 		}, 		"category": "ui.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.622Z", 		"message": "MainPage.Appearing", 		"type": "system", 		"data": {}, 		"category": "ui.lifecy
+02-08 10:26:25.216 30179 30201 I DOTNET  :   Debug: Android: Overwriting breadcrumbs.json in scope cache
+02-08 10:26:25.216 30179 30201 D app_process64:   Debug: Android: Overwriting breadcrumbs.json in scope cache
+02-08 10:26:25.217 30179 30201 I DOTNET  :   Debug: Android: Serializing object: [ 	{ 		"timestamp": "2026-02-08T15:26:23.369Z", 		"type": "session", 		"data": { 			"state": "session.start" 		}, 		"category": "app.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"action": "NETWORK_AVAILABLE" 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"upload_bandwidth": 12000, 			"action": "NETWORK_CAPABILITIES_CHANGED", 			"vpn_active": false, 			"signal_strength": -50, 			"network_type": "wifi", 			"download_bandwidth": 30000 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.613Z", 		"type": "navigation", 		"data": { 			"screen": "MainActivity", 			"state": "created" 		}, 		"category": "ui.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.622Z", 		"message": "MainPage.Appearing", 		"type": "system", 		"data": {}, 		"category": "ui.lifecy
+02-08 10:26:25.217 30179 30201 D app_process64:   Debug: Android: Serializing object: [ 	{ 		"timestamp": "2026-02-08T15:26:23.369Z", 		"type": "session", 		"data": { 			"state": "session.start" 		}, 		"category": "app.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"action": "NETWORK_AVAILABLE" 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"upload_bandwidth": 12000, 			"action": "NETWORK_CAPABILITIES_CHANGED", 			"vpn_active": false, 			"signal_strength": -50, 			"network_type": "wifi", 			"download_bandwidth": 30000 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.613Z", 		"type": "navigation", 		"data": { 			"screen": "MainActivity", 			"state": "created" 		}, 		"category": "ui.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.622Z", 		"message": "MainPage.Appearing", 		"type": "system", 		"data": {}, 		"category": "ui.lifecy
+02-08 10:26:25.217 30179 30201 I DOTNET  :   Debug: Android: Overwriting breadcrumbs.json in scope cache
+02-08 10:26:25.217 30179 30201 D app_process64:   Debug: Android: Overwriting breadcrumbs.json in scope cache
+02-08 10:26:25.218 30179 30201 I DOTNET  :   Debug: Android: Serializing object: [ 	{ 		"timestamp": "2026-02-08T15:26:23.369Z", 		"type": "session", 		"data": { 			"state": "session.start" 		}, 		"category": "app.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"action": "NETWORK_AVAILABLE" 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"upload_bandwidth": 12000, 			"action": "NETWORK_CAPABILITIES_CHANGED", 			"vpn_active": false, 			"signal_strength": -50, 			"network_type": "wifi", 			"download_bandwidth": 30000 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.613Z", 		"type": "navigation", 		"data": { 			"screen": "MainActivity", 			"state": "created" 		}, 		"category": "ui.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.622Z", 		"message": "MainPage.Appearing", 		"type": "system", 		"data": {}, 		"category": "ui.lifecy
+02-08 10:26:25.218 30179 30201 D app_process64:   Debug: Android: Serializing object: [ 	{ 		"timestamp": "2026-02-08T15:26:23.369Z", 		"type": "session", 		"data": { 			"state": "session.start" 		}, 		"category": "app.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"action": "NETWORK_AVAILABLE" 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"upload_bandwidth": 12000, 			"action": "NETWORK_CAPABILITIES_CHANGED", 			"vpn_active": false, 			"signal_strength": -50, 			"network_type": "wifi", 			"download_bandwidth": 30000 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.613Z", 		"type": "navigation", 		"data": { 			"screen": "MainActivity", 			"state": "created" 		}, 		"category": "ui.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.622Z", 		"message": "MainPage.Appearing", 		"type": "system", 		"data": {}, 		"category": "ui.lifecy
+02-08 10:26:25.218 30179 30201 I DOTNET  :   Debug: Android: Overwriting breadcrumbs.json in scope cache
+02-08 10:26:25.218 30179 30201 D app_process64:   Debug: Android: Overwriting breadcrumbs.json in scope cache
+02-08 10:26:25.219 30179 30201 I DOTNET  :   Debug: Android: Serializing object: [ 	{ 		"timestamp": "2026-02-08T15:26:23.369Z", 		"type": "session", 		"data": { 			"state": "session.start" 		}, 		"category": "app.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"action": "NETWORK_AVAILABLE" 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"upload_bandwidth": 12000, 			"action": "NETWORK_CAPABILITIES_CHANGED", 			"vpn_active": false, 			"signal_strength": -50, 			"network_type": "wifi", 			"download_bandwidth": 30000 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.613Z", 		"type": "navigation", 		"data": { 			"screen": "MainActivity", 			"state": "created" 		}, 		"category": "ui.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.622Z", 		"message": "MainPage.Appearing", 		"type": "system", 		"data": {}, 		"category": "ui.lifecy
+02-08 10:26:25.219 30179 30201 D app_process64:   Debug: Android: Serializing object: [ 	{ 		"timestamp": "2026-02-08T15:26:23.369Z", 		"type": "session", 		"data": { 			"state": "session.start" 		}, 		"category": "app.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"action": "NETWORK_AVAILABLE" 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"upload_bandwidth": 12000, 			"action": "NETWORK_CAPABILITIES_CHANGED", 			"vpn_active": false, 			"signal_strength": -50, 			"network_type": "wifi", 			"download_bandwidth": 30000 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.613Z", 		"type": "navigation", 		"data": { 			"screen": "MainActivity", 			"state": "created" 		}, 		"category": "ui.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.622Z", 		"message": "MainPage.Appearing", 		"type": "system", 		"data": {}, 		"category": "ui.lifecy
+02-08 10:26:25.219 30179 30201 I DOTNET  :   Debug: Android: Overwriting breadcrumbs.json in scope cache
+02-08 10:26:25.219 30179 30201 D app_process64:   Debug: Android: Overwriting breadcrumbs.json in scope cache
+02-08 10:26:25.220 30179 30201 I DOTNET  :   Debug: Android: Serializing object: [ 	{ 		"timestamp": "2026-02-08T15:26:23.369Z", 		"type": "session", 		"data": { 			"state": "session.start" 		}, 		"category": "app.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"action": "NETWORK_AVAILABLE" 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"upload_bandwidth": 12000, 			"action": "NETWORK_CAPABILITIES_CHANGED", 			"vpn_active": false, 			"signal_strength": -50, 			"network_type": "wifi", 			"download_bandwidth": 30000 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.613Z", 		"type": "navigation", 		"data": { 			"screen": "MainActivity", 			"state": "created" 		}, 		"category": "ui.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.622Z", 		"message": "MainPage.Appearing", 		"type": "system", 		"data": {}, 		"category": "ui.lifecy
+02-08 10:26:25.220 30179 30201 D app_process64:   Debug: Android: Serializing object: [ 	{ 		"timestamp": "2026-02-08T15:26:23.369Z", 		"type": "session", 		"data": { 			"state": "session.start" 		}, 		"category": "app.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"action": "NETWORK_AVAILABLE" 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"upload_bandwidth": 12000, 			"action": "NETWORK_CAPABILITIES_CHANGED", 			"vpn_active": false, 			"signal_strength": -50, 			"network_type": "wifi", 			"download_bandwidth": 30000 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.613Z", 		"type": "navigation", 		"data": { 			"screen": "MainActivity", 			"state": "created" 		}, 		"category": "ui.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.622Z", 		"message": "MainPage.Appearing", 		"type": "system", 		"data": {}, 		"category": "ui.lifecy
+02-08 10:26:25.220 30179 30201 I DOTNET  :   Debug: Android: Overwriting breadcrumbs.json in scope cache
+02-08 10:26:25.221 30179 30201 D app_process64:   Debug: Android: Overwriting breadcrumbs.json in scope cache
+02-08 10:26:25.221 30179 30201 I DOTNET  :   Debug: Android: Serializing object: [ 	{ 		"timestamp": "2026-02-08T15:26:23.369Z", 		"type": "session", 		"data": { 			"state": "session.start" 		}, 		"category": "app.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"action": "NETWORK_AVAILABLE" 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"upload_bandwidth": 12000, 			"action": "NETWORK_CAPABILITIES_CHANGED", 			"vpn_active": false, 			"signal_strength": -50, 			"network_type": "wifi", 			"download_bandwidth": 30000 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.613Z", 		"type": "navigation", 		"data": { 			"screen": "MainActivity", 			"state": "created" 		}, 		"category": "ui.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.622Z", 		"message": "MainPage.Appearing", 		"type": "system", 		"data": {}, 		"category": "ui.lifecy
+02-08 10:26:25.221 30179 30201 D app_process64:   Debug: Android: Serializing object: [ 	{ 		"timestamp": "2026-02-08T15:26:23.369Z", 		"type": "session", 		"data": { 			"state": "session.start" 		}, 		"category": "app.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"action": "NETWORK_AVAILABLE" 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"upload_bandwidth": 12000, 			"action": "NETWORK_CAPABILITIES_CHANGED", 			"vpn_active": false, 			"signal_strength": -50, 			"network_type": "wifi", 			"download_bandwidth": 30000 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.613Z", 		"type": "navigation", 		"data": { 			"screen": "MainActivity", 			"state": "created" 		}, 		"category": "ui.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.622Z", 		"message": "MainPage.Appearing", 		"type": "system", 		"data": {}, 		"category": "ui.lifecy
+02-08 10:26:25.222 30179 30201 I DOTNET  :   Debug: Android: Started processing cached files from /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970/outbox
+02-08 10:26:25.222 30179 30201 D app_process64:   Debug: Android: Started processing cached files from /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970/outbox
+02-08 10:26:25.222 30179 30201 I DOTNET  :   Debug: Android: Processing dir. /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970/outbox
+02-08 10:26:25.222 30179 30201 D app_process64:   Debug: Android: Processing dir. /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970/outbox
+02-08 10:26:25.222 30179 30201 I DOTNET  :   Debug: Android: Processing 0 items from cache dir /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970/outbox
+02-08 10:26:25.222 30179 30201 D app_process64:   Debug: Android: Processing 0 items from cache dir /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970/outbox
+02-08 10:26:25.222 30179 30201 I DOTNET  :   Debug: Android: Finished processing cached files from /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970/outbox
+02-08 10:26:25.222 30179 30201 D app_process64:   Debug: Android: Finished processing cached files from /data/user/0/com.retrocode.payremind/cache/android/b9cee37a159b47bea3231048462545b393c3c970/outbox
+02-08 10:26:25.222 30179 30201 I DOTNET  :   Debug: Android: Overwriting breadcrumbs.json in scope cache
+02-08 10:26:25.222 30179 30201 D app_process64:   Debug: Android: Overwriting breadcrumbs.json in scope cache
+02-08 10:26:25.223 30179 30201 I DOTNET  :   Debug: Android: Serializing object: [ 	{ 		"timestamp": "2026-02-08T15:26:23.369Z", 		"type": "session", 		"data": { 			"state": "session.start" 		}, 		"category": "app.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"action": "NETWORK_AVAILABLE" 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"upload_bandwidth": 12000, 			"action": "NETWORK_CAPABILITIES_CHANGED", 			"vpn_active": false, 			"signal_strength": -50, 			"network_type": "wifi", 			"download_bandwidth": 30000 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.613Z", 		"type": "navigation", 		"data": { 			"screen": "MainActivity", 			"state": "created" 		}, 		"category": "ui.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.622Z", 		"message": "MainPage.Appearing", 		"type": "system", 		"data": {}, 		"category": "ui.lifecy
+02-08 10:26:25.223 30179 30201 D app_process64:   Debug: Android: Serializing object: [ 	{ 		"timestamp": "2026-02-08T15:26:23.369Z", 		"type": "session", 		"data": { 			"state": "session.start" 		}, 		"category": "app.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"action": "NETWORK_AVAILABLE" 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.383Z", 		"type": "system", 		"data": { 			"upload_bandwidth": 12000, 			"action": "NETWORK_CAPABILITIES_CHANGED", 			"vpn_active": false, 			"signal_strength": -50, 			"network_type": "wifi", 			"download_bandwidth": 30000 		}, 		"category": "network.event", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.613Z", 		"type": "navigation", 		"data": { 			"screen": "MainActivity", 			"state": "created" 		}, 		"category": "ui.lifecycle", 		"level": "info" 	}, 	{ 		"timestamp": "2026-02-08T15:26:23.622Z", 		"message": "MainPage.Appearing", 		"type": "system", 		"data": {}, 		"category": "ui.lifecy
+02-08 10:26:25.853 30284 30284 W libbinder.BackendUnifiedServiceManager: Thread Pool max thread count is 0. Cannot cache binder as linkToDeath cannot be implemented. serviceName: package
+02-08 10:26:25.885  2998  2998 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/base.odex) is kOatUpToDate with filter 'speed-profile' executable 'false'
+02-08 10:26:25.886  2998  2998 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/split_AdsDynamite_installtime.odex) is kOatUpToDate with filter 'speed' executable 'false'
+02-08 10:26:25.886  2998  6465 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/split_CronetDynamite_installtime.odex) is kOatUpToDate with filter 'speed-profile' executable 'false'
+02-08 10:26:25.887  2998  2998 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/split_DynamiteLoader_installtime.odex) is kOatUpToDate with filter 'speed' executable 'false'
+02-08 10:26:25.888  2998  6465 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/split_DynamiteModulesA_installtime.odex) is kOatUpToDate with filter 'speed' executable 'false'
+02-08 10:26:25.888  2998  2998 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/split_DynamiteModulesC_installtime.odex) is kOatUpToDate with filter 'speed' executable 'false'
+02-08 10:26:25.888  2998  6465 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/split_GoogleCertificates_installtime.odex) is kOatUpToDate with filter 'speed' executable 'false'
+02-08 10:26:25.889  2998  2998 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/split_MapsDynamite_installtime.odex) is kOatUpToDate with filter 'speed' executable 'false'
+02-08 10:26:25.889  2998  6465 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/split_MeasurementDynamite_installtime.odex) is kOatUpToDate with filter 'speed' executable 'false'
+02-08 10:26:25.890  2998  2998 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/split_all_locale_splits.odex) is kOatUpToDate with filter 'speed' executable 'false'
+02-08 10:26:25.890  2998  6465 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/0000000c/dl-Appsearch.optional_253434100400.apk has no usable artifacts
+02-08 10:26:25.890  2998  2998 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/00000001/CronetDynamite.apk has no usable artifacts
+02-08 10:26:25.890  2998  2998 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/00000002/DynamiteLoader.apk has no usable artifacts
+02-08 10:26:25.891  2998  2998 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/0000000e/dl-VisionOcr.optional_260235100000.apk has no usable artifacts
+02-08 10:26:25.891  2998  6465 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/00000005/GoogleCertificates.apk has no usable artifacts
+02-08 10:26:25.891  2998  6465 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/00000009/dl-TfliteDynamiteDynamite.integ_243930802100400.apk has no usable artifacts
+02-08 10:26:25.891  2998  2998 I artd    : GetBestInfo: vdex next to the dex file (/data/user/0/com.google.android.gms/app_dg_cache/2DB167EF440159FF365B49D8B91441B1CFD017F9/oat/arm64/the.vdex) is kOatUpToDate with filter 'verify' executable 'false'
+02-08 10:26:25.892  2998  6465 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/00000013/dl-Appsearch.optional_260235100400.apk has no usable artifacts
+02-08 10:26:25.892  2998  2998 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/0000000f/dl-MlkitOcrCommon.optional_260235100400.apk has no usable artifacts
+02-08 10:26:25.893  2998  6465 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/00000011/dl-MlkitBarcodeUi.optional_260235100400.apk has no usable artifacts
+02-08 10:26:25.895  2998  2998 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/00000015/dl-PlayCloudSearch.optional_260235100000.apk has no usable artifacts
+02-08 10:26:25.897  2998  2998 I artd    : GetBestInfo: vdex next to the dex file (/data/user/0/com.google.android.gms/app_dg_cache/646DA7BE3AF9B756DEFD88CA7189FC9D7C55EC0F/oat/arm64/the.vdex) is kOatUpToDate with filter 'verify' executable 'false'
+02-08 10:26:25.898  2998  6465 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/0000000d/dl-MlkitBarcodeUi.optional_253434100400.apk has no usable artifacts
+02-08 10:26:25.898  2998  2998 W artd    : Could not get dex checksums for location /data/app/~~inFIFA00eiJNX_HRLC9q1g==/com.android.vending-SxeqdJW_st88E_wUX2Xt8g==/base.apk, fd=-1
+02-08 10:26:25.930   476  6664 D android.hardware.audio@7.1-impl.ranchu: threadLoop: entering standby, frames: 11167232
+02-08 10:26:25.930   476  6664 D android.hardware.audio@7.1-impl.ranchu: ~TinyalsaSink: joining consumeThread
+02-08 10:26:25.936   476 30178 D android.hardware.audio@7.1-impl.ranchu: consumeThread: exiting
+02-08 10:26:25.936   476  6664 D android.hardware.audio@7.1-impl.ranchu: ~TinyalsaSink: stopping PCM stream
+02-08 10:26:27.973   670   821 I HalDevMgr: bestIfaceCreationProposal is null, requestIface=STA, existingIface=[name=wlan0 type=STA]
+02-08 10:26:28.853   899   899 I wpa_supplicant: wlan0: CTRL-EVENT-BEACON-LOSS 
+02-08 10:26:29.022 30179 30287 D ProfileInstaller: Installing profile for com.retrocode.payremind
+02-08 10:26:30.978   670   821 I HalDevMgr: bestIfaceCreationProposal is null, requestIface=STA, existingIface=[name=wlan0 type=STA]
+02-08 10:26:31.551   670  1001 W AppOps  : Noting op not finished: uid 10155 pkg com.google.android.gms code 113 startTime of in progress event=1770563754004
+02-08 10:26:31.556   670  1868 W AppOps  : Noting op not finished: uid 10155 pkg com.google.android.gms code 79 startTime of in progress event=1770563754004
+02-08 10:26:31.568  5690  5755 I ActivityScheduler: nextTriggerTime: 7026831, in 238100ms, detectorType: 39, FULL_TYPE alarmWindowMillis: 80000
+02-08 10:26:32.553   670  1868 W AppOps  : Noting op not finished: uid 10155 pkg com.google.android.gms code 113 startTime of in progress event=1770563754004
+02-08 10:26:33.983   670   821 I HalDevMgr: bestIfaceCreationProposal is null, requestIface=STA, existingIface=[name=wlan0 type=STA]
+02-08 10:26:34.112   670   769 D ActivityManager: freezing 1087 com.google.android.permissioncontroller
+02-08 10:26:34.113   670   827 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+02-08 10:26:34.113   670   827 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+02-08 10:26:34.113   670   827 D InetDiagMessage: Destroyed live tcp sockets for uids={10221} in 0ms
+02-08 10:26:34.538   670   769 D ActivityManager: freezing 1507 com.google.android.apps.wellbeing
+02-08 10:26:34.541   670   827 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+02-08 10:26:34.541   670   827 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+02-08 10:26:34.541   670   827 D InetDiagMessage: Destroyed live tcp sockets for uids={10159} in 0ms
+02-08 10:26:34.823  1033  1192 D SatelliteController: iisInCarrierRoamingNbIotNtn: satellite is disabled
+02-08 10:26:34.823  1033  1192 D SatelliteController: getCarrierRoamingNtnConnectType: Falling back to global carrier config connect type: 0
+02-08 10:26:35.856 30291 30291 W libbinder.BackendUnifiedServiceManager: Thread Pool max thread count is 0. Cannot cache binder as linkToDeath cannot be implemented. serviceName: package
+02-08 10:26:35.886  2998  6465 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/base.odex) is kOatUpToDate with filter 'speed-profile' executable 'false'
+02-08 10:26:35.887  2998  2998 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/split_AdsDynamite_installtime.odex) is kOatUpToDate with filter 'speed' executable 'false'
+02-08 10:26:35.887  2998  6465 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/split_CronetDynamite_installtime.odex) is kOatUpToDate with filter 'speed-profile' executable 'false'
+02-08 10:26:35.888  2998 11745 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/split_DynamiteLoader_installtime.odex) is kOatUpToDate with filter 'speed' executable 'false'
+02-08 10:26:35.888  2998  6465 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/split_DynamiteModulesA_installtime.odex) is kOatUpToDate with filter 'speed' executable 'false'
+02-08 10:26:35.889  2998  2998 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/split_DynamiteModulesC_installtime.odex) is kOatUpToDate with filter 'speed' executable 'false'
+02-08 10:26:35.889  2998 11745 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/split_GoogleCertificates_installtime.odex) is kOatUpToDate with filter 'speed' executable 'false'
+02-08 10:26:35.889  2998  6465 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/split_MapsDynamite_installtime.odex) is kOatUpToDate with filter 'speed' executable 'false'
+02-08 10:26:35.890  2998 11745 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/split_MeasurementDynamite_installtime.odex) is kOatUpToDate with filter 'speed' executable 'false'
+02-08 10:26:35.890  2998  6465 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/split_all_locale_splits.odex) is kOatUpToDate with filter 'speed' executable 'false'
+02-08 10:26:35.891  2998 11745 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/0000000c/dl-Appsearch.optional_253434100400.apk has no usable artifacts
+02-08 10:26:35.891  2998  6465 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/00000001/CronetDynamite.apk has no usable artifacts
+02-08 10:26:35.891  2998  6465 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/00000002/DynamiteLoader.apk has no usable artifacts
+02-08 10:26:35.891  2998  6465 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/0000000e/dl-VisionOcr.optional_260235100000.apk has no usable artifacts
+02-08 10:26:35.891  2998 11745 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/00000005/GoogleCertificates.apk has no usable artifacts
+02-08 10:26:35.891  2998 11745 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/00000009/dl-TfliteDynamiteDynamite.integ_243930802100400.apk has no usable artifacts
+02-08 10:26:35.892  2998  6465 I artd    : GetBestInfo: vdex next to the dex file (/data/user/0/com.google.android.gms/app_dg_cache/2DB167EF440159FF365B49D8B91441B1CFD017F9/oat/arm64/the.vdex) is kOatUpToDate with filter 'verify' executable 'false'
+02-08 10:26:35.892  2998 11745 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/00000013/dl-Appsearch.optional_260235100400.apk has no usable artifacts
+02-08 10:26:35.892  2998  6465 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/0000000f/dl-MlkitOcrCommon.optional_260235100400.apk has no usable artifacts
+02-08 10:26:35.893  2998 11745 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/00000011/dl-MlkitBarcodeUi.optional_260235100400.apk has no usable artifacts
+02-08 10:26:35.895  2998  6465 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/00000015/dl-PlayCloudSearch.optional_260235100000.apk has no usable artifacts
+02-08 10:26:35.896  2998  6465 I artd    : GetBestInfo: vdex next to the dex file (/data/user/0/com.google.android.gms/app_dg_cache/646DA7BE3AF9B756DEFD88CA7189FC9D7C55EC0F/oat/arm64/the.vdex) is kOatUpToDate with filter 'verify' executable 'false'
+02-08 10:26:35.897  2998  6465 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/0000000d/dl-MlkitBarcodeUi.optional_253434100400.apk has no usable artifacts
+02-08 10:26:35.897  2998 11745 W artd    : Could not get dex checksums for location /data/app/~~inFIFA00eiJNX_HRLC9q1g==/com.android.vending-SxeqdJW_st88E_wUX2Xt8g==/base.apk, fd=-1
+02-08 10:26:36.789   899   899 I wpa_supplicant: wlan0: CTRL-EVENT-BEACON-LOSS 
+02-08 10:26:36.988   670   821 I HalDevMgr: bestIfaceCreationProposal is null, requestIface=STA, existingIface=[name=wlan0 type=STA]
+02-08 10:26:37.142   670   769 D ActivityManager: freezing 5848 com.android.keychain
+02-08 10:26:37.143   670   769 D ActivityManager: freezing 1157 com.android.settings
+02-08 10:26:39.300  1523  1523 D BoundBrokerSvc: onUnbind: Intent { act=com.google.android.gms.safetynet.service.START xflg=0x4 pkg=com.google.android.gms }
+02-08 10:26:39.301  1523  1523 D BoundBrokerSvc: onUnbind: Intent { act=com.google.android.gms.safebrowsing.SafeBrowsingService.START dat=chimera-action:/... xflg=0x4 cmp=com.google.android.gms/.chimera.GmsBoundBrokerService }
+02-08 10:26:39.997   670   821 I HalDevMgr: bestIfaceCreationProposal is null, requestIface=STA, existingIface=[name=wlan0 type=STA]
+02-08 10:26:43.002   670   821 I HalDevMgr: bestIfaceCreationProposal is null, requestIface=STA, existingIface=[name=wlan0 type=STA]
+02-08 10:26:44.725   899   899 I wpa_supplicant: wlan0: CTRL-EVENT-BEACON-LOSS 
+02-08 10:26:44.831  1033  1192 D SatelliteController: iisInCarrierRoamingNbIotNtn: satellite is disabled
+02-08 10:26:44.832  1033  1192 D SatelliteController: getCarrierRoamingNtnConnectType: Falling back to global carrier config connect type: 0
+02-08 10:26:45.853 30294 30294 W libbinder.BackendUnifiedServiceManager: Thread Pool max thread count is 0. Cannot cache binder as linkToDeath cannot be implemented. serviceName: package
+02-08 10:26:45.882  2998  6465 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/base.odex) is kOatUpToDate with filter 'speed-profile' executable 'false'
+02-08 10:26:45.884  2998  6465 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/split_AdsDynamite_installtime.odex) is kOatUpToDate with filter 'speed' executable 'false'
+02-08 10:26:45.884  2998  6465 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/split_CronetDynamite_installtime.odex) is kOatUpToDate with filter 'speed-profile' executable 'false'
+02-08 10:26:45.886  2998  6465 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/split_DynamiteLoader_installtime.odex) is kOatUpToDate with filter 'speed' executable 'false'
+02-08 10:26:45.886  2998  6465 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/split_DynamiteModulesA_installtime.odex) is kOatUpToDate with filter 'speed' executable 'false'
+02-08 10:26:45.888  2998  6465 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/split_DynamiteModulesC_installtime.odex) is kOatUpToDate with filter 'speed' executable 'false'
+02-08 10:26:45.888  2998  6465 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/split_GoogleCertificates_installtime.odex) is kOatUpToDate with filter 'speed' executable 'false'
+02-08 10:26:45.888  2998  6465 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/split_MapsDynamite_installtime.odex) is kOatUpToDate with filter 'speed' executable 'false'
+02-08 10:26:45.891  2998  6465 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/split_MeasurementDynamite_installtime.odex) is kOatUpToDate with filter 'speed' executable 'false'
+02-08 10:26:45.892  2998  6465 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/split_all_locale_splits.odex) is kOatUpToDate with filter 'speed' executable 'false'
+02-08 10:26:45.892  2998  6465 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/0000000c/dl-Appsearch.optional_253434100400.apk has no usable artifacts
+02-08 10:26:45.896  2998  6465 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/00000001/CronetDynamite.apk has no usable artifacts
+02-08 10:26:45.897  2998  6465 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/00000002/DynamiteLoader.apk has no usable artifacts
+02-08 10:26:45.898  2998  6465 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/0000000e/dl-VisionOcr.optional_260235100000.apk has no usable artifacts
+02-08 10:26:45.901  2998  6465 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/00000005/GoogleCertificates.apk has no usable artifacts
+02-08 10:26:45.901  2998  6465 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/00000009/dl-TfliteDynamiteDynamite.integ_243930802100400.apk has no usable artifacts
+02-08 10:26:45.902  2998  6465 I artd    : GetBestInfo: vdex next to the dex file (/data/user/0/com.google.android.gms/app_dg_cache/2DB167EF440159FF365B49D8B91441B1CFD017F9/oat/arm64/the.vdex) is kOatUpToDate with filter 'verify' executable 'false'
+02-08 10:26:45.902  2998  6465 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/00000013/dl-Appsearch.optional_260235100400.apk has no usable artifacts
+02-08 10:26:45.902  2998  6465 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/0000000f/dl-MlkitOcrCommon.optional_260235100400.apk has no usable artifacts
+02-08 10:26:45.902  2998  6465 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/00000011/dl-MlkitBarcodeUi.optional_260235100400.apk has no usable artifacts
+02-08 10:26:45.903  2998  6465 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/00000015/dl-PlayCloudSearch.optional_260235100000.apk has no usable artifacts
+02-08 10:26:45.903  2998  6465 I artd    : GetBestInfo: vdex next to the dex file (/data/user/0/com.google.android.gms/app_dg_cache/646DA7BE3AF9B756DEFD88CA7189FC9D7C55EC0F/oat/arm64/the.vdex) is kOatUpToDate with filter 'verify' executable 'false'
+02-08 10:26:45.905  2998  6465 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/0000000d/dl-MlkitBarcodeUi.optional_253434100400.apk has no usable artifacts
+02-08 10:26:45.905  2998  6465 W artd    : Could not get dex checksums for location /data/app/~~inFIFA00eiJNX_HRLC9q1g==/com.android.vending-SxeqdJW_st88E_wUX2Xt8g==/base.apk, fd=-1
+02-08 10:26:46.007   670   821 I HalDevMgr: bestIfaceCreationProposal is null, requestIface=STA, existingIface=[name=wlan0 type=STA]
+02-08 10:26:49.014   670   821 I HalDevMgr: bestIfaceCreationProposal is null, requestIface=STA, existingIface=[name=wlan0 type=STA]
+02-08 10:26:49.345   670   769 D ActivityManager: freezing 1523 com.google.android.gms
+02-08 10:26:52.017   670   821 I HalDevMgr: bestIfaceCreationProposal is null, requestIface=STA, existingIface=[name=wlan0 type=STA]
+02-08 10:26:52.662   899   899 I wpa_supplicant: wlan0: CTRL-EVENT-BEACON-LOSS 
+02-08 10:26:54.831  1033  1192 D SatelliteController: iisInCarrierRoamingNbIotNtn: satellite is disabled
+02-08 10:26:54.834  1033  1192 D SatelliteController: getCarrierRoamingNtnConnectType: Falling back to global carrier config connect type: 0
+02-08 10:26:55.022   670   821 I HalDevMgr: bestIfaceCreationProposal is null, requestIface=STA, existingIface=[name=wlan0 type=STA]
+02-08 10:26:55.854 30297 30297 W libbinder.BackendUnifiedServiceManager: Thread Pool max thread count is 0. Cannot cache binder as linkToDeath cannot be implemented. serviceName: package
+02-08 10:26:55.879  2998  6465 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/base.odex) is kOatUpToDate with filter 'speed-profile' executable 'false'
+02-08 10:26:55.881  2998 11745 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/split_AdsDynamite_installtime.odex) is kOatUpToDate with filter 'speed' executable 'false'
+02-08 10:26:55.882  2998  6465 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/split_CronetDynamite_installtime.odex) is kOatUpToDate with filter 'speed-profile' executable 'false'
+02-08 10:26:55.883  2998  6465 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/split_DynamiteLoader_installtime.odex) is kOatUpToDate with filter 'speed' executable 'false'
+02-08 10:26:55.884  2998 11745 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/split_DynamiteModulesA_installtime.odex) is kOatUpToDate with filter 'speed' executable 'false'
+02-08 10:26:55.884  2998  6465 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/split_DynamiteModulesC_installtime.odex) is kOatUpToDate with filter 'speed' executable 'false'
+02-08 10:26:55.884  2998 11745 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/split_GoogleCertificates_installtime.odex) is kOatUpToDate with filter 'speed' executable 'false'
+02-08 10:26:55.885  2998  6465 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/split_MapsDynamite_installtime.odex) is kOatUpToDate with filter 'speed' executable 'false'
+02-08 10:26:55.885  2998 11745 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/split_MeasurementDynamite_installtime.odex) is kOatUpToDate with filter 'speed' executable 'false'
+02-08 10:26:55.886  2998  6465 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/split_all_locale_splits.odex) is kOatUpToDate with filter 'speed' executable 'false'
+02-08 10:26:55.886  2998 11745 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/0000000c/dl-Appsearch.optional_253434100400.apk has no usable artifacts
+02-08 10:26:55.886  2998  6465 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/00000001/CronetDynamite.apk has no usable artifacts
+02-08 10:26:55.886  2998  6465 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/00000002/DynamiteLoader.apk has no usable artifacts
+02-08 10:26:55.886  2998  6465 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/0000000e/dl-VisionOcr.optional_260235100000.apk has no usable artifacts
+02-08 10:26:55.886  2998 11745 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/00000005/GoogleCertificates.apk has no usable artifacts
+02-08 10:26:55.887  2998 11745 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/00000009/dl-TfliteDynamiteDynamite.integ_243930802100400.apk has no usable artifacts
+02-08 10:26:55.887  2998  6465 I artd    : GetBestInfo: vdex next to the dex file (/data/user/0/com.google.android.gms/app_dg_cache/2DB167EF440159FF365B49D8B91441B1CFD017F9/oat/arm64/the.vdex) is kOatUpToDate with filter 'verify' executable 'false'
+02-08 10:26:55.887  2998 11745 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/00000013/dl-Appsearch.optional_260235100400.apk has no usable artifacts
+02-08 10:26:55.888  2998  6465 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/0000000f/dl-MlkitOcrCommon.optional_260235100400.apk has no usable artifacts
+02-08 10:26:55.888  2998 11745 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/00000011/dl-MlkitBarcodeUi.optional_260235100400.apk has no usable artifacts
+02-08 10:26:55.888  2998  6465 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/00000015/dl-PlayCloudSearch.optional_260235100000.apk has no usable artifacts
+02-08 10:26:55.889  2998 11745 I artd    : GetBestInfo: vdex next to the dex file (/data/user/0/com.google.android.gms/app_dg_cache/646DA7BE3AF9B756DEFD88CA7189FC9D7C55EC0F/oat/arm64/the.vdex) is kOatUpToDate with filter 'verify' executable 'false'
+02-08 10:26:55.889  2998  6465 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/0000000d/dl-MlkitBarcodeUi.optional_253434100400.apk has no usable artifacts
+02-08 10:26:55.889  2998 11745 W artd    : Could not get dex checksums for location /data/app/~~inFIFA00eiJNX_HRLC9q1g==/com.android.vending-SxeqdJW_st88E_wUX2Xt8g==/base.apk, fd=-1
+02-08 10:26:57.450   670  2705 I AppSearchIcing: icing-search-engine.cc:2327: Persisting data to disk with mode 3
+02-08 10:26:57.458   670  2705 I AppSearchIcing: icing-search-engine.cc:2340: PersistToDisk completed.
+02-08 10:26:58.030   670   821 I HalDevMgr: bestIfaceCreationProposal is null, requestIface=STA, existingIface=[name=wlan0 type=STA]
+02-08 10:27:00.298 30224 30234 W ocessService0:0: userfaultfd: MOVE ioctl seems unsupported: Connection timed out
+02-08 10:27:00.853   899   899 I wpa_supplicant: wlan0: CTRL-EVENT-BEACON-LOSS 
+02-08 10:27:01.033   670   821 I HalDevMgr: bestIfaceCreationProposal is null, requestIface=STA, existingIface=[name=wlan0 type=STA]
+02-08 10:27:04.039   670   821 I HalDevMgr: bestIfaceCreationProposal is null, requestIface=STA, existingIface=[name=wlan0 type=STA]
+02-08 10:27:04.831  1033  1192 D SatelliteController: iisInCarrierRoamingNbIotNtn: satellite is disabled
+02-08 10:27:04.831  1033  1192 D SatelliteController: getCarrierRoamingNtnConnectType: Falling back to global carrier config connect type: 0
+02-08 10:27:05.853 30303 30303 W libbinder.BackendUnifiedServiceManager: Thread Pool max thread count is 0. Cannot cache binder as linkToDeath cannot be implemented. serviceName: package
+02-08 10:27:05.883  2998  6465 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/base.odex) is kOatUpToDate with filter 'speed-profile' executable 'false'
+02-08 10:27:05.885  2998 11745 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/split_AdsDynamite_installtime.odex) is kOatUpToDate with filter 'speed' executable 'false'
+02-08 10:27:05.885  2998  6465 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/split_CronetDynamite_installtime.odex) is kOatUpToDate with filter 'speed-profile' executable 'false'
+02-08 10:27:05.886  2998 11745 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/split_DynamiteLoader_installtime.odex) is kOatUpToDate with filter 'speed' executable 'false'
+02-08 10:27:05.886  2998  6465 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/split_DynamiteModulesA_installtime.odex) is kOatUpToDate with filter 'speed' executable 'false'
+02-08 10:27:05.887  2998 11745 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/split_DynamiteModulesC_installtime.odex) is kOatUpToDate with filter 'speed' executable 'false'
+02-08 10:27:05.887  2998  6465 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/split_GoogleCertificates_installtime.odex) is kOatUpToDate with filter 'speed' executable 'false'
+02-08 10:27:05.888  2998 11745 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/split_MapsDynamite_installtime.odex) is kOatUpToDate with filter 'speed' executable 'false'
+02-08 10:27:05.888  2998  6465 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/split_MeasurementDynamite_installtime.odex) is kOatUpToDate with filter 'speed' executable 'false'
+02-08 10:27:05.888  2998 11745 I artd    : GetBestInfo: odex next to the dex file (/data/app/~~NBfbF0PaRsfS8X7UmgyPfA==/com.google.android.gms-TUX1pj6cuIqT25wtkde1mw==/oat/arm64/split_all_locale_splits.odex) is kOatUpToDate with filter 'speed' executable 'false'
+02-08 10:27:05.889  2998  6465 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/0000000c/dl-Appsearch.optional_253434100400.apk has no usable artifacts
+02-08 10:27:05.889  2998 11745 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/00000001/CronetDynamite.apk has no usable artifacts
+02-08 10:27:05.889  2998  6465 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/00000002/DynamiteLoader.apk has no usable artifacts
+02-08 10:27:05.889  2998 11745 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/0000000e/dl-VisionOcr.optional_260235100000.apk has no usable artifacts
+02-08 10:27:05.889  2998  6465 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/00000005/GoogleCertificates.apk has no usable artifacts
+02-08 10:27:05.890  2998  6465 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/00000009/dl-TfliteDynamiteDynamite.integ_243930802100400.apk has no usable artifacts
+02-08 10:27:05.890  2998 11745 I artd    : GetBestInfo: vdex next to the dex file (/data/user/0/com.google.android.gms/app_dg_cache/2DB167EF440159FF365B49D8B91441B1CFD017F9/oat/arm64/the.vdex) is kOatUpToDate with filter 'verify' executable 'false'
+02-08 10:27:05.890  2998  6465 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/00000013/dl-Appsearch.optional_260235100400.apk has no usable artifacts
+02-08 10:27:05.891  2998 11745 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/0000000f/dl-MlkitOcrCommon.optional_260235100400.apk has no usable artifacts
+02-08 10:27:05.891  2998  6465 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/00000011/dl-MlkitBarcodeUi.optional_260235100400.apk has no usable artifacts
+02-08 10:27:05.891  2998 11745 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/00000015/dl-PlayCloudSearch.optional_260235100000.apk has no usable artifacts
+02-08 10:27:05.892  2998  6465 I artd    : GetBestInfo: vdex next to the dex file (/data/user/0/com.google.android.gms/app_dg_cache/646DA7BE3AF9B756DEFD88CA7189FC9D7C55EC0F/oat/arm64/the.vdex) is kOatUpToDate with filter 'verify' executable 'false'
+02-08 10:27:05.893  2998 11745 I artd    : GetBestInfo: /data/user_de/0/com.google.android.gms/app_chimera/m/0000000d/dl-MlkitBarcodeUi.optional_253434100400.apk has no usable artifacts
+02-08 10:27:05.893  2998  6465 W artd    : Could not get dex checksums for location /data/app/~~inFIFA00eiJNX_HRLC9q1g==/com.android.vending-SxeqdJW_st88E_wUX2Xt8g==/base.apk, fd=-1

@@ -3,7 +3,7 @@
 @inject ICallLogService CallLogService
 
 <MudContainer MaxWidth="MaxWidth.ExtraSmall" Class="pa-0">
-    <MudText Typo="Typo.h5" GutterBottom="true" Class="ma-4">Recientes</MudText>
+    <MudText Typo="Typo.h5" GutterBottom="true" Class="ma-4 glass-text">Recientes</MudText>
 
     @if (isLoading)
     {
@@ -15,29 +15,29 @@
     }
     else
     {
-        <MudList T="string">
+        <MudList T="string" Class="glass-panel mt-4" Style="background: transparent;">
             @foreach (var log in callLogs)
             {
-                <MudListItem OnClick="@(() => CallNumber(log.Number))">
+                <MudListItem OnClick="@(() => CallNumber(log.Number))" Class="glass-list-item">
                     <div class="d-flex justify-space-between align-center">
                         <div class="d-flex align-center">
                             <MudIcon Icon="@GetIcon(log.Type)" Color="@GetColor(log.Type)" Class="mr-3" />
                             <div>
-                                <MudText Typo="Typo.body1">@(string.IsNullOrEmpty(log.Name) ? log.Number : log.Name)</MudText>
-                                <MudText Typo="Typo.caption">@FormatDuration(log.Duration) • @FormatDate(log.Date)</MudText>
+                                <MudText Typo="Typo.body1" Class="glass-text">@(string.IsNullOrEmpty(log.Name) ? log.Number : log.Name)</MudText>
+                                <MudText Typo="Typo.caption" Class="glass-text-secondary">@FormatDuration(log.Duration) • @FormatDate(log.Date)</MudText>
                             </div>
                         </div>
                          <MudIconButton Icon="@Icons.Material.Filled.Call" Color="Color.Success" Size="Size.Small" />
                     </div>
                 </MudListItem>
-                <MudDivider />
+                <MudDivider Class="glass-divider"/>
             }
         </MudList>
     }
 </MudContainer>
 
 @code {
-    private List<CallLogEntry> callLogs;
+    private List<CallLogEntry> callLogs = new();
     private bool isLoading = true;
 
     protected override async Task OnInitializedAsync()

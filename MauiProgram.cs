@@ -47,7 +47,8 @@ namespace PayRemind
 #endif
 
                 })
-                .UseMauiCommunityToolkit().UseSentry(options => {
+                .UseMauiCommunityToolkit();
+                /*.UseSentry(options => {
                 // The DSN is the only required setting.
                 options.Dsn = "https://42213245402bf788a901d07f056950d4@o4507708174958592.ingest.us.sentry.io/4507708177448960";
 
@@ -62,7 +63,7 @@ namespace PayRemind
                 options.TracesSampleRate = 1.0;
 
                 // Other Sentry options can be set here.
-            });
+            });*/
 
             builder.Services.AddMauiBlazorWebView();
             builder.Services.AddMudServices();

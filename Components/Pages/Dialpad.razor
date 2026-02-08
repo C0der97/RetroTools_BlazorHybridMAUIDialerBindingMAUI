@@ -19,9 +19,9 @@
     @if (filteredContacts != null && filteredContacts.Count > 0)
     {
         <MudList T="string" Style="max-height: 150px; overflow-y: auto; flex-grow: 1;" Class="mb-2 glass-panel">
-             @foreach (var contact in filteredContacts.Take(3))
+            @foreach (var contact in filteredContacts.Take(3))
             {
-                <MudListItem OnClick="@(() => SelectContact(contact))">
+                <MudListItem OnClick="@(() => SelectContact(contact))" Class="glass-list-item">
                     <div class="d-flex align-center">
                         <MudAvatar Image="@contact.PhotoUri" Size="Size.Small" Class="mr-2">
                              @if (string.IsNullOrEmpty(contact.PhotoUri))
@@ -83,8 +83,8 @@
 
 @code {
     private string phoneNumber = "";
-    private List<ContactEntry> allContacts;
-    private List<ContactEntry> filteredContacts;
+    private List<ContactEntry> allContacts = new();
+    private List<ContactEntry> filteredContacts = new();
     
     private record Key(string Digit, string Letters);
     private List<Key> keys = new()

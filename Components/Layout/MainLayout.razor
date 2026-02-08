@@ -1,11 +1,11 @@
 @inherits LayoutComponentBase
 @using MudBlazor
 
-<MudThemeProvider @ref="@_mudThemeProvider" @bind-IsDarkMode="@_isDarkMode" />
+<MudThemeProvider @ref="@_mudThemeProvider" @bind-IsDarkMode="@_isDarkMode" Theme="@_customTheme" />
 <MudDialogProvider />
 <MudSnackbarProvider />
 
-<MudLayout Style="height: 100vh; overflow: hidden;">
+<MudLayout Class="@($"glass-app-background {(_isDarkMode ? "dark-theme" : "")}")" Style="height: 100vh; overflow: hidden;">
     <MudMainContent Style="height: calc(100vh - 86px); overflow-y: auto; overflow-x: hidden; padding-bottom: 0;">
         @Body
     </MudMainContent>
@@ -45,6 +45,30 @@
 
     private bool _isDarkMode;
     private MudThemeProvider _mudThemeProvider;
+    
+    private MudTheme _customTheme = new MudTheme()
+    {
+        PaletteLight = new PaletteLight()
+        {
+            Primary = "#2196F3", // Colors.Blue.Default
+            AppbarBackground = "#00000000",
+            Background = "#00000000",
+            Surface = "#00000000",
+            DrawerBackground = "#00000000",
+            TextPrimary = "#1a1a1a",
+            TextSecondary = "#555555"
+        },
+        PaletteDark = new PaletteDark()
+        {
+            Primary = "#42A5F5", // Colors.Blue.Lighten1
+            AppbarBackground = "#00000000", // Reverting to transparent as per original intent, but using hex
+            Background = "#00000000",
+            Surface = "#00000000",
+            DrawerBackground = "#00000000",
+            TextPrimary = "#ffffff",
+            TextSecondary = "#cccccc"
+        }
+    };
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
