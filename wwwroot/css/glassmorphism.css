@@ -26,6 +26,12 @@
         --glass-button-hover: rgba(255, 255, 255, 0.25);
         --app-bg-gradient: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
     }
+
+    body {
+        background: var(--app-bg-gradient) !important;
+        background-attachment: fixed;
+        color: var(--glass-text);
+    }
 }
 
 /* Explicit Dark Theme Class applied by Blazor */
@@ -40,6 +46,9 @@
     --glass-button-hover: rgba(255, 255, 255, 0.25) !important;
     --app-bg-gradient: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%) !important;
 }
+
+/* Apply gradient to body when dark-theme class is present, but effectively we want it on body if .dark-theme is active via parent or JS, but here .dark-theme might be on a div */
+/* Let's ensure body gets it if prefers-color-scheme is dark matches */
 
 /* Glassmorphism Utilities */
 .glass-panel {
