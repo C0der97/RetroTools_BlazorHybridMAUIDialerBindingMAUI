@@ -4,6 +4,7 @@
 @inject NavigationManager NavigationManager
 @inject ISnackbar Snackbar
 @inject IDialogService DialogService
+@inject ICallHandler CallHandler
 
 <MudContainer MaxWidth="MaxWidth.ExtraSmall" Class="pa-0 relative-container" Style="height: 100%; position: relative;">
     <MudStack Row="true" Class="ma-4 align-center">
@@ -132,16 +133,53 @@
         }
     }
 
-    private void CallNumber(string number)
+
+
+    private async void CallNumber(string number)
     {
         if (string.IsNullOrEmpty(number)) return;
         try
         {
-            PhoneDialer.Open(number);
+            // Set call info for the call screen
+            InfoStatic.PhoneNumber = number;
+            InfoStatic.CallDirection = "Outgoing";
+            
+            // Get contact name if available
+            var contact = contacts?.FirstOrDefault(c => c.PhoneNumber == number);
+            if (contact != null)
+            {
+                InfoStatic.ContactName = contact.Name ?? "";
+                InfoStatic.ContactPhoto = contact.PhotoUri ?? "";
+            }
+            else
+            {
+                InfoStatic.ContactName = "";
+                InfoStatic.ContactPhoto = "";
+            }
+
+            var status = await Permissions.CheckStatusAsync<Permissions.Phone>();
+             if (status != PermissionStatus.Granted)
+            {
+                status = await Permissions.RequestAsync<Permissions.Phone>();
+            }
+
+            if (status == PermissionStatus.Granted)
+            {
+                 CallHandler.PlaceCall(number);
+                 await Task.Delay(100);
+                 NavigationManager.NavigateTo("/calls");
+            }
+            else
+            {
+                Snackbar.Add("Permiso de teléfono requerido para llamar.", Severity.Warning);
+                 // Fallback to system dialer if permission denied or mostly for safety
+                PhoneDialer.Open(number);
+            }
         }
         catch (Exception ex)
         {
             Console.WriteLine($"Error dialing: {ex.Message}");
+            PhoneDialer.Open(number);
         }
     }
 

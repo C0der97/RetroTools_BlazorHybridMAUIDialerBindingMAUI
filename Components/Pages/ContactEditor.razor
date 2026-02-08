@@ -11,7 +11,7 @@
     <MudPaper Class="glass-panel pa-4">
         <MudForm @ref="form" @bind-IsValid="@success">
             <MudTextField T="string" Label="Nombre" @bind-Value="contact.Name" Required="true" RequiredError="El nombre es obligatorio" Class="glass-text" />
-            <MudTextField T="string" Label="Teléfono" @bind-Value="contact.PhoneNumber" Required="true" RequiredError="El teléfono es obligatorio" Class="glass-text" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Phone" />
+            <MudTextField T="string" Label="Teléfono" @bind-Value="contact.PhoneNumber" Required="true" RequiredError="El teléfono es obligatorio" Class="glass-text" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Phone" InputType="InputType.Telephone" Validation="@(new Func<string, IEnumerable<string>>(ValidatePhoneNumber))" />
         </MudForm>
     </MudPaper>
 
@@ -82,6 +82,20 @@
         else
         {
             Snackbar.Add($"Error: {result.error}", Severity.Error, config => { config.RequireInteraction = true; });
+        }
+    }
+
+    private IEnumerable<string> ValidatePhoneNumber(string value)
+    {
+        if (string.IsNullOrEmpty(value))
+        {
+            yield return "El teléfono es obligatorio";
+            yield break;
+        }
+
+        if (!System.Text.RegularExpressions.Regex.IsMatch(value, @"^[0-9\+\s]*$"))
+        {
+            yield return "Solo se permiten números, espacios y +";
         }
     }
 
