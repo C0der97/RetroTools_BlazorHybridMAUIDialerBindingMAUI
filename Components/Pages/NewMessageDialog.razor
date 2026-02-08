@@ -1,0 +1,20 @@
+@using MudBlazor
+
+<MudDialog>
+    <DialogContent>
+        <MudTextField @bind-Value="PhoneNumber" Label="Número de teléfono" Required="true" InputType="InputType.Telephone" />
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Cancel">Cancelar</MudButton>
+        <MudButton Color="Color.Primary" OnClick="Submit" Disabled="@string.IsNullOrWhiteSpace(PhoneNumber)">Aceptar</MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+
+    public string PhoneNumber { get; set; }
+
+    void Submit() => MudDialog.Close(DialogResult.Ok(PhoneNumber));
+    void Cancel() => MudDialog.Cancel();
+}

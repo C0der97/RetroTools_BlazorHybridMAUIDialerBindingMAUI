@@ -1,0 +1,207 @@
+@page "/messages/{ThreadId}"
+@using PayRemind.Contracts
+@inject ISmsService SmsService
+@inject NavigationManager NavigationManager
+@inject ISnackbar Snackbar
+@inject IJSRuntime JSRuntime
+
+<MudContainer MaxWidth="MaxWidth.ExtraSmall" Class="pa-0 relative-container" Style="height: 100%; position: relative; display: flex; flex-direction: column;">
+    <MudStack Row="true" Class="ma-4 align-center">
+        <MudIconButton Icon="@Icons.Material.Filled.ArrowBack" OnClick="GoBack" Color="Color.Inherit" />
+        <MudText Typo="Typo.h6" Class="glass-text">
+            @(string.IsNullOrEmpty(Address) ? "Mensajes" : Address)
+        </MudText>
+        <MudSpacer />
+        <MudIconButton Icon="@Icons.Material.Filled.Delete" OnClick="DeleteConversation" Color="Color.Error" />
+    </MudStack>
+
+    <div id="message-list" class="flex-grow-1 pa-4" style="overflow-y: auto; display: flex; flex-direction: column-reverse;">
+        <!-- Reversed column to simulate chat bottom-up -->
+        @if (messages != null)
+        {
+             // We need to render them in correct order. If flex-direction is column-reverse, the first item in DOM is at bottom.
+             // So if messages is sorted by Date ASC (oldest first), the newest (last) should be at the bottom (first in reverse?? No).
+             // Standard way: display: flex; flex-direction: column; and scroll to bottom. 
+             // Let's stick to standard column and auto-scroll.
+        }
+    </div>
+    
+     <div class="flex-grow-1 pa-4 scroll-container" style="overflow-y: auto;">
+        @if (isLoading)
+        {
+             <MudProgressCircular Color="Color.Primary" Indeterminate="true" Class="ma-auto" />
+        }
+        else if (messages != null)
+        {
+            @foreach (var msg in messages)
+            {
+                <div class="@(msg.IsIncoming ? "d-flex justify-start mb-2 align-center" : "d-flex justify-end mb-2 align-center")">
+                    <!-- Delete button for incoming messages (left side of bubble, hidden by default unless we add hover or always show) 
+                         For mobile, let's just put a small icon next to it or use MudMenu. -->
+                    
+                    @if (!msg.IsIncoming)
+                    {
+                         <MudIconButton Icon="@Icons.Material.Filled.Delete" Size="Size.Small" Color="Color.Error" OnClick="@(() => DeleteMessage(msg))" Class="mr-2" />
+                    }
+
+                    <MudPaper Class="@(msg.IsIncoming ? "pa-3 glass-message-incoming" : "pa-3 glass-message-outgoing")" 
+                              Style="@(msg.IsIncoming ? "background: rgba(255, 255, 255, 0.1); border-radius: 16px 16px 16px 0;" : "background: var(--mud-palette-primary); color: white; border-radius: 16px 16px 0 16px;")" MaxWidth="80%">
+                        <MudText Typo="Typo.body1">@msg.Body</MudText>
+                        <MudText Typo="Typo.caption" Class="mt-1" Style="opacity: 0.7; font-size: 0.7rem; display: block; text-align: right;">
+                             @FormatDate(msg.Date)
+                        </MudText>
+                    </MudPaper>
+
+                    @if (msg.IsIncoming)
+                    {
+                         <MudIconButton Icon="@Icons.Material.Filled.Delete" Size="Size.Small" Color="Color.Error" OnClick="@(() => DeleteMessage(msg))" Class="ml-2" />
+                    }
+                </div>
+            }
+        }
+    </div>
+
+    <MudPaper Elevation="0" Class="glass-panel pa-2 d-flex align-end" Style="border-top: 1px solid var(--glass-border);">
+        <MudTextField @bind-Value="newMessageText" Placeholder="Escribe un mensaje..." Variant="Variant.Text" Underline="false" AutoGrow="true" MaxLines="5" Class="glass-text mx-2" />
+        <MudIconButton Icon="@Icons.Material.Filled.Send" Color="Color.Primary" OnClick="SendMessage" Disabled="@string.IsNullOrWhiteSpace(newMessageText)" />
+    </MudPaper>
+</MudContainer>
+<style>
+    .scroll-container::-webkit-scrollbar {
+        width: 4px;
+    }
+    .scroll-container::-webkit-scrollbar-thumb {
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 4px;
+    }
+</style>
+
+@code {
+    [Parameter] public string ThreadId { get; set; } = default!;
+
+    [SupplyParameterFromQuery]
+    public string? Address { get; set; }
+
+    private List<SmsMessage> messages = new();
+    private string newMessageText = "";
+    private bool isLoading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (ThreadId == "new")
+        {
+            isLoading = false;
+        }
+        else
+        {
+            await LoadMessages();
+        }
+    }
+
+    private async Task LoadMessages()
+    {
+        if (ThreadId == "new") return;
+
+        isLoading = true;
+        try
+        {
+            messages = await SmsService.GetMessagesAsync(ThreadId);
+            if (messages.Any() && string.IsNullOrEmpty(Address))
+            {
+                Address = messages.First().Address;
+            }
+             // Scroll to bottom?
+        }
+        catch (Exception ex)
+        {
+             Snackbar.Add($"Error cargando mensajes: {ex.Message}", Severity.Error);
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private async Task SendMessage()
+    {
+        if (string.IsNullOrWhiteSpace(newMessageText)) return;
+        
+        if (string.IsNullOrEmpty(Address))
+        {
+             Snackbar.Add("No se pudo determinar el destinatario.", Severity.Error);
+             return;
+        }
+
+        bool success = await SmsService.SendMessageAsync(Address, newMessageText);
+        if (success)
+        {
+            newMessageText = "";
+            
+            if (ThreadId == "new")
+            {
+                // If we were in "new" mode, we should ideally now have a thread. 
+                // But getting the new ThreadId is tricky without re-querying everything.
+                // For now, let's just go back to the list, or stay here and warn user to refresh.
+                // Better UX: Go back to list so it refreshes.
+                Snackbar.Add("Mensaje enviado", Severity.Success);
+                NavigationManager.NavigateTo("/messages");
+            }
+            else
+            {
+                await LoadMessages(); 
+            }
+        }
+        else
+        {
+            Snackbar.Add("Error al enviar mensaje", Severity.Error);
+        }
+    }
+    
+    private void GoBack()
+    {
+        NavigationManager.NavigateTo("/messages");
+    }
+    
+    private async Task DeleteConversation()
+    {
+        bool confirm = await JSRuntime.InvokeAsync<bool>("confirm", "Se borrarán todos los mensajes. La app debe ser la predeterminada para que esto funcione. ¿Continuar?");
+        if (confirm)
+        {
+            bool success = await SmsService.DeleteConversationAsync(ThreadId);
+            if (success)
+            {
+                 Snackbar.Add("Conversación eliminada", Severity.Success);
+                 NavigationManager.NavigateTo("/messages");
+            }
+            else
+            {
+                 Snackbar.Add("Error al eliminar. Asegúrate que la app sea la predeterminada de SMS.", Severity.Warning);
+            }
+        }
+    }
+
+    private async Task DeleteMessage(SmsMessage msg)
+    {
+         bool confirm = await JSRuntime.InvokeAsync<bool>("confirm", "¿Borrar este mensaje?");
+         if (confirm)
+         {
+             bool success = await SmsService.DeleteMessageAsync(msg.Id);
+             if (success)
+             {
+                 Snackbar.Add("Mensaje eliminado", Severity.Success);
+                 await LoadMessages();
+             }
+             else
+             {
+                 Snackbar.Add("Error al eliminar mensaje. Verifica permisos de app predeterminada.", Severity.Warning);
+             }
+         }
+    }
+
+    private string FormatDate(long date)
+    {
+         DateTime start = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+         DateTime dt = start.AddMilliseconds(date).ToLocalTime();
+         return dt.ToString("g");
+    }
+}

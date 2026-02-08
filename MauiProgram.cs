@@ -75,16 +75,15 @@ namespace PayRemind
 
 #if ANDROID
             builder.Services.AddSingleton<PhoneCallReceiver>();
-            builder.Services.AddSingleton<ICallHandler, CallHandlingService>();
-            builder.Services.AddSingleton<IViewConverterService, ViewConverterService>();
-            builder.Services.AddSingleton<ICallLogService, CallLogService>();
-            builder.Services.AddSingleton<IContactsService, ContactsService>(); // Registered ContactsService
+            builder.Services.AddSingleton<PayRemind.Contracts.IContactsService, PayRemind.Platforms.Android.ContactsService>();
+            builder.Services.AddSingleton<PayRemind.Contracts.ICallLogService, PayRemind.Platforms.Android.CallLogService>();
+            builder.Services.AddSingleton<PayRemind.Contracts.ICallHandler, PayRemind.Platforms.Android.CallHandlingService>();
+            builder.Services.AddSingleton<PayRemind.Contracts.ISmsService, PayRemind.Platforms.Android.SmsService>();
+            builder.Services.AddSingleton<IViewConverterService, ViewConverterService>(); // Registered ContactsService
 
             DependencyService.Register<IViewConverterService, ViewConverterService>();
             DependencyService.Register<ICallLogService, CallLogService>();
             DependencyService.Register<IContactsService, ContactsService>();
-
-
 
 #endif
 

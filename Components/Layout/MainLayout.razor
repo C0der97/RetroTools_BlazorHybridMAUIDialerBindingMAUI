@@ -12,10 +12,11 @@
     </MudMainContent>
     
     <MudPaper Height="86px" Class="glass-panel d-flex justify-center align-center fixed-bottom" Elevation="0" Square="true" Style="width: 100%; border-top: 1px solid var(--glass-border); z-index: 1000;">
-        <MudTabs Elevation="0" Rounded="true" ApplyEffectsToContainer="true" PanelClass="d-none" Color="Color.Transparent" Centered="true" ActivePanelIndexChanged="OnTabChanged">
+        <MudTabs Elevation="0" Rounded="true" ApplyEffectsToContainer="true" PanelClass="d-none" Color="Color.Transparent" Centered="true" ActivePanelIndexChanged="OnTabChanged" ActivePanelIndex="_activeTabIndex">
             <MudTabPanel Icon="@Icons.Material.Filled.AccessTime" Text="Recientes" Tag='"/recents"' />
             <MudTabPanel Icon="@Icons.Material.Filled.Dialpad" Text="Teclado" Tag='"/dialpad"' />
             <MudTabPanel Icon="@Icons.Material.Filled.Contacts" Text="Contactos" Tag='"/contacts"' />
+            <MudTabPanel Icon="@Icons.Material.Filled.Message" Text="Mensajes" Tag='"/messages"' />
         </MudTabs>
     </MudPaper>
 </MudLayout>
@@ -89,26 +90,76 @@
 
     private void OnTabChanged(int index)
     {
+        if (_activeTabIndex == index) return; // Prevent navigation if already on the tab (though MudTabs might not fire this)
+
+        string target = "";
         switch (index)
         {
-            case 0:
-                NavigationManager.NavigateTo("/recents");
-                break;
-            case 1:
-                NavigationManager.NavigateTo("/dialpad");
-                break;
-            case 2:
-                NavigationManager.NavigateTo("/contacts");
-                break;
+            case 0: target = "/recents"; break;
+            case 1: target = "/dialpad"; break;
+            case 2: target = "/contacts"; break;
+            case 3: target = "/messages"; break;
+        }
+        
+        // Only navigate if we are not already at the target (checking mostly the start to allow sub-pages)
+        if (!string.IsNullOrEmpty(target) && !NavigationManager.Uri.Contains(target))
+        {
+            NavigationManager.NavigateTo(target);
         }
     }
     
+    private int _activeTabIndex = 1; // Default to Dialpad (index 1)
+
     protected override void OnInitialized()
     {
+        NavigationManager.LocationChanged += OnLocationChanged;
+        UpdateActiveTab(NavigationManager.Uri);
+
         // Default to dialpad if at root
-        if (NavigationManager.Uri.EndsWith("/"))
+        if (NavigationManager.Uri.EndsWith("/") || NavigationManager.Uri.EndsWith("index.html"))
         {
             NavigationManager.NavigateTo("/dialpad");
+        }
+    }
+
+    private void OnLocationChanged(object? sender, LocationChangedEventArgs e)
+    {
+        UpdateActiveTab(e.Location);
+    }
+
+    private void UpdateActiveTab(string location)
+    {
+        int newIndex = _activeTabIndex;
+        
+        if (location.Contains("/recents"))
+        {
+            newIndex = 0;
+        }
+        else if (location.Contains("/dialpad") || location.Contains("/calls")) // calls might be the output of dialpad
+        {
+            newIndex = 1;
+        }
+        else if (location.Contains("/contacts"))
+        {
+            newIndex = 2;
+        }
+        else if (location.Contains("/messages"))
+        {
+            newIndex = 3;
+        }
+        
+        if (_activeTabIndex != newIndex)
+        {
+            _activeTabIndex = newIndex;
+            StateHasChanged();
+        }
+    }
+
+    public void Dispose()
+    {
+        if (NavigationManager != null)
+        {
+            NavigationManager.LocationChanged -= OnLocationChanged;
         }
     }
 }
