@@ -4,6 +4,11 @@
 @using Microsoft.Maui.Controls
 @using PayRemind.Contracts
 @using System.Timers
+@using CommunityToolkit.Mvvm.Messaging
+@using PayRemind.Messages
+@implements IRecipient<CallStateChangedMessage>
+@implements IRecipient<IncomingCallMessage>
+@implements IDisposable
 
 <div class="call-screen-bg" style="min-height: 100vh; width: 100%;">
     <div style="min-height: 100vh; width: 100%; display: flex; flex-direction: column; justify-content: space-between; padding: 20px 16px; position: relative;">
@@ -231,27 +236,23 @@
             _callStatus = "Dialing";
         }
 
-        // Subscribe to call state changes
-        MessagingCenter.Subscribe<object, string>(this, "CallStateChanged", (sender, state) =>
-        {
-            InvokeAsync(() => UpdateState(state));
-        });
-        
-        // Subscribe to incoming call message
-        MessagingCenter.Subscribe<object, string>(this, "IncomingCall", (sender, number) =>
-        {
-            _incomingNumber = number;
-            _callStatus = "Incoming";
-            StateHasChanged();
-        });
-        
-        // Subscribe to contact info updates
-        MessagingCenter.Subscribe<object, (string Name, string Photo)>(this, "ContactInfo", (sender, info) =>
-        {
-            _contactName = info.Name;
-            _contactPhoto = info.Photo;
-            StateHasChanged();
-        });
+        // Register for messages
+        WeakReferenceMessenger.Default.Register<CallStateChangedMessage>(this);
+        WeakReferenceMessenger.Default.Register<IncomingCallMessage>(this);
+    }
+    
+    // Implement IRecipient<CallStateChangedMessage>
+    public void Receive(CallStateChangedMessage message)
+    {
+        InvokeAsync(() => UpdateState(message.State));
+    }
+    
+    // Implement IRecipient<IncomingCallMessage>
+    public void Receive(IncomingCallMessage message)
+    {
+        _incomingNumber = message.PhoneNumber;
+        _callStatus = "Incoming";
+        InvokeAsync(StateHasChanged);
     }
     
     private string GetAvatarClass()
@@ -383,9 +384,8 @@
     
     public void Dispose()
     {
-        MessagingCenter.Unsubscribe<object, string>(this, "CallStateChanged");
-        MessagingCenter.Unsubscribe<object, string>(this, "IncomingCall");
-        MessagingCenter.Unsubscribe<object, (string, string)>(this, "ContactInfo");
+        WeakReferenceMessenger.Default.Unregister<CallStateChangedMessage>(this);
+        WeakReferenceMessenger.Default.Unregister<IncomingCallMessage>(this);
         StopTimer();
     }
 }

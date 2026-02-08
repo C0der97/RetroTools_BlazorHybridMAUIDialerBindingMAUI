@@ -12,6 +12,8 @@ using AndroidX.Core.Graphics.Drawable;
 using Microsoft.Maui.Controls.PlatformConfiguration;
 using static Android.Icu.Text.CaseMap;
 using Person = Android.App.Person;
+using CommunityToolkit.Mvvm.Messaging;
+using PayRemind.Messages;
 
 namespace PayRemind.Platforms.Android
 {
@@ -72,7 +74,7 @@ namespace PayRemind.Platforms.Android
                     }
                 }
                 catch { }
-                MessagingCenter.Send<object, string>(this, "IncomingCall", phoneNumber);
+                WeakReferenceMessenger.Default.Send(new IncomingCallMessage(phoneNumber));
                 
                 if (!isDeviceInteractive || isScreenLocked)
                 {
@@ -85,7 +87,7 @@ namespace PayRemind.Platforms.Android
                 ShowNotification(call, false);
                 
                 // Send message to update UI for outgoing call state
-                MessagingCenter.Send<object, string>(this, "CallStateChanged", "Dialing");
+                WeakReferenceMessenger.Default.Send(new CallStateChangedMessage("Dialing"));
             }
         }
 
@@ -209,7 +211,7 @@ namespace PayRemind.Platforms.Android
             public override void OnStateChanged(Call call, CallState state)
             {
                 base.OnStateChanged(call, state);
-                MessagingCenter.Send<object, string>(this, "CallStateChanged", state.ToString());
+                WeakReferenceMessenger.Default.Send(new CallStateChangedMessage(state.ToString()));
                 
                 if (state == CallState.Disconnected || state == CallState.Disconnecting)
                 {
