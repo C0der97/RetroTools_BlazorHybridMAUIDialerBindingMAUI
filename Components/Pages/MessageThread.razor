@@ -175,7 +175,11 @@
             }
             else
             {
-                 Snackbar.Add("Error al eliminar. Asegúrate que la app sea la predeterminada de SMS.", Severity.Warning);
+                 bool requestDefault = await JSRuntime.InvokeAsync<bool>("confirm", "No se pudo eliminar. Es necesario que esta app sea la predeterminada de SMS. ¿Quieres cambiarlo ahora?");
+                 if (requestDefault)
+                 {
+                     SmsService.RequestDefaultSmsApp();
+                 }
             }
         }
     }
@@ -193,7 +197,11 @@
              }
              else
              {
-                 Snackbar.Add("Error al eliminar mensaje. Verifica permisos de app predeterminada.", Severity.Warning);
+                 bool requestDefault = await JSRuntime.InvokeAsync<bool>("confirm", "No se pudo eliminar. ¿Quieres establecer esta app como predeterminada de SMS?");
+                 if (requestDefault)
+                 {
+                     SmsService.RequestDefaultSmsApp();
+                 }
              }
          }
     }

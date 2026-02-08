@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
     <PropertyGroup>
-        <TargetFrameworks>net10.0-android;</TargetFrameworks>
+        <TargetFrameworks>net9.0-android;</TargetFrameworks>
         <!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
         <!-- <TargetFrameworks>$(TargetFrameworks);net8.0-tizen</TargetFrameworks> -->
 
@@ -32,7 +32,7 @@
 
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
-        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">29.0</SupportedOSPlatformVersion>
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">24.0</SupportedOSPlatformVersion>
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
         <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
@@ -40,15 +40,19 @@
 
     <PropertyGroup>
       <AndroidSigningKeyStore>Payremind.keystore</AndroidSigningKeyStore>
+      <AndroidEnableMultiDex>true</AndroidEnableMultiDex>
+      <TargetSdkVersion>34</TargetSdkVersion>
+      <TargetApiLevel>34</TargetApiLevel>
     </PropertyGroup>
 
-    <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net10.0-android|AnyCPU'">
+    <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-android|AnyCPU'">
       <ApplicationTitle>PayRemindRMK</ApplicationTitle>
       <AndroidKeyStore>True</AndroidKeyStore>
       <AndroidSigningStorePass>Payremind</AndroidSigningStorePass>
       <AndroidSigningKeyAlias>payremind</AndroidSigningKeyAlias>
       <AndroidSigningKeyPass>Payremind</AndroidSigningKeyPass>
       <AndroidCreatePackagePerAbi>True</AndroidCreatePackagePerAbi>
+      <AndroidSdkVersion>34</AndroidSdkVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-maccatalyst|AnyCPU'">
@@ -63,7 +67,7 @@
       <ApplicationTitle>PayRemindRMK</ApplicationTitle>
     </PropertyGroup>
 
-    <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net10.0-android|AnyCPU'">
+    <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-android|AnyCPU'">
       <ApplicationTitle>PayRemindRMK</ApplicationTitle>
       <AndroidKeyStore>True</AndroidKeyStore>
       <AndroidSigningStorePass>Payremind</AndroidSigningStorePass>
@@ -71,6 +75,8 @@
       <AndroidSigningKeyPass>Payremind</AndroidSigningKeyPass>
       <AndroidCreatePackagePerAbi>True</AndroidCreatePackagePerAbi>
       <AndroidPackageFormat>apk</AndroidPackageFormat>
+      <AndroidSdkVersion>34</AndroidSdkVersion>
+      <AndroidNativeLibraryCompression>none</AndroidNativeLibraryCompression>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-maccatalyst|AnyCPU'">
@@ -119,23 +125,19 @@
     <ItemGroup>
         <PackageReference Include="CommunityToolkit.Maui" Version="9.0.2" />
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
-        <PackageReference Include="Microsoft.Maui.Controls" Version="10.0.31" />
-        <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="10.0.31" />
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebView.Maui" Version="10.0.31" />
-        <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.0" />
-        <PackageReference Include="Microsoft.Maui.Essentials" Version="10.0.31" />
+        <PackageReference Include="Microsoft.Maui.Controls" Version="9.0.30" />
+        <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="9.0.30" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebView.Maui" Version="9.0.30" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />
+        <PackageReference Include="Microsoft.Maui.Essentials" Version="9.0.30" />
         <PackageReference Include="MudBlazor" Version="7.6.0" />
         <PackageReference Include="Plugin.LocalNotification" Version="11.1.4" />
         <PackageReference Include="Sebarslan.Maui.NullableDateTimePicker" Version="2.3.1" />
-        <PackageReference Include="Sentry.Maui" Version="4.9.0" />
         <PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
 		
     </ItemGroup>
 
-    <ItemGroup Condition="'$(TargetFramework)' == 'net10.0-android'">
-      <PackageReference Include="Xamarin.AndroidX.Fragment.Ktx">
-        <Version>1.8.8.1</Version>
-      </PackageReference>
+    <ItemGroup Condition="'$(TargetFramework)' == 'net9.0-android'">
     </ItemGroup>
 
     <ItemGroup>

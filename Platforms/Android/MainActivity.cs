@@ -37,6 +37,11 @@ namespace PayRemind
         [Intent.ActionView, Intent.ActionDial],
         Categories = [Intent.CategoryDefault, Intent.CategoryBrowsable, ],
         DataScheme = "tel")]
+
+    [IntentFilter(
+        [Intent.ActionSendto],
+        Categories = [Intent.CategoryDefault],
+        DataSchemes = ["sms", "smsto", "mms", "mmsto"])]
     public class MainActivity : MauiAppCompatActivity
     {
         public static MainActivity? ActivityCurrent { get; set; }
@@ -155,7 +160,6 @@ namespace PayRemind
             if (Intent != null &&  Intent.GetBooleanExtra("OpenCallPage", false))
             {
                 string? incomingNumber = Intent.GetStringExtra("IncomingNumber");
-                SentrySdk.CaptureMessage("Llamada a OpenCallPage222");
 
                 WeakReferenceMessenger.Default.Send(new TabIndexMessage(2, incomingNumber ?? ""));
             }

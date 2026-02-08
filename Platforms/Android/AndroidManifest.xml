@@ -30,7 +30,7 @@
             </intent-filter>
         </service>
 
-	        <receiver
+        <receiver
             android:name=".PhoneCallReceiver"
             android:enabled="true"
             android:exported="true">
@@ -39,6 +39,30 @@
                 <action android:name="com.simplemobiletools.dialer.action.DECLINE_CALL" />
             </intent-filter>
         </receiver>
+
+        <!-- SMS Receivers (Required for Default SMS App) -->
+        <receiver android:name=".SmsReceiver" android:permission="android.permission.BROADCAST_SMS" android:exported="true">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_DELIVER" />
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name=".MmsReceiver" android:permission="android.permission.BROADCAST_WAP_PUSH" android:exported="true">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.WAP_PUSH_DELIVER" />
+                <data android:mimeType="application/vnd.wap.mms-message" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name=".HeadlessSmsSendService" android:permission="android.permission.SEND_RESPOND_VIA_MESSAGE" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.RESPOND_VIA_MESSAGE" />
+                <data android:scheme="sms" />
+                <data android:scheme="smsto" />
+                <data android:scheme="mms" />
+                <data android:scheme="mmsto" />
+            </intent-filter>
+        </service>
 	
 	</application>
 	<!-- Right Permissions -->

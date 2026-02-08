@@ -56,8 +56,6 @@ namespace PayRemind.Platforms.Android
                     TelephonyManager.ExtraIncomingNumber
                     );
 
-                SentrySdk.CaptureMessage("Recibiendo llamada número "+incomingNumber);
-
                 //var serviceIntent = new Intent(context, typeof(CallService));
                 //_ = context.StartForegroundService(serviceIntent);
 

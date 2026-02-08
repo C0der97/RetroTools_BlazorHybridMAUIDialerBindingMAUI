@@ -10,6 +10,7 @@ namespace PayRemind.Contracts
         Task<bool> SendMessageAsync(string address, string body);
         Task<bool> DeleteMessageAsync(string messageId);
         Task<bool> DeleteConversationAsync(string threadId);
+        void RequestDefaultSmsApp();
         Task MarkAsReadAsync(string threadId);
     }
 }

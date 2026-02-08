@@ -111,7 +111,7 @@ namespace PayRemind
         private void OnDateSelected(object sender, DateChangedEventArgs e)
         {
             // Aquí puedes manejar el cambio de fecha
-            DateTime selectedDate = e.NewDate ?? DateTime.Now;
+            DateTime selectedDate = e.NewDate;
             // Haz algo con la fecha seleccionada
         }
 

@@ -190,8 +190,40 @@ namespace PayRemind.Platforms.Android
             catch (Exception ex)
             {
                 Console.WriteLine($"Error deleting SMS: {ex.Message}");
+                // Verify if we are default app
+                if (global::Android.OS.Build.VERSION.SdkInt >= global::Android.OS.BuildVersionCodes.Kitkat)
+                {
+                    string defaultSmsPackage = Telephony.Sms.GetDefaultSmsPackage(_context);
+                    if (defaultSmsPackage != _context.PackageName)
+                    {
+                        // Not default app. We can trigger intent to change it.
+                        // However, we can't trigger it directly from here easily without an Activity context,
+                        // or we rely on the UI layer to do it.
+                        // Let's assume the UI will handle the prompt if this returns false.
+                        
+                        // BUT, to be helpful, let's try to start the intent if we are in foreground?
+                        // Better: Return false, and let the UI know WHY.
+                        // Changing return type is breaking interface.
+                        // Let's stick to returning false and adding a separate method to request it.
+                    }
+                }
                 return false;
             }
+        }
+
+        public void RequestDefaultSmsApp()
+        {
+             if (global::Android.OS.Build.VERSION.SdkInt >= global::Android.OS.BuildVersionCodes.Kitkat)
+             {
+                 string defaultSmsPackage = Telephony.Sms.GetDefaultSmsPackage(_context);
+                 if (defaultSmsPackage != _context.PackageName)
+                 {
+                     Intent intent = new Intent(Telephony.Sms.Intents.ActionChangeDefault);
+                     intent.PutExtra(Telephony.Sms.Intents.ExtraPackageName, _context.PackageName);
+                     intent.AddFlags(ActivityFlags.NewTask);
+                     _context.StartActivity(intent);
+                 }
+             }
         }
         
          public async Task<bool> DeleteConversationAsync(string threadId)
